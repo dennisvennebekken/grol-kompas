@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#16337e">
+<title>Grol Kompas — s.v. Grol Jeugdopleiding</title>
+<style>
+:root{
+  --blauw:#16337e; --blauw2:#1d4ea3; --blauwlicht:#e8edf8;
+  --rood:#c4122f; --wit:#fff; --grijs:#5a6478; --licht:#f4f6fb;
+  --rand:#dde3ef; --schaduw:0 2px 10px rgba(22,51,126,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--licht);color:#1c2438;line-height:1.55}
+a{color:var(--blauw2)}
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:var(--blauw);color:var(--wit);box-shadow:var(--schaduw)}
+.hbar{display:flex;align-items:center;gap:12px;padding:10px 14px;max-width:1080px;margin:0 auto}
+.hbar img{width:44px;height:44px;border-radius:50%;background:#fff;flex:none}
+.hbar .titel{flex:1;min-width:0}
+.hbar .titel b{font-size:1.05rem;display:block;letter-spacing:.3px}
+.hbar .titel span{font-size:.72rem;opacity:.85}
+.hbar button{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:6px}
+nav#menu{display:none;background:var(--blauw);border-top:1px solid rgba(255,255,255,.15)}
+nav#menu.open{display:block}
+nav#menu a{display:block;padding:11px 20px;color:#fff;text-decoration:none;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.08)}
+nav#menu a:active,nav#menu a:hover{background:var(--blauw2)}
+.zoekbalk{padding:0 14px 12px;max-width:1080px;margin:0 auto;display:none}
+.zoekbalk.open{display:block}
+.zoekbalk input{width:100%;padding:11px 14px;border-radius:10px;border:none;font-size:1rem}
+/* ---------- layout ---------- */
+main{max-width:1080px;margin:0 auto;padding:16px 14px 90px}
+.pagina{display:none;animation:fade .25s}
+.pagina.actief{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+h1{color:var(--blauw);font-size:1.45rem;margin:10px 0 4px}
+h2{color:var(--blauw);font-size:1.15rem;margin:22px 0 8px}
+h3{color:var(--rood);font-size:1rem;margin:14px 0 6px}
+.sub{color:var(--grijs);font-size:.9rem;margin-bottom:14px}
+.kaart{background:#fff;border:1px solid var(--rand);border-radius:14px;padding:16px;margin:12px 0;box-shadow:var(--schaduw)}
+.kaart h2{margin-top:0}
+ul{padding-left:20px;margin:6px 0}
+li{margin:3px 0}
+.motto{background:var(--blauw);color:#fff;border-radius:12px;padding:12px 16px;font-style:italic;text-align:center;margin:14px 0;font-size:1rem}
+.badge{display:inline-block;background:var(--blauwlicht);color:var(--blauw);border-radius:20px;padding:2px 12px;font-size:.78rem;font-weight:600;margin:2px 4px 2px 0}
+.badge.rood{background:#fbe6ea;color:var(--rood)}
+/* tegels */
+.tegels{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.tegel{background:#fff;border:1px solid var(--rand);border-radius:14px;padding:16px 12px;text-align:center;text-decoration:none;color:var(--blauw);font-weight:600;box-shadow:var(--schaduw);font-size:.92rem}
+.tegel .ico{font-size:1.7rem;display:block;margin-bottom:6px}
+.tegel:active,.tegel:hover{background:var(--blauwlicht)}
+.tegel.rood{color:var(--rood)}
+/* leeftijdknoppen */
+.leeftijden{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.leeftijden a{flex:1 1 90px;text-align:center;background:#fff;border:2px solid var(--blauw);color:var(--blauw);border-radius:10px;padding:10px 6px;text-decoration:none;font-weight:700}
+.leeftijden a.actiefknop,.leeftijden a:hover{background:var(--blauw);color:#fff}
+/* principes */
+.principe{border-left:5px solid var(--blauw);background:#fff;border-radius:0 12px 12px 0;padding:12px 14px;margin:10px 0;border-top:1px solid var(--rand);border-right:1px solid var(--rand);border-bottom:1px solid var(--rand)}
+.principe b{color:var(--blauw)}
+.principe .wat{margin:6px 0 4px}
+.principe.av{border-left-color:var(--rood)}
+/* tabellen */
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:.9rem;margin:10px 0}
+th{background:var(--blauw);color:#fff;text-align:left;padding:8px 10px}
+td{padding:8px 10px;border-bottom:1px solid var(--rand);vertical-align:top}
+tr:nth-child(even) td{background:#f8fafd}
+/* afbeeldingen / slideshow */
+.visiekaart{width:100%;border-radius:12px;border:1px solid var(--rand);cursor:zoom-in;box-shadow:var(--schaduw)}
+.slides{position:relative;background:#fff;border:1px solid var(--rand);border-radius:14px;overflow:hidden;box-shadow:var(--schaduw)}
+.slides img{width:100%;display:block}
+.slidenav{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--blauw);color:#fff}
+.slidenav button{background:var(--blauw2);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:1rem;cursor:pointer}
+/* downloads */
+.doc{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--rand);border-radius:10px;padding:10px 12px;margin:6px 0;text-decoration:none;color:#1c2438}
+.doc:hover{background:var(--blauwlicht)}
+.doc .ico{font-size:1.3rem}
+.doc small{color:var(--grijs);display:block}
+/* zoeken */
+#resultaten .doc{cursor:pointer}
+mark{background:#ffe9a8}
+/* footer */
+footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff;z-index:40}
+.fbar{display:flex;max-width:1080px;margin:0 auto}
+.fbar a{flex:1;text-align:center;padding:9px 2px 8px;color:#fff;text-decoration:none;font-size:.68rem}
+.fbar a .ico{display:block;font-size:1.25rem}
+.fbar a.actief{background:var(--blauw2)}
+.terug{display:inline-block;margin-bottom:8px;color:var(--blauw2);text-decoration:none;font-weight:600;font-size:.9rem}
+@media(min-width:760px){ h1{font-size:1.7rem} .fbar a{font-size:.8rem;padding:11px 2px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <img src="img/logo.png" alt="s.v. Grol logo">
+    <div class="titel"><b>Grol Kompas</b><span>Wegwijzer voor de jeugdopleiding · Samen een levenlang Grol</span></div>
+    <button id="zoekknop" title="Zoeken">&#128269;</button>
+    <button id="menuknop" title="Menu">&#9776;</button>
+  </div>
+  <div class="zoekbalk" id="zoekbalk"><input id="zoekveld" type="search" placeholder="Zoek: bijv. spelers lenen, warming-up, overtal…"></div>
+  <nav id="menu">
+    <a href="#home">&#127968; Home</a>
+    <a href="#team">&#128101; Mijn team (per leeftijd)</a>
+    <a href="#principes">&#9917; De 14 spelprincipes</a>
+    <a href="#speelwijze">&#127919; Speelwijze &amp; posities</a>
+    <a href="#training">&#128203; Training geven</a>
+    <a href="#omgang">&#129309; Omgang &amp; cultuur</a>
+    <a href="#beoordelen">&#128200; Beoordelen &amp; POP</a>
+    <a href="#kalender">&#128197; Jaarkalender</a>
+    <a href="#ouders">&#128106; Voor spelers &amp; ouders</a>
+    <a href="#bibliotheek">&#128218; Bibliotheek (alle documenten)</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section class="pagina" id="p-home">
+  <div class="motto">‘Op het veld moet het gebeuren’ — Goede trainers maken betere spelers</div>
+  <p class="sub">Het Grol Kompas wijst trainers, leiders, spelers en ouders de weg in de jeugdopleiding: voetbalbeleid, omgangsbeleid en beoordeling. Samengesteld door de Technische Jeugdcoördinatoren. Kies hieronder waar je naartoe wilt, of gebruik de zoekfunctie (&#128269; rechtsboven).</p>
+  <div class="tegels">
+    <a class="tegel" href="#team"><span class="ico">&#128101;</span>Mijn team<br><small>visie per leeftijd</small></a>
+    <a class="tegel" href="#principes"><span class="ico">&#9917;</span>14 Spelprincipes</a>
+    <a class="tegel" href="#speelwijze"><span class="ico">&#127919;</span>Speelwijze &amp; posities</a>
+    <a class="tegel" href="#training"><span class="ico">&#128203;</span>Training geven</a>
+    <a class="tegel" href="#omgang"><span class="ico">&#129309;</span>Omgang &amp; cultuur</a>
+    <a class="tegel" href="#beoordelen"><span class="ico">&#128200;</span>Beoordelen &amp; POP</a>
+    <a class="tegel" href="#kalender"><span class="ico">&#128197;</span>Jaarkalender</a>
+    <a class="tegel rood" href="#ouders"><span class="ico">&#128106;</span>Spelers &amp; ouders</a>
+    <a class="tegel" href="#bibliotheek"><span class="ico">&#128218;</span>Bibliotheek</a>
+  </div>
+  <div class="kaart">
+    <h2>Snel op weg als trainer of leider</h2>
+    <ul>
+      <li><b>Nieuw bij Grol?</b> Start bij <a href="#speelwijze">Speelwijze</a> en <a href="#omgang">Omgang &amp; cultuur</a>.</li>
+      <li><b>Training voorbereiden?</b> Ga naar <a href="#team">Mijn team</a> voor jouw leeftijdsgroep en <a href="#training">Training geven</a> voor de opbouw.</li>
+      <li><b>Wedstrijddag?</b> Bekijk de spelprincipes van jouw leeftijd en de afspraken over <a href="#omgang">positief coachen en spelers lenen</a>.</li>
+      <li><b>Evaluaties of POP-gesprekken?</b> Alle formulieren staan bij <a href="#beoordelen">Beoordelen &amp; POP</a>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= TEAM / LEEFTIJDEN ================= -->
+<section class="pagina" id="p-team">
+  <h1>Mijn team</h1>
+  <p class="sub">Kies jouw leeftijdsgroep. Je ziet dan de visie voor die leeftijd (techniek, tactiek, mentaal, fysiek), de geldende spelprincipes en de bijbehorende visiekaart om te bewaren of printen.</p>
+  <div class="leeftijden" id="leeftijdknoppen"></div>
+  <div id="teaminhoud"></div>
+</section>
+
+<!-- ================= SPELPRINCIPES ================= -->
+<section class="pagina" id="p-principes">
+  <h1>De 14 spelprincipes van Grol</h1>
+  <div class="motto">‘Samen een levenlang Grol’</div>
+  <div class="kaart">
+    <h2>Waarom spelprincipes?</h2>
+    <ul>
+      <li><b>Gemakkelijk te onthouden</b> — duidelijke, terugkerende afspraken geven spelers houvast in elke situatie.</li>
+      <li><b>Toepasbaar tegen elke tegenstander</b> — afspraken blijven duidelijk, ook als de wedstrijd verandert.</li>
+      <li><b>Makkelijker variëren met formaties</b> — de afspraken blijven grotendeels gelijk, ongeacht het systeem.</li>
+      <li><b>Beter trainbaar</b> — principes zijn te oefenen in vrijwel elke wedstrijdechte (kleine) partijvorm.</li>
+      <li><b>Eenvoudiger coachen</b> — met één korte term begrijpen spelers direct wat er gevraagd wordt.</li>
+      <li><b>Continuïteit</b> — spelers ontwikkelen zich op de lange termijn, het hele seizoen door.</li>
+    </ul>
+  </div>
+  <p class="sub">Per leeftijdsgroep komen er principes bij: van 4 principes bij O7 tot alle 14 vanaf O17. Zie <a href="#team">Mijn team</a> voor jouw leeftijd.</p>
+  <h2>Aanvallen</h2><div id="pr-a"></div>
+  <h2>Omschakelen aanvallen &rarr; verdedigen</h2><div id="pr-av"></div>
+  <h2>Verdedigen</h2><div id="pr-v"></div>
+  <h2>Omschakelen verdedigen &rarr; aanvallen</h2><div id="pr-va"></div>
+  <div class="kaart"><h2>Meer verdieping</h2>
+  <a class="doc" href="documenten/Hand-out Spelprincipes Grol.pdf" target="_blank"><span class="ico">&#128196;</span><span>Hand-out Spelprincipes Grol<small>PDF · wat &amp; hoe per principe</small></span></a>
+  <a class="doc" href="documenten/Presentatie Spelprincipes Grol.pdf" target="_blank"><span class="ico">&#128196;</span><span>Presentatie Spelprincipes Grol<small>PDF · incl. opbouw per leeftijdsgroep</small></span></a></div>
+</section>
+
+<!-- ================= SPEELWIJZE ================= -->
+<section class="pagina" id="p-speelwijze">
+  <h1>Speelwijze Grol</h1>
+  <div class="motto">Aanvallend · Voetballend verzorgd · Creatief · Hoge intensiteit · Dominant</div>
+  <div class="kaart">
+    <h2>Onze speelstijl</h2>
+    <p><b>Speelstijl</b> = de manier van spelen in grote lijnen: wat willen we zien als een team van s.v. Grol voetbalt?</p>
+    <ul>
+      <li><b>Aanvallend en naar voren gericht</b> — continu kansen creëren, met energie en initiatief.</li>
+      <li><b>Hoge intensiteit en verzorgd positiespel</b> — snel en intens (kwiek), maar tactisch georganiseerd.</li>
+      <li><b>Combinatiespel en creativiteit</b> — doelgericht samenspelen mét ruimte voor creatieve oplossingen.</li>
+      <li><b>Passie en plezier</b> — enthousiasme en betrokkenheid staan centraal, bij spelers én trainers.</li>
+      <li><b>Dominant</b> — na balverlies de bal zo snel en zo hoog mogelijk op het veld terugveroveren.</li>
+    </ul>
+    <p style="margin-top:8px"><b>Speelwijze</b> = alle afspraken die een team maakt over aanvallen, verdedigen en omschakelen (de 4 teamfuncties), in relatie tot de spelbedoeling. De <a href="#principes">14 spelprincipes</a> vormen hiervoor de kapstok.</p>
+  </div>
+  <div class="kaart">
+    <h2>Zo maak je de speelwijze trainbaar</h2>
+    <ul>
+      <li>Trainingsvormen vanuit een formatie (opstelling)</li>
+      <li>Uitvoering van voetbalhandelingen centraal stellen</li>
+      <li>Leersituaties creëren met herkenbaarheid en voorspelbaarheid</li>
+      <li>Spelprincipes zien en benoemen tijdens de training</li>
+      <li>Gebruik je speelwijze als basis voor de wedstrijdbespreking én de ouderbijeenkomst</li>
+    </ul>
+    <p class="sub" style="margin-top:8px">Tips om verder te lezen: KNVB Rinus (online assistent-trainer), Trainerssite.nl, De VoetbalTrainer, en het boek ‘De Trainer Maakt Het Verschil’ (Mauro van de Looij).</p>
+  </div>
+  <h2>Voetbalkwaliteiten per positie (1-4-3-3)</h2>
+  <div class="kaart">
+    <h3>Voor alle posities</h3>
+    <ul>
+      <li><b>Voetbalintelligentie</b> — juiste keuzes onder hoge druk</li>
+      <li><b>Technisch vaardig</b> — kunnen handelen in kleine ruimtes</li>
+      <li><b>Conditioneel sterk</b> — hoge intensiteit en herstelvermogen</li>
+      <li><b>Tactisch bewustzijn</b> — positiespel en afstemming tussen linies</li>
+      <li><b>Dominantie in houding</b> — lef, initiatief, geen angst voor risico</li>
+    </ul>
+  </div>
+  <div id="posities"></div>
+  <div class="kaart"><h2>Documenten</h2>
+  <a class="doc" href="documenten/Hand-out Speelwijze Grol Trainers bijeenkomst 10.01.2026_TC.pdf" target="_blank"><span class="ico">&#128196;</span><span>Hand-out Speelwijze (trainersbijeenkomst)<small>PDF · incl. opdracht eigen speelwijze</small></span></a>
+  <a class="doc" href="documenten/Presentatie Speelwijze Grol Trainersbijeenkomst 10.01.2026_TC.pdf" target="_blank"><span class="ico">&#128196;</span><span>Presentatie Speelwijze<small>PDF</small></span></a>
+  <a class="doc" href="documenten/Voetbalkwaliteiten per positie bij 1-4-3-3 PNV binnen Speelwijze Grol.pdf" target="_blank"><span class="ico">&#128196;</span><span>Voetbalkwaliteiten per positie<small>PDF</small></span></a>
+  <a class="doc" href="documenten/Adviesrapport Speelwijze Grol MPEE_HO_B_Grol_23.06.2025.pdf" target="_blank"><span class="ico">&#128196;</span><span>Adviesrapport Speelwijze (achtergrond)<small>PDF · beleid, plan van aanpak, werkgroep</small></span></a></div>
+</section>
+
+<!-- ================= TRAINING ================= -->
+<section class="pagina" id="p-training">
+  <h1>Training geven</h1>
+  <div class="motto">Voetballen leer je door te voetballen</div>
+  <div class="kaart">
+    <h2>Waaraan voldoet een goede voetbaltraining?</h2>
+    <ul>
+      <li><b>Bereid de training voor</b> — wat wil je trainen, waar coach je op? Pak 1–2 momenten eruit. Opbouw: warming-up → vorm 1 (met variaties) → vorm 2 (met variaties) → partijspel.</li>
+      <li><b>Zorg dat elke speler gezien is</b> — vraag hoe het is, maak een praatje. Een box voor en/of na de training zorgt voor verbinding.</li>
+      <li><b>Maak vooraf afspraken</b> — wat verwacht je van de spelers? Kom hier tijdens de training op terug. Doen wat je zegt is key!</li>
+      <li><b>Korte uitleg</b> — plaatje / praatje / daadje, klassikaal of individueel.</li>
+      <li><b>Veel herhaling</b> — hoge beweegtijd, meerdere situaties uitzetten, veel balcontacten per minuut, veel scoren.</li>
+      <li><b>Veel variatie</b> — prikkel het brein: pas taak, omgeving, materiaal of persoon aan. Heeft elke speler genoeg uitdaging?</li>
+      <li><b>Wedstrijdechte vormen</b> — bouw weerstand in, maak er een competitievorm van (winnen/verliezen = fun!).</li>
+      <li><b>Wees betrokken en enthousiast</b> — geef veel complimenten, laat spelers goede voorbeelden voordoen, laat ze zelf ontdekken en stel vragen zonder zelf het antwoord te geven.</li>
+    </ul>
+  </div>
+  <h2>Opbouw van een Grol-training</h2>
+  <table>
+    <tr><th>Duur</th><th>Onderdeel</th><th>Doel &amp; inhoud</th></tr>
+    <tr><td>5 min</td><td><b>Voorbespreking</b></td><td>Contact maken, terugblik, doel van de training benoemen. Maar 75 minuten? Doe dit vooraf.</td></tr>
+    <tr><td>10–20 min</td><td><b>Opstartvorm</b></td><td>Warm worden, blessurepreventie, motorisch ontwikkelen, technische vormen, pass/trap (SV Grol warming-up).</td></tr>
+    <tr><td>15–30 min</td><td><b>Oefenfase</b></td><td>Vereenvoudigde voetbalsituatie rond het trainingsdoel (wie/wat/waarom). Duidelijke stopmomenten: praatje/plaatje/daadje.</td></tr>
+    <tr><td>20–30 min</td><td><b>Leerfase</b></td><td>Complexere uitvoering op hoge intensiteit. Bedenk vooraf hoe je het makkelijker/moeilijker maakt.</td></tr>
+    <tr><td>20–30 min</td><td><b>Partij</b></td><td>Toepassen op hoogste intensiteit, met aandacht voor het voetbalprobleem. Laat de teugels niet vieren!</td></tr>
+    <tr><td>na afloop</td><td><b>Afsluiten</b></td><td>Terugkijken, beleving peilen, complimenten en verbeterpunten laten benoemen, samen opruimen en het veld af.</td></tr>
+  </table>
+  <h2>Veelzijdig Leren Voetballen (onderbouw)</h2>
+  <div class="kaart">
+    <p><b>Wat:</b> spelers leren door veel te bewegen, herhalen, variëren en zelf oplossingen te vinden. Zo ontwikkelen zij zich tot wendbare, vaardige en zelfverzekerde voetballers met een brede motorische basis.</p>
+    <h3>De vijf pijlers</h3>
+    <ul>
+      <li><b>Veel bewegen en herhalen</b> — hoge beweegtijd, veel balcontacten, afwisselende intensieve vormen.</li>
+      <li><b>Leren door zelf te ontdekken</b> — ruimte voor keuzes, vragen stellen, fouten maken mag, verantwoordelijkheid geven.</li>
+      <li><b>Aansluiten bij het kind</b> — belevingswereld en niveau, veilige positieve leeromgeving, elk kind wordt gezien.</li>
+      <li><b>Plezier en motivatie centraal</b> — energie, beleving en succesmomenten; intrinsieke motivatie via autonomie, relatie en competentie.</li>
+      <li><b>Variatie en uitdaging</b> — variëren in taak, omgeving en materiaal (variatiedriehoek / constraints-led approach).</li>
+    </ul>
+  </div>
+  <div class="slides" id="vlvslides">
+    <div class="slidenav"><button id="vlvvorige">&#8592; Vorige</button><span id="vlvteller">1 / 24</span><button id="vlvvolgende">Volgende &#8594;</button></div>
+    <img id="vlvbeeld" src="img/vlv-01.jpg" alt="Veelzijdig Leren Voetballen presentatie">
+  </div>
+  <div class="kaart" style="margin-top:14px"><h2>Documenten</h2>
+  <a class="doc" href="documenten/Hand-out Basis Voetbaltraining Grol.pdf" target="_blank"><span class="ico">&#128196;</span><span>Hand-out Basis Voetbaltraining<small>PDF · checklist goede training</small></span></a>
+  <a class="doc" href="documenten/Presentatie Veelzijdig Leren Voetballen Grol.pdf" target="_blank"><span class="ico">&#128196;</span><span>Presentatie Veelzijdig Leren Voetballen<small>PDF</small></span></a></div>
+</section>
+
+<!-- ================= OMGANG ================= -->
+<section class="pagina" id="p-omgang">
+  <h1>Omgang &amp; cultuur</h1>
+  <p class="sub">Hoe we binnen s.v. Grol respectvol en constructief met elkaar omgaan — op en naast het veld.</p>
+  <div class="kaart">
+    <h2>De vijf kernwaarden</h2>
+    <ul>
+      <li><b>Respect</b> — eerlijk en vriendelijk naar teamgenoten, hard maar netjes tegen tegenstanders, beslissingen van de scheidsrechter accepteren, zuinig op materialen en kleedkamers.</li>
+      <li><b>Inzet en discipline</b> — op tijd komen, actief meedoen, afspraken nakomen en op tijd melden als iets niet lukt.</li>
+      <li><b>Samenwerken als team</b> — successen samen vieren, elkaar positief coachen, openstaan voor tips, meedoen aan teamactiviteiten.</li>
+      <li><b>Plezier</b> — voetballen moet leuk blijven; lach samen, maar maak niemand belachelijk.</li>
+      <li><b>Prestatie</b> — trainen met focus en energie, willen winnen maar altijd eerlijk, verantwoordelijkheid nemen voor je eigen groei.</li>
+    </ul>
+  </div>
+  <h2>Omgangsvormen (teamafspraken)</h2>
+  <table>
+    <tr><th>Afspraak</th><th>Uitleg</th></tr>
+    <tr><td>Op tijd komen</td><td>5 minuten voor aanvang van de training staan we startklaar langs het veld.</td></tr>
+    <tr><td>Wij begroeten elkaar</td><td>Box/high five/groet voor trainers en elkaar bij aankomst op het sportpark.</td></tr>
+    <tr><td>Materialen samen naar het veld</td><td>Ballen en materialen samen naar het veld (bij de dug-out); iedere speler een eigen bidon.</td></tr>
+    <tr><td>Samen opruimen</td><td>Ballen en materialen netjes in het ballenhok, goals van het veld na de training.</td></tr>
+    <tr><td>Juiste voetbalkleding</td><td>Tenue, scheenbeschermers en voetbalschoenen. Onder 10 graden: trainingsbroek en jack. Trainings-/regenjack altijd in de tas.</td></tr>
+    <tr><td>Wij strijden mét elkaar, niet tegen elkaar</td><td>Feedback mag scherp zijn, maar altijd met respect. Wie praat over iemand, durft ook mét iemand te praten.</td></tr>
+    <tr><td>Je hebt een stem — gebruik ’m goed</td><td>Zeg wat je denkt, op het juiste moment en op de juiste toon. Iedereen luistert naar elkaar.</td></tr>
+    <tr><td>We staan altijd klaar voor elkaar</td><td>Wie fouten maakt, laat lef zien. Blessure, mentale dip of iets thuis? Je team is je vangnet.</td></tr>
+    <tr><td>Wie niet traint, vertelt waarom</td><td>Meld je vóór 12.00 uur dezelfde dag af — bellen, geen WhatsApp. Geblesseerd? Laat je gezicht zien. Altijd.</td></tr>
+    <tr><td>Team boven ego</td><td>Scoor die hattrick zelf, maar vier het succes samen. #SAMEN</td></tr>
+    <tr><td>Drempel laag, standaard hoog</td><td>Fouten maken, onzeker zijn en vragen stellen mag. Maar wat we doen, doen we met volle inzet.</td></tr>
+    <tr><td>De grens is van ons samen</td><td>Het team bepaalt en bewaakt samen wat oké is. Spreek elkaar aan.</td></tr>
+    <tr><td>Aanspreekvormen</td><td>De trainer spreek je aan met ‘trainer’; spelers met voornaam (of bijnaam als de speler dat goed vindt).</td></tr>
+    <tr><td>Respect voor mens en materiaal</td><td>Na de wedstrijd lopen we samen langs tegenstander, scheidsrechter en publiek: ‘dankjewel’.</td></tr>
+  </table>
+  <div class="kaart">
+    <h2>Positief coachen</h2>
+    <p>Een veilige omgeving waarin kinderen autonomie, binding en competentie ervaren, is dé voorwaarde om met plezier optimaal te ontwikkelen.</p>
+    <h3>Kernprincipes</h3>
+    <ul>
+      <li><b>Ontwikkeling boven prestatie</b> — fouten zijn leermomenten, geen mislukkingen.</li>
+      <li><b>Complimenten en aanmoediging</b> — benoem inzet, keuzes en gedrag dat goed gaat.</li>
+      <li><b>Autonomie stimuleren</b> — laat spelers zelf oplossingen bedenken en keuzes maken.</li>
+      <li><b>Binding en relatie</b> — persoonlijke aandacht en oprechte interesse.</li>
+      <li><b>Competentie opbouwen</b> — gerichte feedback en vertrouwen geven.</li>
+    </ul>
+    <h3>10 tips (KNVB)</h3>
+    <ul>
+      <li>Praat over plezier en ontwikkeling</li><li>Fouten maken mag</li><li>Focus op wat goed gaat</li>
+      <li>Train op sterke punten</li><li>Laat spelers zelf nadenken</li><li>Reflecteer na de wedstrijd (“Wat vond je het leukste?”, “Wat heb je geleerd?”)</li>
+      <li>Vraag naar kwaliteiten</li><li>Toon respect en waardering</li><li>Blijf positief richting scheidsrechters, tegenstanders en begeleiders</li>
+      <li>Corrigeer met een leerdoel</li>
+    </ul>
+  </div>
+  <div class="kaart">
+    <h2>Spelers lenen van andere teams</h2>
+    <p><b>Uitgangspunten:</b> horizontaal (zelfde leeftijdsgroep, bijv. JO15-1 leent bij JO15-2) of verticaal (bijv. JO15 leent bij JO13 — dan tweedejaars spelers die fysiek en mentaal mee kunnen). Ontwikkeling van de individuele speler gaat boven het winnen van wedstrijden; we maken van een probleem een kans. Fair play: niet de beste spelers uit een hoger team laten meespelen.</p>
+    <h3>Het proces</h3>
+    <ul>
+      <li>Speler nodig voor zaterdag? Neem vóór de tweede training contact op met de trainer van het team naast of onder jouw team.</li>
+      <li>Je leent alleen uit als je zelf een team + minimaal 1 reserve hebt (bij O8–O10 kan eventueel zonder wissels).</li>
+      <li>Spreek vooraf de verwachte speeltijd af — voetballen leer je door te voetballen.</li>
+      <li>Geef aan de Technisch Coördinator door dat je spelers leent en wie.</li>
+      <li>Geef na de wedstrijd feedback aan de uitlenende trainer en de speler(s).</li>
+      <li>Kom je er niet uit? Meld het bij de Technisch Coördinator — die beslist.</li>
+    </ul>
+  </div>
+  <div class="kaart"><h2>Documenten</h2>
+  <a class="doc" href="documenten/Kernwaardes Grol Teams Generiek 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Kernwaarden<small>PDF</small></span></a>
+  <a class="doc" href="documenten/Omgangsvormen Grol Teams Generiek 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Omgangsvormen<small>PDF</small></span></a>
+  <a class="doc" href="documenten/Positief Coachen Grol Teams Generiek 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Positief Coachen<small>PDF</small></span></a>
+  <a class="doc" href="documenten/Spelregels Spelers Lenen Grol Teams Generiek 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Spelregels Spelers Lenen<small>PDF</small></span></a>
+  <a class="doc" href="documenten/Informatiegids s.v.Grol seizoen 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Informatiegids trainers &amp; stafleden<small>PDF · praktische clubinformatie</small></span></a></div>
+</section>
+
+<!-- ================= BEOORDELEN ================= -->
+<section class="pagina" id="p-beoordelen">
+  <h1>Beoordelen &amp; ontwikkelen</h1>
+  <p class="sub">Instrumenten om het gesprek over voetbalinhoud te structureren en de ontwikkeling van spelers én trainers inzichtelijk te maken.</p>
+  <div class="kaart">
+    <h2>Voor spelers</h2>
+    <a class="doc" href="documenten/Spelers EvaluatieformulierFase_SVGrol_2025-2026.xlsx"><span class="ico">&#128202;</span><span>Spelers Evaluatieformulier (per fase)<small>Excel · JO8 t/m JO19: motoriek, techniek, tactiek, motivatie, aanwezigheid, niveau</small></span></a>
+    <a class="doc" href="documenten/Beoordelingsformulier-7-7-en-11-11-VT.pdf" target="_blank"><span class="ico">&#128196;</span><span>Beoordelingsformulier 7:7 en 11:11<small>PDF · per teamfunctie en positie, incl. keeper</small></span></a>
+    <a class="doc" href="documenten/Keepersbeoordelingsformulier.xlsx"><span class="ico">&#128202;</span><span>Keepersbeoordelingsformulier<small>Excel · techniek, tactiek, coachen, algemeen</small></span></a>
+  </div>
+  <div class="kaart">
+    <h2>POP-gesprekken (persoonlijk ontwikkelplan)</h2>
+    <p>De speler vult eerst de zelfscan in (cijfers 1–5 op techniek, tactiek, fysiek en persoonlijkheid + open vragen over ambitie). Daarna volgt het gesprek tussen trainer en speler.</p>
+    <a class="doc" href="documenten/POP gesprek Zelfscan Speler (POP).pdf" target="_blank"><span class="ico">&#128196;</span><span>Zelfscan speler<small>PDF · vooraf in te vullen door de speler</small></span></a>
+    <a class="doc" href="documenten/POP gesprek Trainer-Speler (POP).pdf" target="_blank"><span class="ico">&#128196;</span><span>Gespreksformulier trainer–speler<small>PDF · leidraad voor het POP-gesprek</small></span></a>
+  </div>
+  <div class="kaart">
+    <h2>Voor trainers (zelfscans)</h2>
+    <p>Waar sta je als trainer? Vul de zelfscan in en bespreek hem met je Technisch Jeugdcoördinator.</p>
+    <a class="doc" href="documenten/Zelfscan Begeleiden en Coachen van Trainingen.pdf" target="_blank"><span class="ico">&#128196;</span><span>Zelfscan trainingen<small>PDF · incl. voorbeeldopbouw van een training</small></span></a>
+    <a class="doc" href="documenten/Zelfscan Begeleiden en Coachen van Wedstrijden.pdf" target="_blank"><span class="ico">&#128196;</span><span>Zelfscan wedstrijden<small>PDF · incl. de 4 hoofdmomenten en wedstrijdafspraken</small></span></a>
+  </div>
+</section>
+
+<!-- ================= KALENDER ================= -->
+<section class="pagina" id="p-kalender">
+  <h1>Jaarkalender &amp; focuspunten</h1>
+  <div class="kaart">
+    <h2>Focuspunten voetbaltechnische zaken</h2>
+    <span class="badge">Speelwijze</span><span class="badge">Veelzijdig leren voetballen</span><span class="badge">Structuur bieden</span><span class="badge">Positief coachen</span><span class="badge">Individuele aandacht (autonomie, binding, competentie)</span>
+    <p style="margin-top:10px">Vaste momenten in het seizoen: opstartoverleg en aftrapbijeenkomst (aug/sep), drie trainersbijeenkomsten per seizoen, mini-bijeenkomsten op het veld per leeftijdsgroep, individuele begeleiding van trainers door HO en TJC’s, en evaluatie-/POP-rondes per fase.</p>
+  </div>
+  <a class="doc" href="documenten/Jaarkalender_2025-2026-MP.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2025-2026<small>Excel · speeldagen, overlegplanning, focuspunten en begeleiding per week</small></span></a>
+  <a class="doc" href="documenten/Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf" target="_blank"><span class="ico">&#128196;</span><span>Kaderbeleid (werven t/m uitstroom)<small>PDF · zes stappen: werven, introduceren, begeleiden, opleiden, doorstromen, uitstroom</small></span></a>
+</section>
+
+<!-- ================= OUDERS ================= -->
+<section class="pagina" id="p-ouders">
+  <h1>Voor spelers &amp; ouders</h1>
+  <div class="motto">‘Samen een levenlang Grol’ — plezier en ontwikkeling staan voorop</div>
+  <div class="kaart">
+    <h2>Zo voetballen wij bij Grol</h2>
+    <p>Wij spelen aanvallend, met hoge intensiteit, verzorgd combinatiespel en ruimte voor creativiteit. Het voetbalspel is van de kinderen: iedereen speelt evenveel of in ieder geval voldoende, ongeacht niveau. In de jeugdopleiding gaat de ontwikkeling van de individuele speler boven het winnen van wedstrijden.</p>
+  </div>
+  <div class="kaart">
+    <h2>Wat we van iedereen verwachten</h2>
+    <ul>
+      <li><b>Respect</b> voor teamgenoten, tegenstanders, scheidsrechters, publiek en materiaal.</li>
+      <li><b>Inzet</b> — op tijd komen, afspraken nakomen, afmelden door te bellen (vóór 12.00 uur op de dag zelf).</li>
+      <li><b>Samen</b> — successen samen vieren, klaarstaan voor elkaar, team boven ego.</li>
+      <li><b>Plezier</b> — voetballen moet leuk blijven, voor kinderen én langs de lijn.</li>
+    </ul>
+    <p class="sub" style="margin-top:6px">Ouders langs de lijn: moedig positief aan, laat het coachen aan de trainer.</p>
+  </div>
+  <div class="kaart">
+    <h2>Meespelen met een ander team?</h2>
+    <p>Bij een spelerstekort kan jouw kind gevraagd worden om mee te spelen met een ander (ouder of hoger) team. Dat is een kans: extra uitdaging stimuleert de ontwikkeling. De trainers stemmen dit onderling en met de Technisch Coördinator af, en spreken vooraf de speeltijd af.</p>
+  </div>
+  <p class="sub">Meer weten? Bekijk de <a href="#omgang">volledige omgangsafspraken</a> of de <a href="#principes">14 spelprincipes</a>.</p>
+</section>
+
+<!-- ================= BIBLIOTHEEK ================= -->
+<section class="pagina" id="p-bibliotheek">
+  <h1>Bibliotheek</h1>
+  <p class="sub">Alle originele documenten achter het Grol Kompas, per pijler. Tik om te openen of te downloaden.</p>
+  <div id="bieb"></div>
+</section>
+
+<!-- ================= ZOEKEN ================= -->
+<section class="pagina" id="p-zoeken">
+  <h1>Zoekresultaten</h1>
+  <p class="sub" id="zoekinfo"></p>
+  <div id="resultaten"></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fbar">
+    <a href="#home" data-p="home"><span class="ico">&#127968;</span>Home</a>
+    <a href="#team" data-p="team"><span class="ico">&#128101;</span>Mijn team</a>
+    <a href="#principes" data-p="principes"><span class="ico">&#9917;</span>Principes</a>
+    <a href="#training" data-p="training"><span class="ico">&#128203;</span>Training</a>
+    <a href="#bibliotheek" data-p="bibliotheek"><span class="ico">&#128218;</span>Bieb</a>
+  </div>
+</footer>
+
+<script>
+/* ================= DATA ================= */
+const PRINCIPES = [
+ {n:1,f:'a',t:'Houd de bal in de as',w:'We willen de bal zo lang mogelijk in de as houden, omdat we daar de meeste afspeelmogelijkheden hebben en de kans op doelpunten het grootst is.',h:['Altijd +1 speler in de as tijdens de opbouw','Overtal op het middenveld creëren','Derde man']},
+ {n:2,f:'a',t:'Speel en beweeg (door)',w:'We willen dat spelers en de bal continu in beweging zijn, zodat we de meeste en beste afspeelmogelijkheden creëren en de speler met bal op tempo kan doorspelen.',h:['Positiewisselingen','Overlappingen / omloopbewegingen','Diepte-loopacties achter de laatste linie','Tegengestelde loopacties']},
+ {n:3,f:'a',t:'Creëer een overtal',w:'We willen een overtal creëren met spelers die naar de bal toe bewegen (max. 2), of spelen naar een bestaand overtal.',h:['Vrijlopen tussen de linies','Indribbelen','Tegenstander lokken en openen naar de contrakant']},
+ {n:4,f:'a',t:'Speel het overtal uit',w:'We willen een overtal uitspelen door snelle en slimme acties, zodat we het voordeel maximaal benutten.',h:['Directe passing','Een-tweecombinatie','Derde man','Individuele actie (dribbel)']},
+ {n:5,f:'a',t:'Scoor met overtuigende liefde',w:'We willen scoren met overtuiging: geplaatst schieten, overzicht houden en meedogenloos zijn in het strafschopgebied.',h:['Bezetting: 1e paal, 2e paal en rand strafschopgebied','Manier van schieten: binnenkant, wreef, links, rechts','Keuze: zelf schieten of afspelen','Moment: in de drukte, vrije bal, van afstand, dichtbij, 1-tegen-1']},
+ {n:6,f:'av',t:'Zet direct druk op de bal',w:'We willen na balverlies dat de dichtstbijzijnde spelers direct druk op de bal zetten om deze zo snel mogelijk terug te veroveren.',h:['Verdedig eerst de bal, daarna de ruimte','Spelers in de buurt van de bal','Druk in het duel, passlijnen blokkeren, tegenstander dekken en insluiten']},
+ {n:7,f:'av',t:'Kom in formatie',w:'We willen na balverlies dat de spelers verder weg van de bal zo snel mogelijk onder de bal en naar de as komen.',h:['Spelers verder weg van de bal zakken in','Snel in formatie komen']},
+ {n:8,f:'v',t:'Bescherm de as',w:'We willen altijd de as dichthouden en de tegenstander naar de zijkant of naar achteren dwingen.',h:['As dichthouden','Tegenstander naar buiten dwingen']},
+ {n:9,f:'v',t:'Houd de onderlinge afstanden klein',w:'We willen de onderlinge afstanden klein houden, in zowel de lengte als de breedte.',h:['Breedte: binnen een linie (kantelen)','Lengte: tussen de linies']},
+ {n:10,f:'v',t:'Verdedig de ruimte',w:'We willen zones afschermen in plaats van de tegenstander, waarbij we als team meebewegen met de bal.',h:['Kantelen','Overtal rondom de bal (rugdekking)','Passlijnen dichtzetten','Positie kiezen t.o.v. tegenstander en bal']},
+ {n:11,f:'v',t:'Verover de bal',w:'We willen de bal veroveren door gezamenlijk op het afgesproken moment druk te zetten.',h:['Overtal rondom de bal (rugdekking)','Ga het duel aan','Bepaal samen het moment van druk zetten']},
+ {n:12,f:'va',t:'Speel direct vooruit',w:'We willen na balwinst direct vooruit spelen en sprinten, om zo snel mogelijk een scoringskans te creëren in de ruimte bij de tegenstander.',h:['Eerste pass direct vooruit','Diepte-loopacties achter de laatste linie','Dribbel om ruimte te benutten']},
+ {n:13,f:'va',t:'Vind de vrije man tussen de linies',w:'We willen een korte pass tussen de linies spelen om vervolgens vooruit te spelen of het spel te verplaatsen.',h:['Speler in de zone tussen twee tegenstanders, gezicht naar voren','Gebruik als tussenstation']},
+ {n:14,f:'va',t:'Verplaats het spel',w:'We willen na balwinst het spel verplaatsen naar de andere kant van het veld.',h:['Open naar de contrakant']}
+];
+
+const POSITIES = [
+ {t:'Keeper (1)',p:['Voetballende kwaliteiten (traptechniek, passing)','Rust aan de bal, goede keuzes onder druk','Coaching en positionering bij hoge lijn','Reflexen en 1-tegen-1 verdediging']},
+ {t:'Centrale verdedigers (2x)',p:['Passvaardigheid (verticale passes, tussen linies)','Inschuiven met bal','1-tegen-1 verdedigend sterk','Positioneel intelligent en snel in omschakeling','Lichaamskracht, snelheid en kopsterk']},
+ {t:'Backs (2x)',p:['Snelheid en loopvermogen (box-to-box)','Technisch vaardig (voorzet, korte combinaties)','Creatieve oplossingen onder druk','Tactisch sterk (timing in overlappen/ondersteunen)','Defensief betrouwbaar bij hoge pressing']},
+ {t:'Controleur (6)',p:['Spelinzicht en passing onder druk','Positiespel (open draaien, tussen linies aanspeelbaar)','Creativiteit in de as','Verdedigend: anticiperen, onderscheppen','Constant aanspeelbaar — dirigent van de ploeg']},
+ {t:'Aanvallende middenvelders (8 + 10)',p:['Diepgang zonder bal en dribbelen met bal','Creativiteit en risico durven nemen','Hoge intensiteit (veel kilometers, pressen)','Positioneel flexibel tussen linies','Combinatiespel en steekpasses']},
+ {t:'Wingers (2x)',p:['Snelheid en explosiviteit','Techniek in de kleine ruimte','Creatief en onvoorspelbaar','Sterk in 1v1, beslissend in de laatste fase','Intensief meeverdedigen bij balverlies']},
+ {t:'Spits (9)',p:['Balvast en sterk in combinatiespel','Positionering in de zestien','Diepgang zonder bal','Techniek in de kleine ruimte','Start de pressing van voren']}
+];
+
+const TEAMS = [
+ {id:'o7',naam:'O7',img:'img/visie-2.jpg',
+  pr:{a:['Dribbel, speel en beweeg (door)','Scoren!'],av:[],v:['Verover de bal'],va:[]},
+  tech:{m:'Techniek is de basis',p:['Balaannames, passing, richtingsveranderingen, inspelen en doorbewegen, afwerken','Veel 1v1-vormen (aanvallen én verdedigen)','Techniek in opgebouwde weerstand, veel variatie en zelf laten ervaren']},
+  tac:{m:'Leren voetballen',p:['Alle posities laten ervaren in trainingen en wedstrijden','Veel aandacht voor het thema ‘ik en de bal’','Voetbaltaal toegespitst op de leefwereld van de speler','Samen aanvallen en samen verdedigen','Eenvoudige spelregels leren begrijpen (spelrichting, scoren)']},
+  men:{m:'De ik staat centraal',p:['Wil spelen en houdt van avontuur; wil graag de bal','Weinig geduld, snel afgeleid — één plaatje zegt meer dan 1000 woorden','Duidelijkheid en kleine veranderingen passen goed','Behoefte aan aandacht en geborgenheid']},
+  fys:{m:'Al spelend motorisch ontwikkelen',p:['Veelzijdig leren voetballen staat centraal','Grove motoriek, maar motorische vaardigheden verbeteren snel','Weinig verschil tussen jongens en meiden']}},
+ {id:'o8',naam:'O8 / O9 / O10',img:'img/visie-3.jpg',
+  pr:{a:['Dribbel, speel en beweeg (door)','Scoren!'],av:['Zet direct druk op de bal'],v:['Verover de bal','Bescherm de as (O10)'],va:['Speel direct vooruit (O10)']},
+  tech:{m:'Techniek is de basis',p:['Balaannames, passing, richtingsveranderingen, inspelen en doorbewegen, afwerken','Veel 1v1-vormen (aanvallen én verdedigen)','Techniek in opgebouwde weerstand, veel variatie']},
+  tac:{m:'Veel vrijheid in voetballen',p:['Alle posities laten ervaren; speler kan op meerdere posities spelen','Spelprincipes toepassen, maar ze nemen niet de overhand','Spelers nemen veel initiatief en vrijheid in hun spel','Op vragende wijze beïnvloeden in keuzes van samenspelen']},
+  men:{m:'De ik staat nog centraal, de jij komt later',p:['Gericht op zichzelf, werkt soms al samen','Weinig geduld, snel afgeleid — één plaatje zegt meer dan 1000 woorden','Sterk gevoel van rechtvaardigheid','Stimuleer zelfregulatie, zelfredzaamheid, probleemoplossend vermogen en creativiteit']},
+  fys:{m:'Al spelend motorisch ontwikkelen',p:['Veelzijdig leren voetballen staat centraal','Fijne motoriek gaat met sprongen vooruit; hand-oogcoördinatie groeit snel','Grote bewegingsdrang; korte rustpauzes volstaan','Groeipijn is in deze fase goed mogelijk']}},
+ {id:'o11',naam:'O11 / O12',img:'img/visie-4.jpg',
+  pr:{a:['Dribbel, speel en beweeg (door)','Scoren!'],av:['Zet direct druk op de bal'],v:['Verover de bal','Bescherm de as','Houd de onderlinge afstanden klein'],va:['Speel direct vooruit']},
+  tech:{m:'Techniek is de basis',p:['Balaannames, passing, richtingsveranderingen, inspelen en doorbewegen, afwerken','Veel 1v1-vormen; techniek in opgebouwde weerstand','Veel variatie en spelers veel laten ervaren']},
+  tac:{m:'Leren samen voetballen',p:['Alle posities laten ervaren; speler kan op meerdere posities spelen','We passen de spelprincipes toe','Spelers nemen veel initiatief; op vragende wijze beïnvloeden in samenspelkeuzes']},
+  men:{m:'Ik en jij',p:['Enthousiast, ongeduldig, veel speldrang; richt zich meer op samenwerken','Positieve feedback = zelfvertrouwen geven','Duidelijkheid en structuur passen goed; kan al een mening geven','Stimuleer zelfregulatie en creativiteit']},
+  fys:{m:'Al spelend motorisch ontwikkelen',p:['Snelle toename lengte en gewicht; kans op groeipijn','Coördinatie is goed, fijngevoelig reactievermogen','Grote bewegingsdrang; korte rustpauzes volstaan']}},
+ {id:'o13',naam:'O13',img:'img/visie-5.jpg',
+  pr:{a:['Dribbel, speel en beweeg (door)','Scoor met overtuigende liefde','Houd de bal in de as','Creëer een overtal'],av:['Zet direct druk op de bal'],v:['Verover de bal','Bescherm de as','Houd de onderlinge afstanden klein'],va:['Speel direct vooruit']},
+  tech:{m:'Blijven werken aan de basistechniek',p:['Dribbelen, aannemen, acties maken, passen, trappen, schieten, tweebenigheid, koppen','In spelvormen inzetten: 1v1, 2v2, 3v3 ondertal/overtal met omschakeling','Veel herhaling, altijd met 11-tegen-11 in het achterhoofd']},
+  tac:{m:'Basis leggen voor voetbal 11 tegen 11',p:['Ruimtes ontdekken om te voetballen','Werken vanuit linies die samenwerken (lengte en breedte van het veld)','In spelvormen duidelijk maken, veel herhaling']},
+  men:{m:'Staat open om veel te leren',p:['Beperkte spanningsboog; doel- en wedstrijdgericht','Persoonlijke (positieve) aandacht en concrete opdrachten','Vooraf bespreken wat je wil zien, achteraf bespreken wat je zag','Extra aandacht voor verbinding (1e/2e-jaars)']},
+  fys:{m:'Fysieke verschillen kunnen groot zijn',p:['Groeispurt komt niet op hetzelfde moment; aandacht voor groeipijn (fysio/PMB)','Belastbaarheid bewaken','Kou: goede kleding (eis) · Warmte: voldoende drinkmomenten (eis)','Jongens en meiden kunnen prima samenspelen']}},
+ {id:'o15',naam:'O15',img:'img/visie-6.jpg',
+  pr:{a:['Dribbel, speel en beweeg (door)','Scoor met overtuigende liefde','Houd de bal in de as','Creëer een overtal','Speel het overtal uit'],av:['Zet direct druk op de bal'],v:['Verover de bal','Bescherm de as','Houd de onderlinge afstanden klein','Verdedig de ruimte'],va:['Speel direct vooruit','Vind de vrije man tussen de linies']},
+  tech:{m:'Blijven werken aan de basistechniek',p:['Basistechniek blijven trainen en inzetten in spelvormen','2v2, 4v4, 7v7 ondertal/overtal met omschakeling','Meer in linies trainen — dynamisch 11-tegen-11 is het doel']},
+  tac:{m:'Dynamisch 11 tegen 11 is het doel',p:['Begrijpen hoe we ruimtes bespelen; interactie tussen posities en linies','In spelvormen de WAAROM duidelijk maken','Veel herhaling in verschillende vormen']},
+  men:{m:'Voetballen vol overgave',p:['Zoeken grenzen op; verantwoordelijkheidsgevoel ontstaat','Vergelijken elkaar onderling en zijn zeer kritisch','Fouten maken mag — focus op de lange termijn','Extra aandacht voor verbinding (1e/2e-jaars)']},
+  fys:{m:'Fysieke verschillen zijn groot',p:['Groeispurt komt niet op hetzelfde moment; ondersteuning via PMB','Belastbaarheid bewaken','Core stability is een belangrijk aandachtspunt','Samenspel jongens/meiden per individu bekijken']}},
+ {id:'o17',naam:'O17',img:'img/visie-7.jpg',
+  pr:{a:['Dribbel, speel en beweeg (door)','Scoor met overtuigende liefde','Houd de bal in de as','Creëer een overtal','Speel het overtal uit'],av:['Zet direct druk op de bal','Kom in formatie'],v:['Verover de bal','Bescherm de as','Houd de onderlinge afstanden klein','Verdedig de ruimte'],va:['Speel direct vooruit','Vind de vrije man tussen de linies','Verplaats het spel']},
+  tech:{m:'Techniek koppelen aan specifieke posities',p:['Keeper, verdedigers, middenvelders, aanvallers','Technische vaardigheden tussen linies koppelen: positiespel, pass- en trapvormen, partijvormen','4v4, 7v7 ondertal/overtal met omschakeling; meer in linies trainen']},
+  tac:{m:'Dynamisch 11 tegen 11 perfectioneren',p:['Aandacht voor formaties en systemen; interactie tussen posities en linies','Aanpassend vermogen t.o.v. de tegenstander','In spelvormen de WAAROM duidelijk maken; grotere vormen trainen']},
+  men:{m:'Rijpen stormachtig als mens en speler',p:['Zeer (te) kritisch, vooral naar zichzelf; willen zich onderscheiden','Grote verschillen in thuis-, school- en sociale situaties','Belangrijke levenskeuzes ontstaan','Aandacht voor verbinding, ongeacht leerjaar']},
+  fys:{m:'Belasting kan weer omhoog',p:['Fysieke verschillen worden kleiner','Fysieke ontwikkeling mogelijk: core stability, kracht, snelheid','Jongens en meiden zijn lastiger samen te laten spelen']}},
+ {id:'o19',naam:'O19 – O23',img:'img/visie-8.jpg',
+  pr:{a:['Dribbel, speel en beweeg (door)','Scoor met overtuigende liefde','Houd de bal in de as','Creëer een overtal','Speel het overtal uit'],av:['Zet direct druk op de bal','Kom in formatie'],v:['Verover de bal','Bescherm de as','Houd de onderlinge afstanden klein','Verdedig de ruimte'],va:['Speel direct vooruit','Vind de vrije man tussen de linies','Verplaats het spel']},
+  tech:{m:'Specialist op de eigen positie',p:['Betere en snellere keuzes in kleine ruimtes; technische oefeningen in maximale kleine ruimte verhogen handelingssnelheid','Partij- en positiespelen in wedstrijdcontext, wedstrijdecht trainen','8-tegen-8 teamtactisch trainen met stopmomenten; nadruk op spelprincipes en de 4 hoofdmomenten','Comfortabel aan de bal: onder druk naar de vrije ruimte kunnen spelen']},
+  tac:{m:'In dienst van het team',p:['Gericht trainen op positie- en linietaken; speler wordt specialist','Samenwerken tussen linies, horizontaal en verticaal; doelgericht communiceren','Teambelang boven individueel belang — individu excelleert als het team presteert','Meerdere spelsystemen leren binnen de spelprincipes (2 of 3 spitsen)','Spelen om te winnen (resultaat)']},
+  men:{m:'Volwassen gesprekspartners',p:['Meer beheersing en zelfcontrole; geestelijk en lichamelijk evenwichtiger','Willen invloed op teamdoelen en meer verantwoordelijkheid (ook als trainer/begeleider)','Belangrijke keuzes: studie, werk, uitgaan, rust — begeleid dit goed; wie elders gaat studeren ‘straffen’ we niet','Zeer competitief ingesteld; kunnen steeds beter het grote plaatje zien']},
+  fys:{m:'Voorbereiden op senioren',p:['Kunnen nog in de groei zijn: fysieke belasting geleidelijk uitbreiden','Gerichte core-training werkt blessurepreventief','Screening en preventief programma om belastbaarheid te verhogen (mobiliteit, stabiliteit, lenigheid)','Werken naar hogere intensiteit in duur en belasting t.o.v. O17']}}
+];
+
+const BIEB = [
+ {g:'Grol Voetbal Beleid',items:[
+  ['Voetbalvisie Grol jeugdopleiding O8-O23 final.pdf','Voetbalvisie jeugdopleiding O8–O23','visiekaarten per leeftijdsgroep'],
+  ['Hand-out Spelprincipes Grol.pdf','Hand-out Spelprincipes','waarom + wat & hoe'],
+  ['Presentatie Spelprincipes Grol.pdf','Presentatie Spelprincipes','incl. opbouw per leeftijd'],
+  ['Hand-out Speelwijze Grol Trainers bijeenkomst 10.01.2026_TC.pdf','Hand-out Speelwijze','trainersbijeenkomst jan 2026'],
+  ['Presentatie Speelwijze Grol Trainersbijeenkomst 10.01.2026_TC.pdf','Presentatie Speelwijze','trainersbijeenkomst jan 2026'],
+  ['Praktijksessie Speelwijze_Feedback Grol Trainers bijeenkomst 10.01.2026_TC.pdf','Feedback-analyse trainersbijeenkomst','enquêteresultaten en vervolg'],
+  ['Voetbalkwaliteiten per positie bij 1-4-3-3 PNV binnen Speelwijze Grol.pdf','Voetbalkwaliteiten per positie','1-4-3-3 profielen'],
+  ['Hand-out Basis Voetbaltraining Grol.pdf','Hand-out Basis Voetbaltraining','checklist goede training'],
+  ['Presentatie Veelzijdig Leren Voetballen Grol.pdf','Presentatie Veelzijdig Leren Voetballen','onderbouwvisie VLV'],
+  ['Adviesrapport Speelwijze Grol MPEE_HO_B_Grol_23.06.2025.pdf','Adviesrapport Speelwijze','beleid en implementatie'],
+  ['Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf','Kaderbeleid','werven t/m uitstroom'],
+  ['Jaarkalender_2025-2026-MP.xlsx','Jaarkalender 2025-2026','Excel']]},
+ {g:'Grol Omgang Beleid',items:[
+  ['Kernwaardes Grol Teams Generiek 2025-2026.pdf','Kernwaarden','5 kernwaarden met gedrag'],
+  ['Omgangsvormen Grol Teams Generiek 2025-2026.pdf','Omgangsvormen','teamafspraken'],
+  ['Positief Coachen Grol Teams Generiek 2025-2026.pdf','Positief Coachen','principes + 10 tips'],
+  ['Spelregels Spelers Lenen Grol Teams Generiek 2025-2026.pdf','Spelregels Spelers Lenen','uitgangspunten + proces'],
+  ['Informatiegids s.v.Grol seizoen 2025-2026.pdf','Informatiegids trainers & stafleden','seizoen 2025-2026']]},
+ {g:'Grol Beoordeling',items:[
+  ['Spelers EvaluatieformulierFase_SVGrol_2025-2026.xlsx','Spelers Evaluatieformulier','Excel · per fase, JO8–JO19'],
+  ['Beoordelingsformulier-7-7-en-11-11-VT.pdf','Beoordelingsformulier 7:7 en 11:11','per teamfunctie en positie'],
+  ['Keepersbeoordelingsformulier.xlsx','Keepersbeoordelingsformulier','Excel'],
+  ['POP gesprek Zelfscan Speler (POP).pdf','POP · Zelfscan speler','vooraf in te vullen'],
+  ['POP gesprek Trainer-Speler (POP).pdf','POP · Gesprek trainer-speler','gespreksleidraad'],
+  ['Zelfscan Begeleiden en Coachen van Trainingen.pdf','Zelfscan trainers · trainingen','incl. trainingsopbouw'],
+  ['Zelfscan Begeleiden en Coachen van Wedstrijden.pdf','Zelfscan trainers · wedstrijden','incl. 4 hoofdmomenten']]}
+];
+
+/* ================= RENDER ================= */
+function el(h){const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild}
+
+// principes
+const fNaam={a:'pr-a',av:'pr-av',v:'pr-v',va:'pr-va'};
+PRINCIPES.forEach(p=>{
+  document.getElementById(fNaam[p.f]).appendChild(el(
+   `<div class="principe ${p.f==='av'||p.f==='va'?'av':''}"><b>${p.n}. ${p.t}</b>
+    <p class="wat">${p.w}</p><ul>${p.h.map(x=>`<li>${x}</li>`).join('')}</ul></div>`));
+});
+
+// posities
+POSITIES.forEach(p=>{
+  document.getElementById('posities').appendChild(el(
+   `<div class="kaart"><h3 style="margin-top:0">${p.t}</h3><ul>${p.p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`));
+});
+
+// leeftijdsgroepen
+const knoppen=document.getElementById('leeftijdknoppen');
+TEAMS.forEach(t=>{knoppen.appendChild(el(`<a href="#team/${t.id}" data-t="${t.id}">${t.naam}</a>`))});
+function toonTeam(id){
+  const t=TEAMS.find(x=>x.id===id)||TEAMS[0];
+  document.querySelectorAll('#leeftijdknoppen a').forEach(a=>a.classList.toggle('actiefknop',a.dataset.t===t.id));
+  const blok=(titel,d)=>`<div class="kaart"><h3 style="margin-top:0">${titel} — ‘${d.m}’</h3><ul>${d.p.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  const prin=(titel,arr,extra)=>arr.length?`<h3>${titel}</h3><ul>${arr.map(x=>`<li>${x}</li>`).join('')}</ul>`:`<h3>${titel}</h3><p class="sub">n.v.t. voor deze leeftijd</p>`;
+  document.getElementById('teaminhoud').innerHTML=
+   `<div class="motto">Visie op Grol jeugdopleiding — ${t.naam} · ‘Goede trainers maken betere spelers’</div>
+    <div class="kaart"><h2>Spelprincipes voor ${t.naam}</h2>
+      ${prin('Aanvallen',t.pr.a)}${prin('Omschakelen A → V',t.pr.av)}${prin('Verdedigen',t.pr.v)}${prin('Omschakelen V → A',t.pr.va)}
+      <p class="sub">De volledige uitleg (wat &amp; hoe) vind je bij <a href="#principes">de 14 spelprincipes</a>.</p></div>
+    ${blok('Techniek',t.tech)}${blok('Tactiek',t.tac)}${blok('Mentaal',t.men)}${blok('Fysiek',t.fys)}
+    <h2>Visiekaart ${t.naam}</h2>
+    <p class="sub">Tik op de kaart om te vergroten — handig om te bewaren of printen.</p>
+    <a href="${t.img}" target="_blank"><img class="visiekaart" src="${t.img}" alt="Visiekaart ${t.naam}"></a>`;
+}
+
+// bibliotheek
+const bieb=document.getElementById('bieb');
+BIEB.forEach(g=>{
+  const k=el(`<div class="kaart"><h2>${g.g}</h2></div>`);
+  g.items.forEach(i=>{
+    const xls=i[0].endsWith('.xlsx');
+    k.appendChild(el(`<a class="doc" href="documenten/${i[0]}" ${xls?'':'target="_blank"'}><span class="ico">${xls?'&#128202;':'&#128196;'}</span><span>${i[1]}<small>${i[2]}</small></span></a>`));
+  });
+  bieb.appendChild(k);
+});
+
+// VLV slideshow
+let vlvN=1;const vlvMax=24;
+function vlvToon(){document.getElementById('vlvbeeld').src=`img/vlv-${String(vlvN).padStart(2,'0')}.jpg`;document.getElementById('vlvteller').textContent=`${vlvN} / ${vlvMax}`}
+document.getElementById('vlvvorige').onclick=()=>{vlvN=vlvN>1?vlvN-1:vlvMax;vlvToon()};
+document.getElementById('vlvvolgende').onclick=()=>{vlvN=vlvN<vlvMax?vlvN+1:1;vlvToon()};
+
+/* ================= NAVIGATIE ================= */
+const paginas=['home','team','principes','speelwijze','training','omgang','beoordelen','kalender','ouders','bibliotheek','zoeken'];
+function route(){
+  let h=location.hash.replace('#','')||'home';
+  let [p,sub]=h.split('/');
+  if(!paginas.includes(p))p='home';
+  paginas.forEach(x=>document.getElementById('p-'+x).classList.toggle('actief',x===p));
+  document.querySelectorAll('.fbar a').forEach(a=>a.classList.toggle('actief',a.dataset.p===p));
+  if(p==='team')toonTeam(sub||'o7');
+  document.getElementById('menu').classList.remove('open');
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+document.getElementById('menuknop').onclick=()=>{document.getElementById('menu').classList.toggle('open');document.getElementById('zoekbalk').classList.remove('open')};
+document.getElementById('zoekknop').onclick=()=>{const z=document.getElementById('zoekbalk');z.classList.toggle('open');document.getElementById('menu').classList.remove('open');if(z.classList.contains('open'))document.getElementById('zoekveld').focus()};
+
+/* ================= ZOEKEN ================= */
+let INDEX=[];
+function bouwIndex(){
+  TEAMS.forEach(t=>toonTeam(t.id)); // niet nodig voor index, maar init eerste team
+  paginas.filter(p=>p!=='zoeken').forEach(p=>{
+    const sec=document.getElementById('p-'+p);
+    // per kaart/principe indexeren voor gerichte resultaten
+    const blokken=sec.querySelectorAll('.kaart,.principe,table,.motto');
+    const paginaTitel=sec.querySelector('h1')?sec.querySelector('h1').textContent:'Home';
+    if(blokken.length===0){INDEX.push({p,titel:paginaTitel,tekst:sec.textContent})}
+    blokken.forEach(b=>{
+      const kop=b.querySelector('h2,h3,b');
+      INDEX.push({p,titel:(kop?kop.textContent+' · ':'')+paginaTitel,tekst:b.textContent});
+    });
+  });
+  // teams apart indexeren (want dynamisch)
+  TEAMS.forEach(t=>{
+    const alles=[t.tech,t.tac,t.men,t.fys].map(d=>d.m+' '+d.p.join(' ')).join(' ')+' '+Object.values(t.pr).flat().join(' ');
+    INDEX.push({p:'team/'+t.id,titel:'Mijn team · '+t.naam,tekst:t.naam+' '+alles});
+  });
+  BIEB.forEach(g=>g.items.forEach(i=>INDEX.push({p:'bibliotheek',titel:i[1]+' · Bibliotheek',tekst:i[1]+' '+i[2]+' '+g.g})));
+}
+function zoek(q){
+  q=q.trim().toLowerCase();
+  const res=document.getElementById('resultaten');res.innerHTML='';
+  if(q.length<2){document.getElementById('zoekinfo').textContent='Typ minimaal 2 tekens.';return}
+  const woorden=q.split(/\s+/);
+  const hits=INDEX.filter(i=>woorden.every(w=>i.tekst.toLowerCase().includes(w)||i.titel.toLowerCase().includes(w)));
+  document.getElementById('zoekinfo').textContent=hits.length?`${hits.length} resultaten voor “${q}”`:`Geen resultaten voor “${q}”. Probeer een ander woord.`;
+  const uniek=new Set();
+  hits.slice(0,40).forEach(h=>{
+    const sleutel=h.p+h.titel; if(uniek.has(sleutel))return; uniek.add(sleutel);
+    const idx=h.tekst.toLowerCase().indexOf(woorden[0]);
+    const frag=h.tekst.substring(Math.max(0,idx-40),idx+90).replace(/\s+/g,' ');
+    res.appendChild(el(`<a class="doc" href="#${h.p}"><span class="ico">&#128073;</span><span><b>${h.titel}</b><small>…${frag}…</small></span></a>`));
+  });
+}
+document.getElementById('zoekveld').addEventListener('input',e=>{
+  if(location.hash!=='#zoeken')location.hash='#zoeken';
+  zoek(e.target.value);
+});
+document.getElementById('zoekveld').addEventListener('keydown',e=>{if(e.key==='Enter')e.target.blur()});
+
+/* init */
+toonTeam('o7');
+bouwIndex();
+route();
+</script>
+</body>
+</html>
