@@ -382,7 +382,8 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
 
 <!-- ================= KALENDER ================= -->
 <section class="pagina" id="p-kalender">
-  <h1>Jaarkalender seizoen 2025-2026</h1>
+  <h1>Jaarkalender seizoen 2026-2027</h1>
+  <p class="sub"><b>Concept:</b> de KNVB-speeldata en vakanties staan vast; interne overleggen en bijeenkomsten zijn nog ter bevestiging.</p>
   <div id="dezeweek"></div>
   <div class="kaart">
     <h2>Het seizoen in één oogopslag</h2>
@@ -402,7 +403,8 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
   <div class="legenda"><span><b style="background:var(--rood)"></b>Bijeenkomst</span><span><b style="background:var(--blauw)"></b>Overleg</span><span><b style="background:#e8a400"></b>Evaluatie</span><span><b style="background:#9aa3b5"></b>Vakantie &amp; overig</span></div>
   <div id="tijdlijn"></div>
   <div class="kaart" style="margin-top:16px"><h2>Documenten</h2>
-  <a class="doc" href="documenten/Jaarkalender_2025-2026-MP.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2025-2026 (origineel)<small>Excel · speeldagen, overlegplanning, focuspunten en begeleiding per week</small></span></a>
+  <a class="doc" href="documenten/Jaarkalender_2026-2027_CONCEPT.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2026-2027 (concept)<small>Excel · speeldagen, overlegplanning, focuspunten en begeleiding per week</small></span></a>
+  <a class="doc" href="documenten/Jaarkalender_2025-2026-MP.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2025-2026 (archief)<small>Excel · vorig seizoen</small></span></a>
   <a class="doc" href="documenten/Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf" target="_blank"><span class="ico">&#128196;</span><span>Kaderbeleid (werven t/m uitstroom)<small>PDF · zes stappen: werven, informeren &amp; introduceren, begeleiden, opleiden, doorstromen, uitstroom</small></span></a></div>
 </section>
 
@@ -542,7 +544,8 @@ const BIEB = [
   ['Presentatie Veelzijdig Leren Voetballen Grol.pdf','Presentatie Veelzijdig Leren Voetballen','onderbouwvisie VLV'],
   ['Adviesrapport Speelwijze Grol MPEE_HO_B_Grol_23.06.2025.pdf','Adviesrapport Speelwijze','beleid en implementatie'],
   ['Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf','Kaderbeleid','werven t/m uitstroom'],
-  ['Jaarkalender_2025-2026-MP.xlsx','Jaarkalender 2025-2026','Excel']]},
+  ['Jaarkalender_2026-2027_CONCEPT.xlsx','Jaarkalender 2026-2027 (concept)','Excel · interne data ter bevestiging'],
+  ['Jaarkalender_2025-2026-MP.xlsx','Jaarkalender 2025-2026 (archief)','Excel']]},
  {g:'Grol Omgang Beleid',items:[
   ['Kernwaardes Grol Teams Generiek 2025-2026.pdf','Kernwaarden','5 kernwaarden met gedrag'],
   ['Omgangsvormen Grol Teams Generiek 2025-2026.pdf','Omgangsvormen','teamafspraken'],
@@ -674,70 +677,70 @@ document.getElementById('zoekveld').addEventListener('keydown',e=>{if(e.key==='E
 /* ================= KALENDER ================= */
 // t: b=bijeenkomst, o=overleg, e=evaluatie, v=vakantie/overig
 const KAL=[
- {d:'2025-08-23',t:'b',ti:'Opstartoverleg seizoen (alle geledingen)',tag:'Aftrap'},
- {d:'2025-08-23',t:'v',ti:'Kleding ophalen',tag:'Club'},
- {d:'2025-08-23',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2025-09-10',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
- {d:'2025-09-13',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
- {d:'2025-09-20',t:'b',ti:'1e trainersbijeenkomst',tag:'Trainers'},
- {d:'2025-09-20',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
- {d:'2025-09-22',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2025-10-02',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
- {d:'2025-10-04',t:'b',ti:'Onderbouwbijeenkomst 1',tag:'Onderbouw'},
- {d:'2025-10-18',t:'v',ti:'Herfstvakantie (18 t/m 26 okt) · inhaalweekend',tag:'Vakantie'},
- {d:'2025-10-18',t:'b',ti:'2e trainersbijeenkomst — selectie',tag:'Trainers'},
- {d:'2025-10-18',t:'e',ti:'Evaluatie Fase 1 (trainers & spelers)',tag:'Fase 1'},
- {d:'2025-10-25',t:'b',ti:'2e trainersbijeenkomst — breedte',tag:'Trainers'},
- {d:'2025-10-27',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2025-11-01',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
- {d:'2025-11-06',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
- {d:'2025-11-08',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
- {d:'2025-11-22',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
- {d:'2025-11-24',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2025-11-29',t:'b',ti:'Bijeenkomst O11 t/m O12',tag:'Onderbouw'},
- {d:'2025-12-06',t:'b',ti:'Bijeenkomst O8 t/m O10',tag:'Onderbouw'},
- {d:'2025-12-13',t:'e',ti:'Evaluatie Fase 2 + evaluatie implementatie speelwijze',tag:'Fase 2'},
- {d:'2025-12-15',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2025-12-18',t:'o',ti:'Overleg Voetbalbestuur · evaluatie trainers selectie',tag:'VB'},
- {d:'2025-12-20',t:'v',ti:'Kerstvakantie & winterstop (20 dec t/m 4 jan)',tag:'Vakantie'},
- {d:'2025-12-27',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · evaluatie prestatieve jeugdteams',tag:'VB+TH'},
- {d:'2026-01-12',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2026-01-17',t:'b',ti:'Onderbouwbijeenkomst 2',tag:'Onderbouw'},
- {d:'2026-01-22',t:'o',ti:'Overleg Voetbalbestuur · grove teamindeling jeugd',tag:'VB'},
- {d:'2026-01-31',t:'b',ti:'3e trainersbijeenkomst — selectie',tag:'Trainers'},
- {d:'2026-01-31',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
- {d:'2026-02-07',t:'b',ti:'3e trainersbijeenkomst — breedte',tag:'Trainers'},
- {d:'2026-02-07',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
- {d:'2026-02-14',t:'v',ti:'Voorjaarsvakantie (14 t/m 22 feb) · inhaal/beker',tag:'Vakantie'},
- {d:'2026-02-19',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
- {d:'2026-02-23',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2026-03-21',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
- {d:'2026-03-28',t:'b',ti:'Onderbouwbijeenkomst 3',tag:'Onderbouw'},
- {d:'2026-03-28',t:'e',ti:'Evaluatie Fase 3A',tag:'Fase 3'},
- {d:'2026-03-30',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2026-04-04',t:'v',ti:'Paasweekend · inhaal/beker',tag:'Vakantie'},
- {d:'2026-04-11',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
- {d:'2026-04-16',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
- {d:'2026-04-18',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
- {d:'2026-04-25',t:'v',ti:'Meivakantie (t/m 10 mei) · inhaal/beker',tag:'Vakantie'},
- {d:'2026-05-04',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2026-05-09',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
- {d:'2026-05-23',t:'v',ti:'Pinksterweekend',tag:'Vakantie'},
- {d:'2026-05-30',t:'b',ti:'Onderbouwbijeenkomst 4',tag:'Onderbouw'},
- {d:'2026-06-01',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2026-06-06',t:'e',ti:'Evaluatie Fase 3B / Fase 4',tag:'Fase 3-4'},
- {d:'2026-06-13',t:'v',ti:'Marveldtoernooi (12 t/m 14 juni)',tag:'Club'},
- {d:'2026-06-18',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
- {d:'2026-07-04',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · seizoensafsluiting',tag:'VB+TH'}
+ {d:'2026-08-22',t:'b',ti:'Opstartoverleg seizoen (alle geledingen)',tag:'Aftrap'},
+ {d:'2026-08-22',t:'v',ti:'Kleding ophalen',tag:'Club'},
+ {d:'2026-08-22',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-09-09',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2026-09-12',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2026-09-19',t:'b',ti:'1e trainersbijeenkomst',tag:'Trainers'},
+ {d:'2026-09-19',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2026-09-21',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-10-01',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2026-10-03',t:'b',ti:'Onderbouwbijeenkomst 1',tag:'Onderbouw'},
+ {d:'2026-10-17',t:'v',ti:'Herfstvakantie (17 t/m 25 okt) · inhaalweekend',tag:'Vakantie'},
+ {d:'2026-10-17',t:'b',ti:'2e trainersbijeenkomst — selectie',tag:'Trainers'},
+ {d:'2026-10-17',t:'e',ti:'Evaluatie Fase 1 (trainers & spelers)',tag:'Fase 1'},
+ {d:'2026-10-24',t:'b',ti:'2e trainersbijeenkomst — breedte',tag:'Trainers'},
+ {d:'2026-10-26',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-10-31',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2026-11-05',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2026-11-07',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2026-11-21',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2026-11-23',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-11-28',t:'b',ti:'Bijeenkomst O11 t/m O12',tag:'Onderbouw'},
+ {d:'2026-12-05',t:'b',ti:'Bijeenkomst O8 t/m O10',tag:'Onderbouw'},
+ {d:'2026-12-12',t:'e',ti:'Evaluatie Fase 2 + evaluatie implementatie speelwijze',tag:'Fase 2'},
+ {d:'2026-12-14',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-12-17',t:'o',ti:'Overleg Voetbalbestuur · evaluatie trainers selectie',tag:'VB'},
+ {d:'2026-12-19',t:'v',ti:'Kerstvakantie & winterstop (19 dec t/m 3 jan)',tag:'Vakantie'},
+ {d:'2027-01-02',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · evaluatie prestatieve jeugdteams',tag:'VB+TH'},
+ {d:'2027-01-11',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2027-01-16',t:'b',ti:'Onderbouwbijeenkomst 2',tag:'Onderbouw'},
+ {d:'2027-01-21',t:'o',ti:'Overleg Voetbalbestuur · grove teamindeling jeugd',tag:'VB'},
+ {d:'2027-01-30',t:'b',ti:'3e trainersbijeenkomst — selectie',tag:'Trainers'},
+ {d:'2027-01-30',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2027-02-06',t:'b',ti:'3e trainersbijeenkomst — breedte',tag:'Trainers'},
+ {d:'2027-02-06',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2027-02-18',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2027-02-20',t:'v',ti:'Voorjaarsvakantie (20 t/m 28 feb) · inhaal/beker',tag:'Vakantie'},
+ {d:'2027-03-01',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2027-03-20',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2027-03-27',t:'v',ti:'Paasweekend · inhaal/beker',tag:'Vakantie'},
+ {d:'2027-04-03',t:'b',ti:'Onderbouwbijeenkomst 3',tag:'Onderbouw'},
+ {d:'2027-04-03',t:'e',ti:'Evaluatie Fase 3A',tag:'Fase 3'},
+ {d:'2027-04-05',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2027-04-10',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2027-04-15',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2027-04-17',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2027-04-24',t:'v',ti:'Meivakantie (t/m 2 mei, adviesweek t/m 9 mei) · inhaal/beker',tag:'Vakantie'},
+ {d:'2027-05-03',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2027-05-08',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · definitieve teamindeling senioren',tag:'VB+TH'},
+ {d:'2027-05-15',t:'v',ti:'Pinksterweekend (16 mei)',tag:'Vakantie'},
+ {d:'2027-05-29',t:'b',ti:'Onderbouwbijeenkomst 4',tag:'Onderbouw'},
+ {d:'2027-05-31',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2027-06-05',t:'e',ti:'Evaluatie Fase 3B / Fase 4',tag:'Fase 3-4'},
+ {d:'2027-06-12',t:'v',ti:'Marveldtoernooi (11 t/m 13 juni, onder voorbehoud)',tag:'Club'},
+ {d:'2027-06-17',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2027-07-03',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · seizoensafsluiting',tag:'VB+TH'}
 ];
 const FASEN=[
- {v:'2025-08-16',t:'2025-08-29',l:'Voor-bereiding',c:'#9aa3b5',w:8},
- {v:'2025-08-30',t:'2025-10-17',l:'Fase 1',c:'#16337e',w:15},
- {v:'2025-10-18',t:'2025-10-31',l:'Herfst',c:'#9aa3b5',w:5},
- {v:'2025-11-01',t:'2025-12-19',l:'Fase 2',c:'#1d4ea3',w:15},
- {v:'2025-12-20',t:'2026-01-23',l:'Winterstop',c:'#9aa3b5',w:10},
- {v:'2026-01-24',t:'2026-06-05',l:'Fase 3',c:'#16337e',w:38},
- {v:'2026-06-06',t:'2026-07-31',l:'Afsluiting',c:'#c4122f',w:9}
+ {v:'2026-08-15',t:'2026-08-28',l:'Voor-bereiding',c:'#9aa3b5',w:8},
+ {v:'2026-08-29',t:'2026-10-16',l:'Fase 1',c:'#16337e',w:15},
+ {v:'2026-10-17',t:'2026-10-30',l:'Herfst',c:'#9aa3b5',w:5},
+ {v:'2026-10-31',t:'2026-12-18',l:'Fase 2',c:'#1d4ea3',w:15},
+ {v:'2026-12-19',t:'2027-01-22',l:'Winterstop',c:'#9aa3b5',w:10},
+ {v:'2027-01-23',t:'2027-06-04',l:'Fase 3',c:'#16337e',w:38},
+ {v:'2027-06-05',t:'2027-07-31',l:'Afsluiting',c:'#c4122f',w:9}
 ];
 const MAANDEN=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
 const tCls={b:'b',o:'',e:'e',v:'v'};
@@ -771,9 +774,11 @@ document.getElementById('fasebalk').innerHTML=FASEN.map(f=>`<div style="backgrou
   const komend=KAL.filter(e=>{const d=kalDatum(e.d);return d>=nu&&d<=grens}).sort((a,b)=>a.d.localeCompare(b.d)).slice(0,4);
   let html='<div class="kaart"><h2>&#128197; Deze week bij Grol</h2>';
   if(fase){html+=`<p>We zitten in: <b>${fase.l.replace('-','')}</b>.</p>`}
-  else{html+='<p><b>Zomerstop</b> — het seizoen 2025-2026 zit erop. Zodra de nieuwe jaarkalender er is, verschijnt hier het seizoen 2026-2027.</p>'}
+  else{html+='<p><b>Zomerstop</b> — het seizoen 2026-2027 staat klaar. De eerste activiteiten starten eind augustus.</p>'}
   if(komend.length){html+='<h3>Komende drie weken</h3>'+komend.map(evtHtml).join('')}
-  else if(fase){html+='<p class="sub">Geen geplande activiteiten in de komende drie weken.</p>'}
+  else{const eerst=KAL.filter(e=>kalDatum(e.d)>=nu).sort((a,b)=>a.d.localeCompare(b.d)).slice(0,2);
+    if(eerst.length){html+='<h3>Eerstvolgende activiteiten</h3>'+eerst.map(evtHtml).join('')}
+    else if(fase){html+='<p class="sub">Geen geplande activiteiten meer dit seizoen.</p>'}}
   html+='</div>';dw.innerHTML=html;
 })();
 toonTijdlijn('alles');
