@@ -80,6 +80,21 @@ tr:nth-child(even) td{background:#f8fafd}
 /* zoeken */
 #resultaten .doc{cursor:pointer}
 mark{background:#ffe9a8}
+/* kalender */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{border:2px solid var(--blauw);color:var(--blauw);border-radius:20px;padding:5px 14px;background:#fff;cursor:pointer;font-weight:600;font-size:.85rem}
+.chip.aan{background:var(--blauw);color:#fff}
+.evt{display:flex;gap:12px;background:#fff;border:1px solid var(--rand);border-left:6px solid var(--blauw);border-radius:0 10px 10px 0;padding:10px 12px;margin:8px 0;align-items:center}
+.evt .dat{min-width:60px;text-align:center;font-weight:700;color:var(--blauw);line-height:1.15}
+.evt .dat small{display:block;font-weight:600;color:var(--grijs);font-size:.68rem}
+.evt.b{border-left-color:var(--rood)}
+.evt.e{border-left-color:#e8a400}
+.evt.v{border-left-color:#9aa3b5}
+.evt .tag{margin-left:auto;font-size:.7rem;background:var(--blauwlicht);color:var(--blauw);border-radius:12px;padding:2px 8px;white-space:nowrap}
+.fasebalk{display:flex;border-radius:10px;overflow:hidden;margin:10px 0;height:42px;font-size:.66rem;color:#fff;text-align:center}
+.fasebalk div{display:flex;align-items:center;justify-content:center;padding:2px;line-height:1.1}
+.legenda{display:flex;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--grijs);margin:8px 0}
+.legenda b{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 /* footer */
 footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff;z-index:40}
 .fbar{display:flex;max-width:1080px;margin:0 auto}
@@ -367,14 +382,28 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
 
 <!-- ================= KALENDER ================= -->
 <section class="pagina" id="p-kalender">
-  <h1>Jaarkalender &amp; focuspunten</h1>
+  <h1>Jaarkalender seizoen 2025-2026</h1>
+  <div id="dezeweek"></div>
   <div class="kaart">
-    <h2>Focuspunten voetbaltechnische zaken</h2>
+    <h2>Het seizoen in één oogopslag</h2>
+    <div class="fasebalk" id="fasebalk"></div>
+    <p class="sub">Fase-indeling op hoofdlijnen; pupillen spelen vanaf medio april Fase 4. Rond vakanties gelden inhaal- en bekerweekenden.</p>
+    <h3 style="margin-top:10px">Focuspunten dit seizoen</h3>
     <span class="badge">Speelwijze</span><span class="badge">Veelzijdig leren voetballen</span><span class="badge">Structuur bieden</span><span class="badge">Positief coachen</span><span class="badge">Individuele aandacht (autonomie, binding, competentie)</span>
-    <p style="margin-top:10px">Vaste momenten in het seizoen: opstartoverleg en aftrapbijeenkomst (aug/sep), drie trainersbijeenkomsten per seizoen, mini-bijeenkomsten op het veld per leeftijdsgroep, individuele begeleiding van trainers door HO en TJC’s, en evaluatie-/POP-rondes per fase.</p>
   </div>
-  <a class="doc" href="documenten/Jaarkalender_2025-2026-MP.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2025-2026<small>Excel · speeldagen, overlegplanning, focuspunten en begeleiding per week</small></span></a>
-  <a class="doc" href="documenten/Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf" target="_blank"><span class="ico">&#128196;</span><span>Kaderbeleid (werven t/m uitstroom)<small>PDF · zes stappen: werven, informeren &amp; introduceren, begeleiden, opleiden, doorstromen, uitstroom</small></span></a>
+  <h2>Seizoenstijdlijn</h2>
+  <div class="chips" id="kalfilters">
+    <button class="chip aan" data-f="alles">Alles</button>
+    <button class="chip" data-f="b">Bijeenkomsten</button>
+    <button class="chip" data-f="o">Overleggen</button>
+    <button class="chip" data-f="e">Evaluaties</button>
+    <button class="chip" data-f="v">Vakanties &amp; overig</button>
+  </div>
+  <div class="legenda"><span><b style="background:var(--rood)"></b>Bijeenkomst</span><span><b style="background:var(--blauw)"></b>Overleg</span><span><b style="background:#e8a400"></b>Evaluatie</span><span><b style="background:#9aa3b5"></b>Vakantie &amp; overig</span></div>
+  <div id="tijdlijn"></div>
+  <div class="kaart" style="margin-top:16px"><h2>Documenten</h2>
+  <a class="doc" href="documenten/Jaarkalender_2025-2026-MP.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2025-2026 (origineel)<small>Excel · speeldagen, overlegplanning, focuspunten en begeleiding per week</small></span></a>
+  <a class="doc" href="documenten/Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf" target="_blank"><span class="ico">&#128196;</span><span>Kaderbeleid (werven t/m uitstroom)<small>PDF · zes stappen: werven, informeren &amp; introduceren, begeleiden, opleiden, doorstromen, uitstroom</small></span></a></div>
 </section>
 
 <!-- ================= OUDERS ================= -->
@@ -642,9 +671,117 @@ document.getElementById('zoekveld').addEventListener('input',e=>{
 });
 document.getElementById('zoekveld').addEventListener('keydown',e=>{if(e.key==='Enter')e.target.blur()});
 
+/* ================= KALENDER ================= */
+// t: b=bijeenkomst, o=overleg, e=evaluatie, v=vakantie/overig
+const KAL=[
+ {d:'2025-08-23',t:'b',ti:'Opstartoverleg seizoen (alle geledingen)',tag:'Aftrap'},
+ {d:'2025-08-23',t:'v',ti:'Kleding ophalen',tag:'Club'},
+ {d:'2025-08-23',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2025-09-10',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2025-09-13',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2025-09-20',t:'b',ti:'1e trainersbijeenkomst',tag:'Trainers'},
+ {d:'2025-09-20',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2025-09-22',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2025-10-02',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2025-10-04',t:'b',ti:'Onderbouwbijeenkomst 1',tag:'Onderbouw'},
+ {d:'2025-10-18',t:'v',ti:'Herfstvakantie (18 t/m 26 okt) · inhaalweekend',tag:'Vakantie'},
+ {d:'2025-10-18',t:'b',ti:'2e trainersbijeenkomst — selectie',tag:'Trainers'},
+ {d:'2025-10-18',t:'e',ti:'Evaluatie Fase 1 (trainers & spelers)',tag:'Fase 1'},
+ {d:'2025-10-25',t:'b',ti:'2e trainersbijeenkomst — breedte',tag:'Trainers'},
+ {d:'2025-10-27',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2025-11-01',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2025-11-06',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2025-11-08',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2025-11-22',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2025-11-24',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2025-11-29',t:'b',ti:'Bijeenkomst O11 t/m O12',tag:'Onderbouw'},
+ {d:'2025-12-06',t:'b',ti:'Bijeenkomst O8 t/m O10',tag:'Onderbouw'},
+ {d:'2025-12-13',t:'e',ti:'Evaluatie Fase 2 + evaluatie implementatie speelwijze',tag:'Fase 2'},
+ {d:'2025-12-15',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2025-12-18',t:'o',ti:'Overleg Voetbalbestuur · evaluatie trainers selectie',tag:'VB'},
+ {d:'2025-12-20',t:'v',ti:'Kerstvakantie & winterstop (20 dec t/m 4 jan)',tag:'Vakantie'},
+ {d:'2025-12-27',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · evaluatie prestatieve jeugdteams',tag:'VB+TH'},
+ {d:'2026-01-12',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-01-17',t:'b',ti:'Onderbouwbijeenkomst 2',tag:'Onderbouw'},
+ {d:'2026-01-22',t:'o',ti:'Overleg Voetbalbestuur · grove teamindeling jeugd',tag:'VB'},
+ {d:'2026-01-31',t:'b',ti:'3e trainersbijeenkomst — selectie',tag:'Trainers'},
+ {d:'2026-01-31',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2026-02-07',t:'b',ti:'3e trainersbijeenkomst — breedte',tag:'Trainers'},
+ {d:'2026-02-07',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2026-02-14',t:'v',ti:'Voorjaarsvakantie (14 t/m 22 feb) · inhaal/beker',tag:'Vakantie'},
+ {d:'2026-02-19',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2026-02-23',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-03-21',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2026-03-28',t:'b',ti:'Onderbouwbijeenkomst 3',tag:'Onderbouw'},
+ {d:'2026-03-28',t:'e',ti:'Evaluatie Fase 3A',tag:'Fase 3'},
+ {d:'2026-03-30',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-04-04',t:'v',ti:'Paasweekend · inhaal/beker',tag:'Vakantie'},
+ {d:'2026-04-11',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2026-04-16',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2026-04-18',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2026-04-25',t:'v',ti:'Meivakantie (t/m 10 mei) · inhaal/beker',tag:'Vakantie'},
+ {d:'2026-05-04',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-05-09',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2026-05-23',t:'v',ti:'Pinksterweekend',tag:'Vakantie'},
+ {d:'2026-05-30',t:'b',ti:'Onderbouwbijeenkomst 4',tag:'Onderbouw'},
+ {d:'2026-06-01',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-06-06',t:'e',ti:'Evaluatie Fase 3B / Fase 4',tag:'Fase 3-4'},
+ {d:'2026-06-13',t:'v',ti:'Marveldtoernooi (12 t/m 14 juni)',tag:'Club'},
+ {d:'2026-06-18',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2026-07-04',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · seizoensafsluiting',tag:'VB+TH'}
+];
+const FASEN=[
+ {v:'2025-08-16',t:'2025-08-29',l:'Voor-bereiding',c:'#9aa3b5',w:8},
+ {v:'2025-08-30',t:'2025-10-17',l:'Fase 1',c:'#16337e',w:15},
+ {v:'2025-10-18',t:'2025-10-31',l:'Herfst',c:'#9aa3b5',w:5},
+ {v:'2025-11-01',t:'2025-12-19',l:'Fase 2',c:'#1d4ea3',w:15},
+ {v:'2025-12-20',t:'2026-01-23',l:'Winterstop',c:'#9aa3b5',w:10},
+ {v:'2026-01-24',t:'2026-06-05',l:'Fase 3',c:'#16337e',w:38},
+ {v:'2026-06-06',t:'2026-07-31',l:'Afsluiting',c:'#c4122f',w:9}
+];
+const MAANDEN=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+const tCls={b:'b',o:'',e:'e',v:'v'};
+function kalDatum(s){const[j,m,d]=s.split('-').map(Number);return new Date(j,m-1,d)}
+function evtHtml(e){const dt=kalDatum(e.d);
+  return `<div class="evt ${tCls[e.t]}" data-t="${e.t}"><span class="dat">${dt.getDate()} ${MAANDEN[dt.getMonth()].slice(0,3)}<small>${dt.getFullYear()}</small></span><span>${e.ti}</span><span class="tag">${e.tag}</span></div>`}
+function toonTijdlijn(filter){
+  const c=document.getElementById('tijdlijn');c.innerHTML='';
+  const per={};
+  KAL.filter(e=>filter==='alles'||e.t===filter).forEach(e=>{
+    const dt=kalDatum(e.d);const k=dt.getFullYear()+'-'+String(dt.getMonth()).padStart(2,'0');
+    (per[k]=per[k]||{kop:MAANDEN[dt.getMonth()].charAt(0).toUpperCase()+MAANDEN[dt.getMonth()].slice(1)+' '+dt.getFullYear(),ev:[]}).ev.push(e);
+  });
+  Object.keys(per).sort().forEach(k=>{
+    c.appendChild(el(`<h2>${per[k].kop}</h2>`));
+    per[k].ev.sort((a,b)=>a.d.localeCompare(b.d)).forEach(e=>c.appendChild(el(evtHtml(e))));
+  });
+  if(!c.children.length)c.appendChild(el('<p class="sub">Geen items in deze categorie.</p>'));
+}
+document.querySelectorAll('#kalfilters .chip').forEach(ch=>ch.onclick=()=>{
+  document.querySelectorAll('#kalfilters .chip').forEach(x=>x.classList.remove('aan'));
+  ch.classList.add('aan');toonTijdlijn(ch.dataset.f);
+});
+// fasebalk
+document.getElementById('fasebalk').innerHTML=FASEN.map(f=>`<div style="background:${f.c};flex:${f.w}">${f.l}</div>`).join('');
+// deze week
+(function(){
+  const nu=new Date();const dw=document.getElementById('dezeweek');
+  const fase=FASEN.find(f=>nu>=kalDatum(f.v)&&nu<=kalDatum(f.t));
+  const grens=new Date(nu);grens.setDate(grens.getDate()+21);
+  const komend=KAL.filter(e=>{const d=kalDatum(e.d);return d>=nu&&d<=grens}).sort((a,b)=>a.d.localeCompare(b.d)).slice(0,4);
+  let html='<div class="kaart"><h2>&#128197; Deze week bij Grol</h2>';
+  if(fase){html+=`<p>We zitten in: <b>${fase.l.replace('-','')}</b>.</p>`}
+  else{html+='<p><b>Zomerstop</b> — het seizoen 2025-2026 zit erop. Zodra de nieuwe jaarkalender er is, verschijnt hier het seizoen 2026-2027.</p>'}
+  if(komend.length){html+='<h3>Komende drie weken</h3>'+komend.map(evtHtml).join('')}
+  else if(fase){html+='<p class="sub">Geen geplande activiteiten in de komende drie weken.</p>'}
+  html+='</div>';dw.innerHTML=html;
+})();
+toonTijdlijn('alles');
+
 /* init */
 toonTeam('o7');
 bouwIndex();
+KAL.forEach(e=>INDEX.push({p:'kalender',titel:e.ti+' · Jaarkalender',tekst:e.ti+' '+e.tag+' '+e.d}));
 route();
 </script>
 </body>
