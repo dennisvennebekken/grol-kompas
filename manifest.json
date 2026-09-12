@@ -1,0 +1,22 @@
+{
+  "name": "Grol Kompas — s.v. Grol Jeugdopleiding",
+  "short_name": "Grol Kompas",
+  "description": "Wegwijzer voor trainers, leiders, spelers en ouders binnen de jeugdopleiding van s.v. Grol.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#16337e",
+  "theme_color": "#16337e",
+  "lang": "nl",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Mijn team", "url": "./index.html#team" },
+    { "name": "Spelprincipes", "url": "./index.html#principes" },
+    { "name": "Jaarkalender", "url": "./index.html#kalender" }
+  ]
+}

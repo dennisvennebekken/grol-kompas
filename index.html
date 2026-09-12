@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#16337e">
+<meta name="description" content="Het Grol Kompas: wegwijzer voor trainers, leiders, spelers en ouders binnen de jeugdopleiding van s.v. Grol.">
 <title>Grol Kompas — s.v. Grol Jeugdopleiding</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Grol Kompas">
 <style>
 :root{
   --blauw:#16337e; --blauw2:#1d4ea3; --blauwlicht:#e8edf8;
@@ -95,6 +101,28 @@ mark{background:#ffe9a8}
 .fasebalk div{display:flex;align-items:center;justify-content:center;padding:2px;line-height:1.1}
 .legenda{display:flex;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--grijs);margin:8px 0}
 .legenda b{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+/* checklist */
+.check{list-style:none;padding:0;margin:8px 0}
+.check li{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--rand);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+.check li.af{background:#f2f8f2;border-color:#bcd9bc}
+.check li.af .tekst{text-decoration:line-through;color:var(--grijs)}
+.check .vak{flex:none;width:22px;height:22px;border:2px solid var(--blauw);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;margin-top:2px}
+.check li.af .vak{background:#3a8a3a;border-color:#3a8a3a}
+.check .tekst small{display:block;color:var(--grijs);font-size:.82rem;margin-top:2px}
+.voortgang{background:var(--blauwlicht);border-radius:20px;height:10px;overflow:hidden;margin:6px 0 2px}
+.voortgang div{background:var(--blauw);height:100%;width:0;transition:width .3s}
+/* organogram */
+.orga{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:10px 0}
+.orga .kolom{background:#fff;border:1px solid var(--rand);border-radius:12px;overflow:hidden;box-shadow:var(--schaduw)}
+.orga .kop{background:var(--blauw);color:#fff;padding:8px 12px;font-weight:700;font-size:.92rem}
+.orga .kop small{display:block;font-weight:400;opacity:.85;font-size:.75rem}
+.orga .laag{padding:8px 12px;border-bottom:1px solid var(--rand);font-size:.88rem}
+.orga .laag:last-child{border-bottom:none}
+.orga .laag b{display:block;color:var(--blauw);font-size:.74rem;text-transform:uppercase;letter-spacing:.4px}
+/* versie / melding */
+.melding{background:#fffbe8;border:1px solid #f0dfa0;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:.9rem}
+.knopje{display:inline-block;background:var(--blauw);color:#fff !important;text-decoration:none;border-radius:10px;padding:9px 16px;font-weight:600;font-size:.9rem;margin:4px 6px 4px 0;border:none;cursor:pointer}
+.knopje.licht{background:#fff;color:var(--blauw) !important;border:2px solid var(--blauw)}
 /* footer */
 footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff;z-index:40}
 .fbar{display:flex;max-width:1080px;margin:0 auto}
@@ -117,15 +145,17 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
   <div class="zoekbalk" id="zoekbalk"><input id="zoekveld" type="search" placeholder="Zoek: bijv. spelers lenen, warming-up, overtal…"></div>
   <nav id="menu">
     <a href="#home">&#127968; Home</a>
+    <a href="#starten">&#128640; Nieuw hier? Start hier</a>
     <a href="#team">&#128101; Mijn team (per leeftijd)</a>
     <a href="#principes">&#9917; De 14 spelprincipes</a>
     <a href="#speelwijze"><svg viewBox="0 0 40 36" width="16" height="14" aria-hidden="true" style="vertical-align:-2px"><path d="M13 2 L2 8 L6 16 L10 14 L10 34 L30 34 L30 14 L34 16 L38 8 L27 2 C25 5.5 15 5.5 13 2 Z" fill="#fff" stroke="#c4122f" stroke-width="3" stroke-linejoin="round"/></svg> Speelwijze &amp; posities</a>
     <a href="#training">&#128203; Training geven</a>
     <a href="#omgang">&#129309; Omgang &amp; cultuur</a>
     <a href="#coaching">&#128153; Coachingteam</a>
-    <a href="#staf">&#128203; Wie traint welk team</a>
-    <a href="#praktisch">&#129520; Praktisch &amp; contact</a>
     <a href="#beoordelen">&#128200; Beoordelen &amp; POP</a>
+    <a href="#praktisch">&#129520; Praktisch &amp; contact</a>
+    <a href="#organisatie">&#127963; Organisatie &amp; rollen</a>
+    <a href="#staf">&#128100; Wie traint welk team</a>
     <a href="#kalender">&#128197; Jaarkalender</a>
     <a href="#ouders">&#128106; Voor spelers &amp; ouders</a>
     <a href="#bibliotheek">&#128218; Bibliotheek (alle documenten)</a>
@@ -137,29 +167,50 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
 <!-- ================= HOME ================= -->
 <section class="pagina" id="p-home">
   <div class="motto">‘Op het veld moet het gebeuren’ — Goede trainers maken betere spelers</div>
-  <p class="sub">Het Grol Kompas wijst trainers, leiders, spelers en ouders de weg binnen de jeugdopleiding: voetbalbeleid, omgangsbeleid en beoordeling. Samengesteld door de Technische Jeugdcoördinatoren. Kies hieronder waar je naartoe wilt, of gebruik de zoekfunctie (&#128269; rechtsboven).</p>
+  <p class="sub">Het Grol Kompas wijst trainers, leiders, spelers en ouders de weg binnen de jeugdopleiding: voetbalbeleid, omgangsbeleid en beoordeling. Kies hieronder waar je naartoe wilt, of gebruik de zoekfunctie (&#128269; rechtsboven).</p>
+  <div id="nieuwhier"></div>
+  <h2>Voetbalinhoud</h2>
   <div class="tegels">
     <a class="tegel" href="#team"><span class="ico">&#128101;</span>Mijn team<br><small>visie per leeftijd</small></a>
     <a class="tegel" href="#principes"><span class="ico">&#9917;</span>14 Spelprincipes</a>
     <a class="tegel" href="#speelwijze"><span class="ico"><svg viewBox="0 0 40 36" width="30" height="27" aria-hidden="true" style="display:inline-block"><path d="M13 2 L2 8 L6 16 L10 14 L10 34 L30 34 L30 14 L34 16 L38 8 L27 2 C25 5.5 15 5.5 13 2 Z" fill="#16337e" stroke="#c4122f" stroke-width="2.5" stroke-linejoin="round"/><path d="M13 2 C15 5.5 25 5.5 27 2" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></span>Speelwijze &amp; posities</a>
     <a class="tegel" href="#training"><span class="ico">&#128203;</span>Training geven</a>
+  </div>
+  <h2>Cultuur &amp; begeleiding</h2>
+  <div class="tegels">
     <a class="tegel" href="#omgang"><span class="ico">&#129309;</span>Omgang &amp; cultuur</a>
     <a class="tegel" href="#coaching"><span class="ico">&#128153;</span>Coachingteam</a>
-    <a class="tegel" href="#staf"><span class="ico">&#128100;</span>Wie traint welk team</a>
-    <a class="tegel" href="#praktisch"><span class="ico">&#129520;</span>Praktisch &amp; contact</a>
     <a class="tegel" href="#beoordelen"><span class="ico">&#128200;</span>Beoordelen &amp; POP</a>
+  </div>
+  <h2>Praktisch</h2>
+  <div class="tegels">
+    <a class="tegel" href="#starten"><span class="ico">&#128640;</span>Nieuw hier?<br><small>startchecklist</small></a>
+    <a class="tegel" href="#praktisch"><span class="ico">&#129520;</span>Praktisch &amp; contact</a>
+    <a class="tegel" href="#organisatie"><span class="ico">&#127963;</span>Organisatie &amp; rollen</a>
+    <a class="tegel" href="#staf"><span class="ico">&#128100;</span>Wie traint welk team</a>
     <a class="tegel" href="#kalender"><span class="ico">&#128197;</span>Jaarkalender</a>
-    <a class="tegel rood" href="#ouders"><span class="ico">&#128106;</span>Spelers &amp; ouders</a>
     <a class="tegel" href="#bibliotheek"><span class="ico">&#128218;</span>Bibliotheek</a>
+    <a class="tegel rood" href="#ouders"><span class="ico">&#128106;</span>Spelers &amp; ouders</a>
   </div>
   <div class="kaart">
     <h2>Snel op weg als trainer of leider</h2>
     <ul>
-      <li><b>Nieuw bij Grol?</b> Start bij <a href="#speelwijze">Speelwijze</a> en <a href="#omgang">Omgang &amp; cultuur</a>.</li>
+      <li><b>Nieuw bij Grol?</b> Begin bij <a href="#starten">Nieuw hier? Start hier</a> — checklist en ouderbijeenkomst op een rij.</li>
       <li><b>Training voorbereiden?</b> Ga naar <a href="#team">Mijn team</a> voor jouw leeftijdsgroep en <a href="#training">Training geven</a> voor de opbouw.</li>
-      <li><b>Wedstrijddag?</b> Bekijk de spelprincipes van jouw leeftijd en de afspraken over <a href="#omgang">positief coachen en spelers lenen</a>.</li>
-      <li><b>Evaluaties of POP-gesprekken?</b> Alle formulieren staan bij <a href="#beoordelen">Beoordelen &amp; POP</a>.</li>
+      <li><b>Wedstrijddag?</b> Bekijk de spelprincipes van jouw leeftijd en de afspraken rond <a href="#praktisch">scheidsrechters, formulier en afgelastingen</a>.</li>
+      <li><b>Vraag of probleem?</b> Kijk bij <a href="#praktisch">wie bel ik waarvoor</a> of bij <a href="#organisatie">Organisatie &amp; rollen</a>.</li>
     </ul>
+  </div>
+  <div class="kaart" id="overapp">
+    <h2>Over deze app</h2>
+    <p id="versieregel" class="sub"></p>
+    <p><a class="knopje" id="feedbackknop" href="#">&#9993; Feedback of correctie doorgeven</a>
+    <a class="knopje licht" href="#nieuws">&#10024; Wat is er nieuw?</a></p>
+    <p class="sub">Tip: open het Kompas op je telefoon en kies ‘Toevoegen aan beginscherm’. Dan werkt hij ook <b>zonder internet</b> op het sportpark.</p>
+  </div>
+  <div class="kaart" id="nieuws">
+    <h2>&#10024; Wat is er nieuw?</h2>
+    <div id="changelog"></div>
   </div>
 </section>
 
@@ -359,7 +410,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
   <a class="doc" href="documenten/Omgangsvormen Grol Teams Generiek 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Omgangsvormen<small>PDF</small></span></a>
   <a class="doc" href="documenten/Positief Coachen Grol Teams Generiek 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Positief Coachen<small>PDF</small></span></a>
   <a class="doc" href="documenten/Spelregels Spelers Lenen Grol Teams Generiek 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Spelregels Spelers Lenen<small>PDF</small></span></a>
-  <a class="doc" href="documenten/Informatiegids s.v.Grol seizoen 2025-2026.pdf" target="_blank"><span class="ico">&#128196;</span><span>Informatiegids trainers &amp; stafleden<small>PDF · praktische clubinformatie</small></span></a></div>
+  <a class="doc" href="documenten/Informatiegids s.v.Grol seizoen 2026-2027.pdf" target="_blank"><span class="ico">&#128196;</span><span>Informatiegids trainers &amp; stafleden 2026-2027<small>PDF · praktische clubinformatie en contactpersonen</small></span></a></div>
 </section>
 
 <!-- ================= BEOORDELEN ================= -->
@@ -389,7 +440,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
 <!-- ================= KALENDER ================= -->
 <section class="pagina" id="p-kalender">
   <h1>Jaarkalender seizoen 2026-2027</h1>
-  <p class="sub"><b>Concept:</b> de KNVB-speeldata en vakanties staan vast; interne overleggen en bijeenkomsten zijn nog ter bevestiging.</p>
+  <p class="sub">Speeldata, vakanties en het vergaderschema voetbaltechnische zaken staan vast. Trainersbijeenkomsten en evaluatiemomenten zijn gepland volgens de jaarkalender.</p>
   <div id="dezeweek"></div>
   <div class="kaart">
     <h2>Het seizoen in één oogopslag</h2>
@@ -397,6 +448,16 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
     <p class="sub">Fase-indeling op hoofdlijnen; pupillen spelen vanaf medio april Fase 4. Rond vakanties gelden inhaal- en bekerweekenden.</p>
     <h3 style="margin-top:10px">Focuspunten dit seizoen</h3>
     <span class="badge">Speelwijze</span><span class="badge">Veelzijdig leren voetballen</span><span class="badge">Structuur bieden</span><span class="badge">Positief coachen</span><span class="badge">Individuele aandacht (autonomie, binding, competentie)</span>
+  </div>
+  <div class="kaart">
+    <h2>Zo is het overleg georganiseerd</h2>
+    <ul>
+      <li><b>Voetbalbestuur</b> — iedere 6 weken op donderdag om 20.00 uur. Gericht op voetbaltechnisch beleid, organisatie en structuur rondom de bestuurstafel.</li>
+      <li><b>Technisch Hart</b> — iedere 6 weken op maandag om 20.00 uur. Gericht op voetbaltechnische ondersteuning en de ontwikkeling van spelers en trainers op het veld. De afvaardiging van het Voetbalbestuur verzorgt het voorzitterschap.</li>
+      <li><b>Onderbouw en Bovenbouw apart</b> — drie keer per jaar rond een fasewissel: terugblikken op de afgelopen fase en vooruitkijken naar de volgende. Datum en tijd stemmen de betrokkenen van Voetbalbestuur, Technisch Hart en Commissie Jeugdzaken zelf af.</li>
+      <li><b>Voetbal bij Grol</b> — twee keer per jaar, voor afstemming en samenwerking tussen Technisch Hart, Voetbalbestuur, Commissie Jeugdzaken en Commissie Seniorenzaken.</li>
+      <li><b>Thema-overleggen</b> (aanstellen trainers, teamindeling en dergelijke) worden naar behoefte apart gepland.</li>
+    </ul>
   </div>
   <h2>Seizoenstijdlijn</h2>
   <div class="chips" id="kalfilters">
@@ -409,7 +470,8 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
   <div class="legenda"><span><b style="background:var(--rood)"></b>Bijeenkomst</span><span><b style="background:var(--blauw)"></b>Overleg</span><span><b style="background:#e8a400"></b>Evaluatie</span><span><b style="background:#9aa3b5"></b>Vakantie &amp; overig</span></div>
   <div id="tijdlijn"></div>
   <div class="kaart" style="margin-top:16px"><h2>Documenten</h2>
-  <a class="doc" href="documenten/Jaarkalender_2026-2027_CONCEPT.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2026-2027 (concept)<small>Excel · speeldagen, overlegplanning, focuspunten en begeleiding per week</small></span></a>
+  <a class="doc" href="documenten/Vergaderschema voetbaltechnische zaken Grol 2026-2027.docx"><span class="ico">&#128196;</span><span>Vergaderschema voetbaltechnische zaken 2026-2027<small>Word · alle overlegdata en de structuur</small></span></a>
+  <a class="doc" href="documenten/Jaarkalender_2026-2027_CONCEPT.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2026-2027<small>Excel · speeldagen, focuspunten en begeleiding per week</small></span></a>
   <a class="doc" href="documenten/Jaarkalender_2025-2026-MP.xlsx"><span class="ico">&#128202;</span><span>Jaarkalender 2025-2026 (archief)<small>Excel · vorig seizoen</small></span></a>
   <a class="doc" href="documenten/Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf" target="_blank"><span class="ico">&#128196;</span><span>Kaderbeleid (werven t/m uitstroom)<small>PDF · zes stappen: werven, informeren &amp; introduceren, begeleiden, opleiden, doorstromen, uitstroom</small></span></a></div>
 </section>
@@ -461,8 +523,8 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
   <div class="kaart">
     <h2>Dit seizoen (2026-2027)</h2>
     <ul>
-      <li><b>Kennismaking</b> — het Coachingteam stelt zich voor tijdens de opstartbijeenkomst (22 aug) en sluit aan bij de introductiebijeenkomsten voor ouders per team (aug/sep).</li>
-      <li><b>Gesprekkenronde nieuwe trainers</b> — in september/oktober gaat het Coachingteam in gesprek met nieuwe, jonge en onervaren trainers: wat kom je tegen, waar heb je hulp bij nodig?</li>
+      <li><b>Kennismaking</b> — het Coachingteam stelt zich voor bij de start van het seizoen en sluit desgewenst aan bij de <a href="#starten">ouderbijeenkomst</a> van je team. Wil je dat? Geef het door aan Natascha.</li>
+      <li><b>Gesprekkenronde nieuwe trainers</b> — het Coachingteam gaat in gesprek met nieuwe, jonge en onervaren trainers: wat kom je tegen, waar heb je hulp bij nodig?</li>
       <li><b>Gedragscode</b> — het Coachingteam denkt mee over de gedragsafspraken voor trainers, spelers en ouders, op basis van de <a href="#omgang">kernwaarden en omgangsvormen</a>.</li>
     </ul>
   </div>
@@ -544,14 +606,14 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
   <p class="sub">Alles rondom het veld: blessures, veilig sportklimaat, schema's en wie je waarvoor belt.</p>
   <div class="kaart">
     <h2>&#129657; Blessures &amp; paramedische begeleiding (PMB)</h2>
-    <p>Geblesseerde spelers kunnen gratis terecht bij de paramedische begeleiding van Grol (fysiotherapeuten en hersteltrainers).</p>
+    <p>De PMB is toegankelijk voor <b>alle jeugdleden</b> en richt zich op het voorkomen en behandelen van blessures en op begeleiding tijdens het herstel. Het team bestaat uit fysiotherapeuten, hersteltrainers, sportmasseurs en verzorgers, aangestuurd door het hoofd PMB. Behandelingen vinden plaats in de paramedische ruimte op het sportpark.</p>
     <ul>
-      <li><b>Jeugd:</b> maandagavond vanaf 19.30 uur bij de fysiotherapeut — inschrijven via het formulier aan het bord in het wedstrijdsecretariaat.</li>
-      <li><b>Senioren:</b> afspraak via app: <a href="tel:0623126764">06-23126764</a> (fysiotherapeut aanwezig op dinsdag- en donderdagavond).</li>
-      <li><b>Kosten:</b> PMB-behandeling, verzorging en hersteltraining zijn voor rekening van Grol. Doorverwijzing naar een fysiotherapeut buiten Grol valt onder je eigen (aanvullende) zorgverzekering.</li>
-      <li><b>Trainers O13/O15:</b> bij groeiblessures en belastbaarheidsvragen — schakel de PMB in, zoals ook in de <a href="#team">visie per leeftijdsgroep</a> staat.</li>
+      <li><b>Spreekuur jeugd:</b> dinsdagavond en donderdagavond.</li>
+      <li><b>Afspraak maken:</b> via Simone Raben — <a href="tel:0623126764">06-23126764</a>.</li>
+      <li><b>Hoe het werkt:</b> een traject start altijd met een intake. Bij ernstigere blessures wordt doorverwezen naar de huisarts of je eigen fysiotherapeut. De begeleiding is gericht op een verantwoorde, stapsgewijze terugkeer naar het veld.</li>
+      <li><b>Voor trainers:</b> de voortgang wordt met trainers en leiders gedeeld, zodat je de begeleiding op het veld kunt afstemmen. Bij groeiblessures en belastbaarheidsvragen (O13/O15) schakel je de PMB in — zie ook de <a href="#team">visie per leeftijdsgroep</a>.</li>
     </ul>
-    <p class="sub">Meer info en samenstelling van het PMB-team: <a href="https://svgrol.nl/organisatie/commissies-en-stichtingen/pmb" target="_blank">svgrol.nl/pmb</a></p>
+    <p class="sub">De PMB valt onder de verantwoordelijkheid van het Voetbalbestuur. Meer info: <a href="https://svgrol.nl/organisatie/commissies-en-stichtingen/pmb" target="_blank">svgrol.nl/pmb</a></p>
   </div>
   <div class="kaart">
     <h2>&#128737; Vertrouwenspersonen</h2>
@@ -571,6 +633,21 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
   </div>
   <div class="kaart">
     <h2>&#9917; Wedstrijddag</h2>
+    <h3>Scheidsrechter of spelbegeleider</h3>
+    <ul>
+      <li><b>T/m O12:</b> het team zorgt in beginsel <b>zelf</b> voor een spelbegeleider — zo heet de scheidsrechter in deze leeftijdsgroepen. Regel dit dus vooraf binnen je staf of met ouders.</li>
+      <li><b>Vanaf O13:</b> Wedstrijdsupport stelt een scheidsrechter aan, waar mogelijk een KNVB-scheidsrechter, aangevuld met clubscheidsrechters en spelers uit de prestatieve seniorenteams.</li>
+      <li><b>Vuistregel:</b> staat er op <b>donderdagavond</b> nog geen scheidsrechter bij jouw thuiswedstrijd in het programma, dan is er niemand aangesteld en moet een staflid of ouder zelf fluiten.</li>
+    </ul>
+    <h3>Wedstrijdformulier en uitslag</h3>
+    <ul>
+      <li>Vóór de wedstrijd vult de trainer of een staflid het <b>digitale wedstrijdformulier</b> in. Wedstrijdsupport maakt je hier graag wegwijs in.</li>
+      <li>Direct ná de wedstrijd vullen scheidsrechter en leider samen de <b>uitslag</b> in.</li>
+    </ul>
+    <h3>De Parkdienst</h3>
+    <p>In het weekend is er een Parkdienst op de accommodatie, met een geschoolde <b>EHBO'er</b>. De Parkdienst ontvangt bezoekende teams en scheidsrechters, zorgt voor wedstrijdmaterialen, opent en sluit de kleedkamers en helpt desgewenst bij het wedstrijdformulier. Je vindt hem of haar meestal in het wedstrijdsecretariaat.</p>
+    <h3>Afgelastingen</h3>
+    <p>Afgelastingen worden gecommuniceerd via de clubwebsite, Voetbal.nl, de socials en de WhatsApp-community's van Grol. Kan er niet op gras getraind worden, dan treedt het <b>noodtrainingsschema</b> in werking — ook dat wordt via die kanalen gemeld.</p>
     <h3>Wedstrijdvormen per leeftijd (KNVB)</h3>
     <table>
       <tr><th>Leeftijd</th><th>Vorm</th><th>Veld</th></tr>
@@ -579,7 +656,38 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
       <tr><td>O11 / O12</td><td>8 tegen 8</td><td>half veld</td></tr>
       <tr><td>O13 en ouder</td><td>11 tegen 11</td><td>heel veld</td></tr>
     </table>
-    <p class="sub">Details, spelregels en afgelastingen: <a href="https://svgrol.nl/voetbalinfo/wedstrijdvormen" target="_blank">wedstrijdvormen</a> · <a href="https://svgrol.nl/voetbalinfo/spelregels-veld-1" target="_blank">spelregels veld</a> · <a href="https://svgrol.nl/documenten/afgelastingsbeleid" target="_blank">afgelastingsbeleid</a></p>
+    <p class="sub">Programma, veld- en kleedkamerindeling: <a href="https://svgrol.nl/wedstrijdinfo/deze-week" target="_blank">svgrol.nl</a> en Voetbal.nl · <a href="https://svgrol.nl/voetbalinfo/wedstrijdvormen" target="_blank">wedstrijdvormen</a> · <a href="https://svgrol.nl/voetbalinfo/spelregels-veld-1" target="_blank">spelregels veld</a> · <a href="https://svgrol.nl/documenten/afgelastingsbeleid" target="_blank">afgelastingsbeleid</a></p>
+  </div>
+  <div class="kaart">
+    <h2>&#128085; Kleding &amp; teamtas</h2>
+    <ul>
+      <li><b>Teamtas:</b> elk team krijgt aan het begin van het seizoen een tas met shirts, broeken, sokken, keeperstenue, bidons en aanvoerdersband. Aan het eind van het seizoen wordt de tas ingenomen en gecontroleerd; schade of vermissing wordt doorbelast aan het team.</li>
+      <li><b>Wassen:</b> de wedstrijdkleding wordt centraal door het team zelf gewassen — dat voorkomt kleurverschil en houdt de set compleet. In de tas zit een wasvoorschrift.</li>
+      <li><b>Bruikleen:</b> alle kleding is in bruikleen. Past iets niet meer, ruil het tijdens het kledingspreekuur. Stopt een speler of gaat hij naar de senioren, dan wordt alles compleet en in goede staat ingeleverd.</li>
+      <li><b>Nieuwe spelers:</b> pupillen krijgen een rugzak, spelers vanaf O13 een sporttas. Elk jeugdlid krijgt een prestatiepak in bruikleen. Voor trainers en leiders is er — zolang de voorraad strekt — een jeugdleiderspak en coachjas.</li>
+      <li><b>Kledingspreekuur:</b> om de week op zaterdagochtend van <b>09.30 tot 11.00 uur</b> in de kassaruimte op het sportpark (naast de entree). Voor ruilen, ophalen, schade melden of een compliment.</li>
+    </ul>
+    <p class="sub">Contact: <a href="mailto:kledingcommissie@svgrol.nl">kledingcommissie@svgrol.nl</a> · <a href="https://svgrol.nl/UserFiles/2023/Nieuwe%20seizoen/reglement_kleding_29_08_2023.pdf" target="_blank">kledingreglement</a></p>
+  </div>
+  <div class="kaart">
+    <h2>&#9917; Ballen, doeltjes &amp; materialen</h2>
+    <ul>
+      <li><b>Ballenkar:</b> elk team krijgt een eigen ballenkar met voldoende trainingsballen, uitgegeven aan het begin en ingenomen aan het eind van het seizoen. De SEAG stemt dit met je af.</li>
+      <li><b>Bal kwijt?</b> Zoek als hele team mee. Blijft een bal zoek, leg dan een briefje in het postvakje in het wedstrijdsecretariaat met je naam, team, aantal ballen en zo precies mogelijk waar ze zijn kwijtgeraakt. De woensdaggroep vindt veel ballen terug en brengt ze bij het team terug.</li>
+      <li><b>Doeltjes:</b> alle doeltjes gaan na training én wedstrijd terug naar de vaste opstelplaats. De trainer is hiervoor verantwoordelijk — help elkaar eraan herinneren.</li>
+      <li><b>Overige materialen</b> (pylonnen, hesjes) zijn voor algemeen gebruik en horen na gebruik terug in het ballenhok.</li>
+      <li><b>Kapot materiaal?</b> Meld het via een briefje in hetzelfde postvakje (welk materiaal, je naam en team). De SEAG zorgt voor vervanging.</li>
+    </ul>
+    <p class="sub">Contact: <a href="mailto:jordi.bleumink@svgrol.nl">Jordi Bleumink</a> of <a href="mailto:nick.reukers@svgrol.nl">Nick Reukers</a></p>
+  </div>
+  <div class="kaart">
+    <h2>&#128247; Communicatie &amp; PR</h2>
+    <ul>
+      <li><b>Teamfoto:</b> elk team maakt aan het begin van het seizoen zelf een teamfoto en stuurt die in voor op de website. Je krijgt hierover bericht van de communicatiegroep.</li>
+      <li><b>Wedstrijdverslag of nieuws?</b> Aanleveren kan voor de website, de socials en de Groenlose Gids.</li>
+      <li><b>Blijf op de hoogte</b> via de website, de socials en de WhatsApp-community's — daar komen ook afgelastingen en het noodtrainingsschema voorbij.</li>
+    </ul>
+    <p class="sub">Contact: <a href="mailto:marco.frank@svgrol.nl">marco.frank@svgrol.nl</a></p>
   </div>
   <div class="kaart">
     <h2>&#128101; Teamindeling</h2>
@@ -588,28 +696,216 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauw);color:#fff
     <p class="sub">Zie ook: <a href="#omgang">spelregels spelers lenen</a> en de <a href="#beoordelen">evaluatieformulieren</a>.</p>
   </div>
   <div class="kaart">
-    <h2>&#9989; VOG &amp; nieuwe trainers</h2>
-    <p>Voor kaderleden binnen de jeugd vraagt s.v. Grol een Verklaring Omtrent Gedrag (VOG). De aanvraag loopt via de club en kost je niets. Nieuw als trainer? Kijk ook bij <a href="#training">Training geven</a> en <a href="#team">Mijn team</a> — en het <a href="#coaching">Coachingteam</a> en je Technisch Jeugdcoördinator staan voor je klaar.</p>
+    <h2>&#9989; VOG &amp; vrijwilligersverklaring</h2>
+    <p>s.v. Grol vraagt alle trainers en leiders om een <b>Verklaring Omtrent het Gedrag (VOG)</b>. Zo dragen we samen bij aan een veilige omgeving voor jeugdspelers. Het aanvragen is <b>kosteloos</b> en je wordt er volledig in begeleid: nieuwe vrijwilligers worden aan het begin van het seizoen benaderd en geholpen met de aanvraag.</p>
+    <ul>
+      <li>Vragen over de VOG? Mail <a href="mailto:vog@svgrol.nl">vog@svgrol.nl</a>.</li>
+      <li><b>Vrijwilligersverklaring:</b> alle vrijwilligers melden zich aan via het contactformulier op de clubsite en vullen de vrijwilligersverklaring in. Zo weet de club wie welke rol vervult en bereiken berichten de juiste mensen.</li>
+    </ul>
     <a class="doc" href="https://svgrol.nl/informatie-vog" target="_blank"><span class="ico">&#127760;</span><span>Informatie en aanvraag VOG<small>svgrol.nl</small></span></a>
+    <a class="doc" href="https://svgrol.nl/contact/contactformulier" target="_blank"><span class="ico">&#127760;</span><span>Aanmelden als vrijwilliger<small>contactformulier svgrol.nl</small></span></a>
+    <p class="sub" style="margin-top:6px">Nieuw als trainer? Begin bij <a href="#starten">Nieuw hier? Start hier</a>.</p>
   </div>
   <div class="kaart">
     <h2>&#128222; Wie bel ik waarvoor?</h2>
     <table>
-      <tr><th>Situatie</th><th>Contact</th></tr>
-      <tr><td>Gedragsvraag in je team (pesten, lastig gedrag)</td><td><a href="#coaching">Coachingteam</a> — Natascha Dankbaar, 06-12962468</td></tr>
-      <tr><td>Blessure of belastbaarheid</td><td>PMB — jeugd ma-avond, senioren via 06-23126764</td></tr>
-      <tr><td>Grensoverschrijdend gedrag / melding</td><td>Vertrouwenspersonen — Noëlle Neeleman of Hans Scheinck (zie hierboven)</td></tr>
-      <tr><td>Spelers lenen, teamzaken, voetbalinhoud</td><td>Technisch Coördinator van jouw leeftijdsgroep</td></tr>
-      <tr><td>Kleding en materialen</td><td>Beheergroep Kleding via <a href="https://svgrol.nl/organisatie/commissies-en-stichtingen/beheergroep-kleding" target="_blank">svgrol.nl</a></td></tr>
-      <tr><td>Afgelastingen en wedstrijdzaken</td><td>Wedstrijdsupport / <a href="https://svgrol.nl/wedstrijdinfo/deze-week" target="_blank">programma op svgrol.nl</a></td></tr>
-      <tr><td>Algemene verenigingsvragen</td><td>Verenigingsbureau via <a href="https://svgrol.nl/contact" target="_blank">svgrol.nl/contact</a></td></tr>
+      <tr><th>Situatie</th><th>Wie</th><th>Contact</th></tr>
+      <tr><td>Voetbalinhoud, spelers lenen, begeleiding op het veld</td><td><a href="#organisatie">Technisch Coördinator</a> van jouw leeftijdsgroep</td><td>voetbalbestuur@svgrol.nl</td></tr>
+      <tr><td>Alles rondom je team dat niet voetbalinhoudelijk is</td><td><a href="#organisatie">Leeftijdscoördinator</a> (Commissie Jeugdzaken)</td><td>dennis.vennebekken@svgrol.nl</td></tr>
+      <tr><td>Gedragsvraag in je team (pesten, lastig gedrag)</td><td><a href="#coaching">Coachingteam</a> — Natascha Dankbaar</td><td><a href="tel:0612962468">06-12962468</a></td></tr>
+      <tr><td>Blessure of belastbaarheid</td><td>PMB — Simone Raben</td><td><a href="tel:0623126764">06-23126764</a></td></tr>
+      <tr><td>Grensoverschrijdend gedrag of een melding</td><td>Vertrouwenspersonen</td><td>zie hierboven</td></tr>
+      <tr><td>Kleding, teamtas, kledingspreekuur</td><td>Beheergroep Kleding</td><td><a href="mailto:kledingcommissie@svgrol.nl">kledingcommissie@svgrol.nl</a></td></tr>
+      <tr><td>Wedstrijdprogramma, formulier, kleedkamers</td><td>Jesper Fransen, wedstrijdsecretaris jeugd</td><td><a href="mailto:wedstrijdsecretarisjeugd@svgrol.nl">wedstrijdsecretarisjeugd@svgrol.nl</a></td></tr>
+      <tr><td>Scheidsrechters en spelbegeleiders</td><td>Rob Westervoorde</td><td><a href="mailto:rob.westervoorde@svgrol.nl">rob.westervoorde@svgrol.nl</a></td></tr>
+      <tr><td>Trainingsschema en veldindeling</td><td>John ter Heerdt</td><td><a href="mailto:john.ter.heerdt@svgrol.nl">john.ter.heerdt@svgrol.nl</a></td></tr>
+      <tr><td>Ballen en trainingsmaterialen</td><td>Jordi Bleumink / Nick Reukers</td><td><a href="mailto:jordi.bleumink@svgrol.nl">jordi.bleumink@svgrol.nl</a></td></tr>
+      <tr><td>Wedstrijdverslag of teamfoto plaatsen</td><td>Marco Frank, communicatie</td><td><a href="mailto:marco.frank@svgrol.nl">marco.frank@svgrol.nl</a></td></tr>
+      <tr><td>VOG-aanvraag</td><td>VOG-team</td><td><a href="mailto:vog@svgrol.nl">vog@svgrol.nl</a></td></tr>
     </table>
+    <p class="sub">Persoonlijke telefoonnummers staan hier bewust niet: contactgegevens van bestuur, Technisch Hart en Commissie Jeugdzaken zijn op te vragen via bovenstaande adressen. Het volledige overzicht staat in de <a href="#bibliotheek">Informatiegids</a>.</p>
   </div>
   <div class="kaart">
     <h2>&#128220; Fair play &amp; veilig sportklimaat</h2>
     <p>Aanvullend op de <a href="#omgang">kernwaarden en omgangsvormen</a> gelden clubbreed:</p>
     <a class="doc" href="https://svgrol.nl/documenten/fair-play-reglement" target="_blank"><span class="ico">&#127760;</span><span>Fair Play Reglement<small>svgrol.nl</small></span></a>
     <a class="doc" href="https://svgrol.nl/UserFiles/2025/Documenten/Convenant_VSK_voetbalverenigingen_Oost_Gelre_16052025.pdf" target="_blank"><span class="ico">&#128196;</span><span>Convenant Gezond en Veilig<small>voetbalverenigingen Oost Gelre · PDF</small></span></a>
+  </div>
+</section>
+
+<!-- ================= ORGANISATIE ================= -->
+<section class="pagina" id="p-organisatie">
+  <h1>Organisatie &amp; rollen</h1>
+  <p class="sub">Wie doet wat binnen de jeugdopleiding — en bij wie kun je terecht?</p>
+  <div class="kaart">
+    <h2>Missie &amp; visie van het Voetbalbestuur</h2>
+    <p><b>Missie:</b> s.v. Grol speelt een prominente rol in het ontwikkelen van spelers. Uitgangspunt is dat elke speler zich op zijn of haar eigen niveau moet kunnen ontwikkelen. We streven naar maximale voetbaltechnische én sociaal-emotionele groei.</p>
+    <h3>Visie</h3>
+    <ul>
+      <li>De focus ligt op voetbal: <b>op het veld moet het gebeuren</b>.</li>
+      <li>Het goed opleiden en begeleiden van (eigen) trainers is essentieel voor de ontwikkeling van spelers.</li>
+      <li>De faciliteiten voor spelers en trainers moeten op orde zijn, met ruimte voor differentiatie tussen prestatief en breedtesport.</li>
+      <li>Iedereen draagt bij aan een omgeving waarin spelers zich thuis voelen: <b>eens Grol, altijd Grol</b>.</li>
+      <li>Grol biedt gelijke ontwikkelkansen voor iedere speler, ongeacht niveau.</li>
+      <li>In de prestatieve tak spelen we met zelf opgeleide spelers. Spelers van buiten Groenlo zijn welkom, maar betalen voor selectievoetbal is uitgesloten.</li>
+    </ul>
+  </div>
+  <h2>Organogram jeugdopleiding</h2>
+  <p class="sub">Boven alles: de voorzitter van het Voetbalbestuur en de voorzitter van de Commissie Jeugdzaken.</p>
+  <div class="orga">
+    <div class="kolom">
+      <div class="kop">Onderbouw<small>O8 t/m O12</small></div>
+      <div class="laag"><b>Voetbalbestuur</b>Tom Kaak · Jasper Konnik</div>
+      <div class="laag"><b>Technisch Hart</b>Jonathan Lammers (O10-O12)<br>Michel Kamphuis (O8-O9)</div>
+      <div class="laag"><b>Comm. Jeugdzaken</b>Ilona Wolters (O8 t/m O12)<br>Patrick Vennebekken (O7)</div>
+      <div class="laag"><b>Op het veld</b>(Keeper)trainers</div>
+    </div>
+    <div class="kolom">
+      <div class="kop">Bovenbouw<small>O13 t/m O19</small></div>
+      <div class="laag"><b>Voetbalbestuur</b>Dennis Dibbets · Ruben Stapelbroek</div>
+      <div class="laag"><b>Technisch Hart</b>Jos Heutinck (O17-O19)<br>Alexander Esseling (O13-O15)</div>
+      <div class="laag"><b>Comm. Jeugdzaken</b>Marcel ten Barge (O17-O19)<br>Joris Reinders (O15) · Lucas van Katwijk (O13)</div>
+      <div class="laag"><b>Op het veld</b>(Keeper)trainers</div>
+    </div>
+    <div class="kolom">
+      <div class="kop">Senioren<small>Grol 1, 2, 3 en O23</small></div>
+      <div class="laag"><b>Voetbalbestuur</b>Bob Lebbink · Michel Hoffman</div>
+      <div class="laag"><b>Technisch Hart</b>Jos Heutinck (prestatief)</div>
+      <div class="laag"><b>Op het veld</b>(Keeper)trainers · PMB</div>
+      <div class="laag"><b>Recreatief</b>valt onder Commissie Senioren</div>
+    </div>
+  </div>
+  <p class="sub">Meidenvoetbal: Rick Spekschoor (Voetbalbestuur en leeftijdscoördinator). De positie van het meidenvoetbal wordt per seizoen bekeken naar behoefte. G-voetbal: Natascha Dankbaar. KNVB- en BVO-contactpersoon: Tom Kaak.</p>
+  <div class="kaart">
+    <h2>Wie doet wat?</h2>
+    <table>
+      <tr><th>Geleding</th><th>Waarvoor</th></tr>
+      <tr><td><b>Voetbalbestuur</b></td><td>Eindverantwoordelijk voor alle voetbaltechnische zaken. Ontwikkelt en bewaakt het strategisch beleid, stelt het Technisch Hart samen en stelt <b>alle jeugdtrainers</b> aan (inclusief techniek-, ondersteunende en keeperstrainers). Ook de PMB valt hieronder.</td></tr>
+      <tr><td><b>Technisch Hart</b></td><td>Vertaalt de visie naar de praktijk van alledag: bewaakt speelwijze, speelstijl en spelprincipes, creëert een ontwikkelgerichte trainingscultuur en <b>begeleidt trainers</b> — met observaties en gerichte feedback op trainingen en wedstrijden. Grotendeels op het veld.</td></tr>
+      <tr><td><b>Commissie Jeugdzaken</b></td><td>De dagelijkse gang van zaken die <b>niet</b> voetbaltechnisch is. Per leeftijdsgroep is er een leeftijdscoördinator als aanspreekpunt voor trainers, ouders en spelers. Stelt de <b>overige stafleden</b> aan, ondersteunt trainers praktisch, coördineert het G-voetbal en onderhoudt contact met ouders.</td></tr>
+      <tr><td><b>Coachingteam</b></td><td>Ondersteunt bij gedragsvraagstukken — zie <a href="#coaching">Coachingteam</a>.</td></tr>
+    </table>
+    <p class="sub">Twijfel je? Vuistregel: gaat het over <b>voetbal</b> → Technisch Coördinator. Gaat het over <b>alles eromheen</b> → leeftijdscoördinator.</p>
+  </div>
+  <div class="kaart">
+    <h2>Technisch Hart 2026-2027</h2>
+    <table>
+      <tr><th>Naam</th><th>Verantwoordelijkheid</th></tr>
+      <tr><td>Jos Heutinck</td><td>Technisch Coördinator Senioren Prestatief &amp; Bovenbouw (O19-O17)</td></tr>
+      <tr><td>Alexander Esseling</td><td>Technisch Coördinator Bovenbouw (O15-O13)</td></tr>
+      <tr><td>Jonathan Lammers</td><td>Technisch Coördinator Onderbouw (O10-O11-O12)</td></tr>
+      <tr><td>Michel Kamphuis</td><td>Technisch Coördinator Onderbouw (O8-O9)</td></tr>
+    </table>
+    <p class="sub">Contactgegevens zijn op te vragen via <a href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a>.</p>
+    <h2>Commissie Jeugdzaken</h2>
+    <table>
+      <tr><th>Naam</th><th>Verantwoordelijkheid</th></tr>
+      <tr><td>Dennis Vennebekken</td><td>Voorzitter Commissie Jeugdzaken</td></tr>
+      <tr><td>Marcel ten Barge</td><td>Leeftijdscoördinator O17-O19</td></tr>
+      <tr><td>Joris Reinders</td><td>Leeftijdscoördinator O15</td></tr>
+      <tr><td>Lucas van Katwijk</td><td>Leeftijdscoördinator O13</td></tr>
+      <tr><td>Ilona Wolters</td><td>Leeftijdscoördinator O8 t/m O12</td></tr>
+      <tr><td>Patrick Vennebekken</td><td>Leeftijdscoördinator O7</td></tr>
+      <tr><td>Rick Spekschoor</td><td>Leeftijdscoördinator Meidenteams</td></tr>
+      <tr><td>Natascha Dankbaar</td><td>Coördinator G-voetbal</td></tr>
+    </table>
+    <p class="sub">Contactgegevens via <a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a>.</p>
+    <h2>Voetbalbestuur</h2>
+    <table>
+      <tr><th>Naam</th><th>Verantwoordelijkheid</th></tr>
+      <tr><td>Dennis Pasman</td><td>Voorzitter, ondersteuning bovenbouw jeugd</td></tr>
+      <tr><td>Bob Lebbink</td><td>Prestatief senioren, PMB</td></tr>
+      <tr><td>Michel Hoffman</td><td>Prestatief senioren, PMB</td></tr>
+      <tr><td>Dennis Dibbets</td><td>Bovenbouw jeugd (O13-O19)</td></tr>
+      <tr><td>Ruben Stapelbroek</td><td>Bovenbouw jeugd (O13-O19)</td></tr>
+      <tr><td>Tom Kaak</td><td>Onderbouw jeugd (O7-O12), KNVB- &amp; BVO-contactpersoon</td></tr>
+      <tr><td>Jasper Konnik</td><td>Onderbouw jeugd (O7-O12)</td></tr>
+      <tr><td>Rick Spekschoor</td><td>Meidenteams</td></tr>
+    </table>
+    <p class="sub">Contactgegevens via <a href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a>.</p>
+  </div>
+  <div class="kaart">
+    <h2>Teambegeleiding: wat is het streven?</h2>
+    <p>Elk jeugdteam krijgt passende begeleiding, zodat het <b>twee keer per week kan trainen</b> en wedstrijden kan spelen. De begeleiding bestaat uit één of meer trainers plus stafleden die wedstrijden begeleiden of fluiten en de organisatie rond het team regelen. Daarnaast stelt Grol techniektrainers en ondersteunende trainers aan. Lukt het niet om voldoende trainers en stafleden te vinden, dan wordt een beroep gedaan op ouders, zodat er minimaal één keer per week getraind kan worden.</p>
+  </div>
+  <div class="kaart">
+    <h2>Prestatief en breedtesport</h2>
+    <p>Vanaf de bovenbouw maakt s.v. Grol onderscheid tussen prestatieve en breedtesportteams.</p>
+    <ul>
+      <li>In <b>prestatieve teams</b> ligt de focus op prestatie en doorstroom naar de seniorenselecties. Plezier blijft een belangrijk doel.</li>
+      <li>In de <b>breedtesport</b> staat sportieve ontplooiing centraal, waarbij plezier, ontwikkeling en prestatie in balans zijn.</li>
+    </ul>
+    <p>Binnen de breedtesport streven we naar een evenwichtige verdeling van kwaliteiten per team, met extra aandacht voor sociale factoren zoals vriendjes, klasgenoten en buurtgenoten. <span class="sub">(indeling naar NOC*NSF)</span></p>
+    <h3>Uitgangspunten bij de indeling</h3>
+    <ul>
+      <li>Spelers worden primair ingedeeld op basis van talent en potentie.</li>
+      <li>Spelers met vergelijkbare kwaliteiten worden zo veel mogelijk samengevoegd.</li>
+      <li>Per seizoen wordt bepaald welke teams onder prestatief of breedtesport vallen.</li>
+    </ul>
+    <h3>De vier focuspunten</h3>
+    <table>
+      <tr><th>Focuspunt</th><th>Waar kijken we naar?</th></tr>
+      <tr><td><b>Voetballen</b></td><td>Handelingen in aanval, verdediging en omschakeling; leervermogen en ontwikkeling</td></tr>
+      <tr><td><b>Gedrag</b></td><td>Trainingsopkomst, inzet, openstaan voor feedback, omgaan met winst en verlies, respect richting arbitrage en tegenstander</td></tr>
+      <tr><td><b>Leeftijdsfactoren</b></td><td>Kalenderleeftijd, biologische leeftijd, voetballeeftijd</td></tr>
+      <tr><td><b>Sociaal</b></td><td>Verbondenheid met teamgenoten, vriendschappen, klas- of wijkgenoten</td></tr>
+    </table>
+    <p class="sub">Het Voetbalbestuur is eindverantwoordelijk voor het indelingsproces; Technisch Hart en Commissie Jeugdzaken voeren uit en ondersteunen. Het volledige proces staat in <a href="https://svgrol.nl//UserFiles/2026/Voetbalbestuur/Teamindeling_Grol_proces_en_criteria_versie_1_april_2026.pdf" target="_blank">Teamindeling Grol — proces en criteria</a>.</p>
+  </div>
+  <div class="kaart">
+    <h2>Jouw ontwikkeling als trainer</h2>
+    <p>Grol investeert actief in trainers, van pupillenteams tot prestatieve jeugd en senioren. Het Technisch Hart organiseert samen met het Voetbalbestuur <b>bijeenkomsten, ontwikkelgesprekken en themasessies</b> rond de spelprincipes en speelwijze. Daarnaast stimuleert de club het volgen van <b>KNVB-cursussen</b> en is er ruimte voor stage- en praktijkopdrachten.</p>
+    <p class="sub">Zie ook de <a href="#kalender">jaarkalender</a> voor de trainersbijeenkomsten en de <a href="#beoordelen">zelfscans</a> om je eigen ontwikkeling in beeld te brengen. #beteretrainersmakenbeterespelers</p>
+  </div>
+</section>
+
+<!-- ================= STARTEN ================= -->
+<section class="pagina" id="p-starten">
+  <h1>Nieuw hier? Start hier</h1>
+  <p class="sub">Alles wat je aan het begin van het seizoen regelt, op één rij. Je vinkjes worden op dit apparaat bewaard.</p>
+  <div class="kaart">
+    <h2>Startchecklist</h2>
+    <div class="voortgang"><div id="cbalk"></div></div>
+    <p class="sub" id="cteller" style="margin-bottom:10px"></p>
+    <ul class="check" id="checklist"></ul>
+    <button class="knopje licht" id="creset">Alles opnieuw</button>
+  </div>
+  <div class="kaart">
+    <h2>De ouderbijeenkomst</h2>
+    <p>Organiseer met je team ná de zomerstop, maar vóór de competitiestart een ouderbijeenkomst. Het doel: ouders op een positieve manier bij het voetballen betrekken. Een lid van het Voetbalbestuur of het Technisch Hart kan aansluiten of je tips geven bij de voorbereiding — en er is een voorbeeldpresentatie beschikbaar. Ook het <a href="#coaching">Coachingteam</a> sluit graag aan.</p>
+    <h3>1. Voorstelronde</h3>
+    <p class="sub">Wie ben je, wat is je rol, wat wil je dit seizoen bereiken met de groep?</p>
+    <h3>2. Verwachtingen van de rollen</h3>
+    <ul>
+      <li>De speler</li><li>De trainers</li><li>De stafleden</li><li>De ouders</li>
+    </ul>
+    <h3>3. De afspraken</h3>
+    <table>
+      <tr><th>Soort</th><th>Bespreek in elk geval</th></tr>
+      <tr><td><b>Praktisch</b></td><td>Rijden (maak een rijschema), wassen, op tijd komen, douchen (verplicht — wie wel en niet in de kleedkamer), trainingskleding</td></tr>
+      <tr><td><b>Team</b></td><td>Gewenst en ongewenst gedrag met consequenties, afmelden, telefoongebruik, taalgebruik, houding en gedrag</td></tr>
+      <tr><td><b>Voetbal</b></td><td>Coaching door trainer en staf, leerdoelen, posities, wisselbeleid</td></tr>
+    </table>
+    <h3>4. Verwachtingen naar ouders</h3>
+    <ul>
+      <li>Kinderen stimuleren</li>
+      <li>Kinderen zelf verantwoordelijk laten zijn voor tas en spullen</li>
+      <li>Gewenst en ongewenst gedrag langs de lijn</li>
+      <li>Omgaan met winst en verlies</li>
+    </ul>
+    <h3>5. Ruimte voor vragen en opmerkingen</h3>
+    <p class="sub" style="margin-top:10px">Tip: gebruik de <a href="#omgang">kernwaarden en omgangsvormen</a> als basis voor de afspraken en de <a href="#speelwijze">speelwijze</a> plus de <a href="#team">visie van jouw leeftijdsgroep</a> om het voetbalverhaal te vertellen. Dat scheelt voorbereiding én iedereen hoort hetzelfde verhaal.</p>
+  </div>
+  <div class="kaart">
+    <h2>Waar vind ik wat?</h2>
+    <ul>
+      <li><b>Wat train ik en hoe?</b> → <a href="#team">Mijn team</a> en <a href="#training">Training geven</a></li>
+      <li><b>Hoe spelen we?</b> → <a href="#speelwijze">Speelwijze</a> en de <a href="#principes">14 spelprincipes</a></li>
+      <li><b>Hoe gaan we met elkaar om?</b> → <a href="#omgang">Omgang &amp; cultuur</a></li>
+      <li><b>Praktische zaken en contact</b> → <a href="#praktisch">Praktisch &amp; contact</a></li>
+      <li><b>Wie is wie?</b> → <a href="#organisatie">Organisatie &amp; rollen</a></li>
+      <li><b>Wanneer is wat?</b> → <a href="#kalender">Jaarkalender</a></li>
+    </ul>
   </div>
 </section>
 
@@ -726,14 +1022,16 @@ const BIEB = [
   ['Presentatie Veelzijdig Leren Voetballen Grol.pdf','Presentatie Veelzijdig Leren Voetballen','onderbouwvisie VLV'],
   ['Adviesrapport Speelwijze Grol MPEE_HO_B_Grol_23.06.2025.pdf','Adviesrapport Speelwijze','beleid en implementatie'],
   ['Ontwikkelen_kaderbeleid_Grol_MPEE_HO-B_Def.pdf','Kaderbeleid','werven t/m uitstroom'],
-  ['Jaarkalender_2026-2027_CONCEPT.xlsx','Jaarkalender 2026-2027 (concept)','Excel · interne data ter bevestiging'],
+  ['Vergaderschema voetbaltechnische zaken Grol 2026-2027.docx','Vergaderschema voetbaltechnische zaken','Word · overlegdata en structuur 2026-2027'],
+  ['Jaarkalender_2026-2027_CONCEPT.xlsx','Jaarkalender 2026-2027','Excel · speeldagen, focuspunten en begeleiding per week'],
   ['Jaarkalender_2025-2026-MP.xlsx','Jaarkalender 2025-2026 (archief)','Excel']]},
  {g:'Grol Omgang Beleid',items:[
   ['Kernwaardes Grol Teams Generiek 2025-2026.pdf','Kernwaarden','5 kernwaarden met gedrag'],
   ['Omgangsvormen Grol Teams Generiek 2025-2026.pdf','Omgangsvormen','teamafspraken'],
   ['Positief Coachen Grol Teams Generiek 2025-2026.pdf','Positief Coachen','principes + 10 tips'],
   ['Spelregels Spelers Lenen Grol Teams Generiek 2025-2026.pdf','Spelregels Spelers Lenen','uitgangspunten + proces'],
-  ['Informatiegids s.v.Grol seizoen 2025-2026.pdf','Informatiegids trainers & stafleden','seizoen 2025-2026']]},
+  ['Informatiegids s.v.Grol seizoen 2026-2027.pdf','Informatiegids trainers & stafleden','seizoen 2026-2027 · praktische zaken en contactpersonen'],
+  ['Informatiegids s.v.Grol seizoen 2025-2026.pdf','Informatiegids trainers & stafleden (archief)','seizoen 2025-2026']]},
  {g:'Grol Beoordeling',items:[
   ['Spelers EvaluatieformulierFase_SVGrol_2025-2026.xlsx','Spelers Evaluatieformulier','Excel · per fase, JO8–JO19'],
   ['Beoordelingsformulier-7-7-en-11-11-VT.pdf','Beoordelingsformulier 7:7 en 11:11','per teamfunctie en positie'],
@@ -798,7 +1096,7 @@ document.getElementById('vlvvorige').onclick=()=>{vlvN=vlvN>1?vlvN-1:vlvMax;vlvT
 document.getElementById('vlvvolgende').onclick=()=>{vlvN=vlvN<vlvMax?vlvN+1:1;vlvToon()};
 
 /* ================= NAVIGATIE ================= */
-const paginas=['home','team','principes','speelwijze','training','omgang','coaching','staf','praktisch','beoordelen','kalender','ouders','bibliotheek','zoeken'];
+const paginas=['home','starten','team','principes','speelwijze','training','omgang','coaching','organisatie','staf','praktisch','beoordelen','kalender','ouders','bibliotheek','zoeken'];
 function route(){
   let h=location.hash.replace('#','')||'home';
   let [p,sub]=h.split('/');
@@ -861,62 +1159,60 @@ document.getElementById('zoekveld').addEventListener('keydown',e=>{if(e.key==='E
 const KAL=[
  {d:'2026-08-22',t:'b',ti:'Opstartoverleg seizoen (alle geledingen)',tag:'Aftrap'},
  {d:'2026-08-22',t:'v',ti:'Kleding ophalen',tag:'Club'},
- {d:'2026-08-22',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
  {d:'2026-08-22',t:'b',ti:'Kennismaking Coachingteam bij opstartbijeenkomst',tag:'Coaching'},
+ {d:'2026-09-03',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2026-09-05',t:'b',ti:'Introductiebijeenkomsten ouders per team · Coachingteam sluit aan (aug/sep)',tag:'Coaching'},
- {d:'2026-09-19',t:'b',ti:'Start gesprekkenronde nieuwe en onervaren trainers (sep-okt)',tag:'Coaching'},
- {d:'2026-09-09',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
  {d:'2026-09-12',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
+ {d:'2026-09-19',t:'b',ti:'Start gesprekkenronde nieuwe en onervaren trainers (sep-okt)',tag:'Coaching'},
  {d:'2026-09-19',t:'b',ti:'1e trainersbijeenkomst',tag:'Trainers'},
  {d:'2026-09-19',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
- {d:'2026-09-21',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2026-10-01',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2026-09-21',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2026-10-03',t:'b',ti:'Onderbouwbijeenkomst 1',tag:'Onderbouw'},
+ {d:'2026-10-03',t:'o',ti:'Overleg Onderbouw &amp; Bovenbouw · terugblik en vooruitblik fase (richtdatum)',tag:'VB-TH-CJ'},
+ {d:'2026-10-15',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2026-10-17',t:'v',ti:'Herfstvakantie (17 t/m 25 okt) · inhaalweekend',tag:'Vakantie'},
  {d:'2026-10-17',t:'b',ti:'2e trainersbijeenkomst — selectie',tag:'Trainers'},
  {d:'2026-10-17',t:'e',ti:'Evaluatie Fase 1 (trainers & spelers)',tag:'Fase 1'},
  {d:'2026-10-24',t:'b',ti:'2e trainersbijeenkomst — breedte',tag:'Trainers'},
- {d:'2026-10-26',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
  {d:'2026-10-31',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
- {d:'2026-11-05',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2026-11-02',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2026-11-07',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
- {d:'2026-11-21',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
- {d:'2026-11-23',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2026-11-19',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2026-11-28',t:'b',ti:'Bijeenkomst O11 t/m O12',tag:'Onderbouw'},
  {d:'2026-12-05',t:'b',ti:'Bijeenkomst O8 t/m O10',tag:'Onderbouw'},
+ {d:'2026-12-05',t:'o',ti:'Overleg Onderbouw &amp; Bovenbouw · terugblik en vooruitblik fase (richtdatum)',tag:'VB-TH-CJ'},
+ {d:'2026-12-07',t:'o',ti:'Overleg Voetbal bij Grol · afstemming TH, VB, Jeugdzaken en Seniorenzaken',tag:'Breed'},
  {d:'2026-12-12',t:'e',ti:'Evaluatie Fase 2 + evaluatie implementatie speelwijze',tag:'Fase 2'},
- {d:'2026-12-14',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2026-12-17',t:'o',ti:'Overleg Voetbalbestuur · evaluatie trainers selectie',tag:'VB'},
+ {d:'2026-12-14',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2026-12-19',t:'v',ti:'Kerstvakantie & winterstop (19 dec t/m 3 jan)',tag:'Vakantie'},
- {d:'2027-01-02',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · evaluatie prestatieve jeugdteams',tag:'VB+TH'},
- {d:'2027-01-11',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2027-01-07',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2027-01-16',t:'b',ti:'Onderbouwbijeenkomst 2',tag:'Onderbouw'},
- {d:'2027-01-21',t:'o',ti:'Overleg Voetbalbestuur · grove teamindeling jeugd',tag:'VB'},
+ {d:'2027-01-25',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2027-01-30',t:'b',ti:'3e trainersbijeenkomst — selectie',tag:'Trainers'},
  {d:'2027-01-30',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
  {d:'2027-02-06',t:'b',ti:'3e trainersbijeenkomst — breedte',tag:'Trainers'},
  {d:'2027-02-06',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
- {d:'2027-02-18',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
+ {d:'2027-02-18',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2027-02-20',t:'v',ti:'Voorjaarsvakantie (20 t/m 28 feb) · inhaal/beker',tag:'Vakantie'},
- {d:'2027-03-01',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2027-03-20',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart',tag:'VB+TH'},
+ {d:'2027-03-08',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
+ {d:'2027-03-20',t:'o',ti:'Overleg Onderbouw &amp; Bovenbouw · terugblik en vooruitblik fase (richtdatum)',tag:'VB-TH-CJ'},
  {d:'2027-03-27',t:'v',ti:'Paasweekend · inhaal/beker',tag:'Vakantie'},
+ {d:'2027-04-01',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2027-04-03',t:'b',ti:'Onderbouwbijeenkomst 3',tag:'Onderbouw'},
  {d:'2027-04-03',t:'e',ti:'Evaluatie Fase 3A',tag:'Fase 3'},
- {d:'2027-04-05',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
  {d:'2027-04-10',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
- {d:'2027-04-15',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
  {d:'2027-04-17',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2027-04-19',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2027-04-24',t:'v',ti:'Meivakantie (t/m 2 mei, adviesweek t/m 9 mei) · inhaal/beker',tag:'Vakantie'},
- {d:'2027-05-03',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
- {d:'2027-05-08',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · definitieve teamindeling senioren',tag:'VB+TH'},
+ {d:'2027-05-13',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2027-05-15',t:'v',ti:'Pinksterweekend (16 mei)',tag:'Vakantie'},
+ {d:'2027-05-17',t:'o',ti:'Overleg Voetbal bij Grol · afstemming TH, VB, Jeugdzaken en Seniorenzaken',tag:'Breed'},
  {d:'2027-05-29',t:'b',ti:'Onderbouwbijeenkomst 4',tag:'Onderbouw'},
- {d:'2027-05-31',t:'o',ti:'Overleg Technisch Hart',tag:'TH'},
+ {d:'2027-05-31',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2027-06-05',t:'e',ti:'Evaluatie Fase 3B / Fase 4',tag:'Fase 3-4'},
  {d:'2027-06-12',t:'v',ti:'Marveldtoernooi (11 t/m 13 juni, onder voorbehoud)',tag:'Club'},
- {d:'2027-06-17',t:'o',ti:'Overleg Voetbalbestuur',tag:'VB'},
- {d:'2027-07-03',t:'o',ti:'Overleg Voetbalbestuur & Technisch Hart · seizoensafsluiting',tag:'VB+TH'}
+ {d:'2027-06-24',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
+ {d:'2027-07-12',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'}
 ];
 const FASEN=[
  {v:'2026-08-15',t:'2026-08-28',l:'Voor-bereiding',c:'#9aa3b5',w:8},
@@ -968,10 +1264,95 @@ document.getElementById('fasebalk').innerHTML=FASEN.map(f=>`<div style="backgrou
 })();
 toonTijdlijn('alles');
 
+/* ================= STARTCHECKLIST ================= */
+const CHECKS=[
+ ['VOG aanvragen','Kosteloos en met begeleiding. Vragen? vog@svgrol.nl'],
+ ['Aanmelden als vrijwilliger','Via het contactformulier op svgrol.nl, inclusief vrijwilligersverklaring'],
+ ['Kennismaken met je Technisch Coördinator','Voor alles wat met voetbalinhoud te maken heeft — zie Organisatie &amp; rollen'],
+ ['Kennismaken met je leeftijdscoördinator','Voor alles eromheen — Commissie Jeugdzaken'],
+ ['Teamtas met wedstrijdkleding ophalen','Controleer de inhoud en spreek af wie wast'],
+ ['Ballenkar en materialen regelen','Via de SEAG; check waar het ballenhok en de opstelplaatsen zijn'],
+ ['Trainingsschema checken','Welk veld, welke tijd — svgrol.nl/voetbalinfo'],
+ ['Ouderbijeenkomst plannen','Vóór de competitiestart; gebruik het draaiboek hieronder'],
+ ['Teamafspraken maken met je spelers','Kernwaarden en omgangsvormen als basis'],
+ ['Spelbegeleider regelen (t/m O12)','Vanaf O13 stelt Wedstrijdsupport een scheidsrechter aan'],
+ ['Wedstrijdformulier leren invullen','Wedstrijdsupport maakt je wegwijs'],
+ ['Teamfoto maken en insturen','Voor op de clubwebsite'],
+ ['Spelprincipes van jouw leeftijdsgroep bekijken','Zie Mijn team — weet wat je traint'],
+ ['Zelfscan invullen','Waar sta je als trainer? Bespreek hem met je TC']
+];
+(function(){
+  const lijst=document.getElementById('checklist');if(!lijst)return;
+  let staat={};
+  try{staat=JSON.parse(localStorage.getItem('grolkompas-check')||'{}')}catch(e){staat={}}
+  function bewaar(){try{localStorage.setItem('grolkompas-check',JSON.stringify(staat))}catch(e){}}
+  function teller(){
+    const af=CHECKS.filter((c,i)=>staat[i]).length;
+    document.getElementById('cbalk').style.width=Math.round(af/CHECKS.length*100)+'%';
+    document.getElementById('cteller').textContent=af===CHECKS.length?'Alles afgerond — mooi begin! 🎉':`${af} van de ${CHECKS.length} afgerond`;
+  }
+  function teken(){
+    lijst.innerHTML='';
+    CHECKS.forEach((c,i)=>{
+      const li=el(`<li class="${staat[i]?'af':''}" data-i="${i}"><span class="vak">${staat[i]?'&#10003;':''}</span><span class="tekst">${c[0]}<small>${c[1]}</small></span></li>`);
+      li.onclick=()=>{staat[i]=!staat[i];bewaar();teken();teller()};
+      lijst.appendChild(li);
+    });
+  }
+  document.getElementById('creset').onclick=()=>{staat={};bewaar();teken();teller()};
+  teken();teller();
+})();
+
+/* ================= VERSIE, NIEUWS, FEEDBACK, OFFLINE ================= */
+const VERSIE='12 september 2026';
+const NIEUWS=[
+ ['12 september 2026',[
+   'Informatiegids 2026-2027 verwerkt: nieuwe contactpersonen en het actuele Technisch Hart',
+   'Jaarkalender bijgewerkt met het definitieve vergaderschema voetbaltechnische zaken',
+   'Nieuw: Organisatie &amp; rollen met organogram, missie en visie, en prestatief versus breedtesport',
+   'Nieuw: startchecklist voor nieuwe trainers en draaiboek voor de ouderbijeenkomst',
+   'Praktisch uitgebreid met kleding, materialen, scheidsrechters, wedstrijdformulier en Parkdienst',
+   'Gecorrigeerd: het PMB-spreekuur is dinsdag- en donderdagavond (was maandagavond)',
+   'De app werkt nu ook zonder internet en is te installeren op je beginscherm'
+ ]],
+ ['juli 2026',[
+   'Jaarkalender omgezet naar seizoen 2026-2027 (concept)',
+   'Nieuw: Coachingteam en Wie traint welk team'
+ ]],
+ ['juni 2026',['Eerste versie van het Grol Kompas']]
+];
+(function(){
+  const vr=document.getElementById('versieregel');
+  if(vr)vr.innerHTML=`Laatst bijgewerkt: <b>${VERSIE}</b> · seizoen 2026-2027`;
+  const cl=document.getElementById('changelog');
+  if(cl)cl.innerHTML=NIEUWS.map(n=>`<h3>${n[0]}</h3><ul>${n[1].map(x=>`<li>${x}</li>`).join('')}</ul>`).join('');
+  const fb=document.getElementById('feedbackknop');
+  if(fb){
+    const onderwerp=encodeURIComponent('Grol Kompas — feedback of correctie');
+    const body=encodeURIComponent('Wat klopt er niet of wat mis je?\n\n\n---\nPagina: '+location.hash+'\nVersie: '+VERSIE);
+    fb.href=`mailto:dennis.vennebekken@svgrol.nl?subject=${onderwerp}&body=${body}`;
+  }
+  // eerste bezoek: wijs de weg
+  const nh=document.getElementById('nieuwhier');
+  if(nh){
+    let gezien=false;
+    try{gezien=localStorage.getItem('grolkompas-welkom')==='1'}catch(e){}
+    if(!gezien){
+      nh.innerHTML='<div class="melding"><b>Voor het eerst hier?</b> Begin bij <a href="#starten">Nieuw hier? Start hier</a> — daar staat alles wat je aan het begin van het seizoen regelt. <a href="#" id="welkomweg">Verbergen</a></div>';
+      const w=document.getElementById('welkomweg');
+      if(w)w.onclick=e=>{e.preventDefault();try{localStorage.setItem('grolkompas-welkom','1')}catch(err){}nh.innerHTML=''};
+    }
+  }
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+  }
+})();
+
 /* init */
 toonTeam('o7');
 bouwIndex();
 KAL.forEach(e=>INDEX.push({p:'kalender',titel:e.ti+' · Jaarkalender',tekst:e.ti+' '+e.tag+' '+e.d}));
+CHECKS.forEach(c=>INDEX.push({p:'starten',titel:c[0]+' · Startchecklist',tekst:c[0]+' '+c[1]}));
 route();
 </script>
 </body>
