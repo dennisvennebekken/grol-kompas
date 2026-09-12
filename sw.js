@@ -1,7 +1,7 @@
 /* Grol Kompas — service worker
    Zorgt dat de app ook zonder internet werkt (bijv. op het sportpark).
    Verhoog CACHE_VERSIE bij elke nieuwe versie van de app. */
-const CACHE_VERSIE = 'grol-kompas-v3';
+const CACHE_VERSIE = 'grol-kompas-v4';
 
 /* De kern van de app: altijd offline beschikbaar */
 const SCHIL = [
@@ -13,7 +13,14 @@ const SCHIL = [
   './img/icon-192.png',
   './img/icon-512.png',
   './img/visie-1.jpg', './img/visie-2.jpg', './img/visie-3.jpg', './img/visie-4.jpg',
-  './img/visie-5.jpg', './img/visie-6.jpg', './img/visie-7.jpg', './img/visie-8.jpg'
+  './img/visie-5.jpg', './img/visie-6.jpg', './img/visie-7.jpg', './img/visie-8.jpg',
+  './img/hero/home.jpg', './img/hero/juich.jpg', './img/hero/duel.jpg',
+  './img/hero/team.jpg', './img/hero/vlv.jpg', './img/hero/veld.jpg', './img/hero/avond.jpg',
+  './fonts/barlow-condensed-latin-600-normal.woff2',
+  './fonts/barlow-condensed-latin-700-normal.woff2',
+  './fonts/inter-latin-400-normal.woff2',
+  './fonts/inter-latin-600-normal.woff2',
+  './fonts/inter-latin-700-normal.woff2'
 ];
 
 self.addEventListener('install', e => {
