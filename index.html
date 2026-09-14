@@ -312,8 +312,10 @@ mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 2px}
 .contact.top .situatie{color:var(--rood)}
 .contact .wie{margin-top:3px;font-weight:600;font-size:.95rem}
 .contact .details{color:var(--grijs);font-size:.84rem;margin-top:3px;line-height:1.45}
-.contact .link{display:inline-block;margin-top:7px;font-size:.9rem;font-weight:600;
-  overflow-wrap:break-word}
+.contact .links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px}
+.contact .link{font-size:.9rem;font-weight:600;overflow-wrap:break-word;
+  display:inline-flex;align-items:center;gap:6px}
+.contact .link svg{width:15px;height:15px;opacity:.8}
 /* ---------- tabellen: woorden blijven heel, de tabel schuift mee ---------- */
 .tabelwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:12px}
 .tabelwrap table{margin:0;width:auto;min-width:100%}
@@ -918,8 +920,9 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <div class="kaart">
     <h2><svg class="i" aria-hidden="true"><use href="#i-klok"/></svg> Trainingsschema's</h2>
     <p>Welk veld, welke tijd — de actuele schema's staan op de clubwebsite:</p>
-    <a class="doc" href="https://svgrol.nl/UserFiles/2026/Wedstrijdsupport/Trainingschema_2627_V01_19_juni_2026.pdf" target="_blank"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg></span><span>Regulier trainingsschema 2026-2027<small>PDF op svgrol.nl</small></span><svg class="i pijl" aria-hidden="true"><use href="#i-pijlrechts"/></svg></a>
-    <a class="doc" href="https://svgrol.nl/voetbalinfo" target="_blank"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-web"/></svg></span><span>Noodschema &amp; actuele voetbalinfo<small>svgrol.nl/voetbalinfo</small></span><svg class="i pijl" aria-hidden="true"><use href="#i-pijlrechts"/></svg></a>
+    <a class="doc" href="https://svgrol.nl/UserFiles/2026/Wedstrijdsupport/Regulier_Trainingschema_2627_versie_31_augustus_2026.pdf" target="_blank"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg></span><span>Regulier trainingsschema 2026-2027<small>PDF op svgrol.nl · versie 31 augustus 2026</small></span><svg class="i pijl" aria-hidden="true"><use href="#i-pijlrechts"/></svg></a>
+    <a class="doc" href="https://svgrol.nl/UserFiles/2026/Wedstrijdsupport/Nood_Trainingschema_2627_versie_31_augustus_2026.pdf" target="_blank"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg></span><span>Noodtrainingsschema 2026-2027<small>PDF · geldt als er niet op gras getraind kan worden</small></span><svg class="i pijl" aria-hidden="true"><use href="#i-pijlrechts"/></svg></a>
+    <a class="doc" href="https://svgrol.nl/voetbalinfo" target="_blank"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-web"/></svg></span><span>Actuele voetbalinfo<small>svgrol.nl/voetbalinfo · hier staat altijd de nieuwste versie</small></span><svg class="i pijl" aria-hidden="true"><use href="#i-pijlrechts"/></svg></a>
   </div>
   <div class="kaart">
     <h2><svg class="i" aria-hidden="true"><use href="#i-bal"/></svg> Wedstrijddag</h2>
@@ -1005,76 +1008,95 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
         <div class="details">Teamzaken, ouders, stafleden en praktische vragen.<br>
           O7 Patrick Vennebekken · O8 t/m O12 Ilona Wolters · O13 Lucas van Katwijk ·
           O15 Joris Reinders · O17-O19 Marcel ten Barge · Meiden Rick Spekschoor</div>
-        <a class="link" href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:dennis.vennebekken@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>dennis.vennebekken@svgrol.nl</a></div>
       </div>
       <div class="contact top">
         <div class="situatie">Voetbalinhoud</div>
         <div class="wie"><a href="#organisatie">Technisch Coördinator</a> — Technisch Hart</div>
         <div class="details">Training, spelers lenen en begeleiding op het veld.<br>
           O8-O9 Michel Kamphuis · O10-O12 Jonathan Lammers · O13-O15 Alexander Esseling · O17-O19 Jos Heutinck</div>
-        <a class="link" href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:voetbalbestuur@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>voetbalbestuur@svgrol.nl</a><a class="link" href="tel:0610902902"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>Dennis Pasman · 06-1090 2902</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Gedragsvraag in je team</div>
         <div class="wie"><a href="#coaching">Coachingteam</a> — Natascha Dankbaar</div>
         <div class="details">Pesten, lastig gedrag, onsportiviteit.</div>
-        <a class="link" href="tel:0612962468">06-12962468</a>
+        <div class="links"><a class="link" href="tel:0612962468"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>06-1296 2468</a><a class="link" href="mailto:nataschadankbaar@hotmail.com"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>nataschadankbaar@hotmail.com</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Blessure of belastbaarheid</div>
         <div class="wie">Paramedische begeleiding — Simone Raben</div>
         <div class="details">Spreekuur jeugd op dinsdag- en donderdagavond.</div>
-        <a class="link" href="tel:0623126764">06-23126764</a>
+        <div class="links"><a class="link" href="tel:0623126764"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>06-2312 6764</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Grensoverschrijdend gedrag</div>
         <div class="wie">Vertrouwenspersonen</div>
-        <div class="details">Noëlle Neeleman en Hans Scheinck — contactgegevens hierboven.</div>
+        <div class="details">Noëlle Neeleman en Hans Scheinck.</div>
+        <div class="links"><a class="link" href="tel:0624910136"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>Noëlle · 06-2491 0136</a><a class="link" href="tel:0623879248"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>Hans · 06-2387 9248</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Kleding &amp; teamtas</div>
         <div class="wie">Beheergroep Kleding</div>
         <div class="details">Ruilen, schade melden, kledingspreekuur.</div>
-        <a class="link" href="mailto:kledingcommissie@svgrol.nl">kledingcommissie@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:kledingcommissie@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>kledingcommissie@svgrol.nl</a><a class="link" href="tel:0645007478"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>06-4500 7478</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Wedstrijdzaken</div>
-        <div class="wie">Jesper Fransen — wedstrijdsecretaris jeugd</div>
+        <div class="wie">Jesper Franssen — wedstrijdsecretaris jeugd</div>
         <div class="details">Programma, wedstrijdformulier, kleedkamers.</div>
-        <a class="link" href="mailto:wedstrijdsecretarisjeugd@svgrol.nl">wedstrijdsecretarisjeugd@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:wedstrijdsecretarisjeugd@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>wedstrijdsecretarisjeugd@svgrol.nl</a><a class="link" href="tel:0657057940"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>06-5705 7940</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Scheidsrechters</div>
         <div class="wie">Rob Westervoorde</div>
         <div class="details">Aanstellingen en spelbegeleiders.</div>
-        <a class="link" href="mailto:rob.westervoorde@svgrol.nl">rob.westervoorde@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:rob.westervoorde@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>rob.westervoorde@svgrol.nl</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Trainingsschema</div>
         <div class="wie">John ter Heerdt</div>
         <div class="details">Veldindeling en trainingstijden.</div>
-        <a class="link" href="mailto:john.ter.heerdt@svgrol.nl">john.ter.heerdt@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:john.ter.heerdt@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>john.ter.heerdt@svgrol.nl</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Ballen &amp; materialen</div>
         <div class="wie">Jordi Bleumink en Nick Reukers</div>
         <div class="details">Ballenkar, doeltjes, kapot materiaal.</div>
-        <a class="link" href="mailto:jordi.bleumink@svgrol.nl">jordi.bleumink@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:jordi.bleumink@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>jordi.bleumink@svgrol.nl</a><a class="link" href="mailto:nick.reukers@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>nick.reukers@svgrol.nl</a></div>
       </div>
       <div class="contact">
         <div class="situatie">Verslag of teamfoto</div>
         <div class="wie">Marco Frank — communicatie</div>
         <div class="details">Website, socials en de Groenlose Gids.</div>
-        <a class="link" href="mailto:marco.frank@svgrol.nl">marco.frank@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:marco.frank@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>marco.frank@svgrol.nl</a><a class="link" href="tel:0612060188"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>06-1206 0188</a></div>
+      </div>
+      <div class="contact">
+        <div class="situatie">Algemene vragen &amp; secretariaat</div>
+        <div class="wie">Nienke Boerkoel — verenigingssecretariaat</div>
+        <div class="details">Aan- en afmelden, wijzigingen, klachten, tips. Alles kan ook via het <a href="https://formulieren.svgrol.nl" target="_blank">webformulier</a>.</div>
+        <div class="links"><a class="link" href="mailto:info@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>info@svgrol.nl</a><a class="link" href="tel:0612116897"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>06-1211 6897</a></div>
+      </div>
+      <div class="contact">
+        <div class="situatie">Ledenadministratie jeugd</div>
+        <div class="wie">Jesse Wolters</div>
+        <div class="details">Aan- en afmelden van jeugdleden, adreswijzigingen.</div>
+        <div class="links"><a class="link" href="mailto:jesse.wolters@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>jesse.wolters@svgrol.nl</a><a class="link" href="tel:0620846875"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>06-2084 6875</a></div>
+      </div>
+      <div class="contact">
+        <div class="situatie">Accommodatie</div>
+        <div class="wie">Sportpark Den Elshof · meldpunt Dirk Tuinte</div>
+        <div class="details">Sportpark 0544 46 19 40. Iets kapot of een melding over het complex? Bel het meldpunt.</div>
+        <div class="links"><a class="link" href="tel:0544461940"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>Sportpark · 0544 46 19 40</a><a class="link" href="tel:0622019803"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg>Meldpunt · 06-2201 9803</a></div>
       </div>
       <div class="contact">
         <div class="situatie">VOG-aanvraag</div>
         <div class="wie">VOG-team</div>
         <div class="details">Kosteloos, met begeleiding.</div>
-        <a class="link" href="mailto:vog@svgrol.nl">vog@svgrol.nl</a>
+        <div class="links"><a class="link" href="mailto:vog@svgrol.nl"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>vog@svgrol.nl</a></div>
       </div>
     </div>
-    <p class="sub">Persoonlijke telefoonnummers staan hier bewust niet: contactgegevens van bestuur, Technisch Hart en Commissie Jeugdzaken zijn op te vragen via bovenstaande adressen. Het volledige overzicht staat in de <a href="#bibliotheek">Informatiegids</a>.</p>
+    <p class="sub">De telefoonnummers hierboven zijn overgenomen uit het openbare <a href="https://svgrol.nl/contact/contactinformatie" target="_blank">contactoverzicht op svgrol.nl</a>. Van bestuur, Technisch Hart en Commissie Jeugdzaken staan de persoonlijke nummers daar niet: contactgegevens van bestuur, Technisch Hart en Commissie Jeugdzaken zijn op te vragen via bovenstaande adressen. Het volledige overzicht staat in de <a href="#bibliotheek">Informatiegids</a>.</p>
   </div>
   <div class="kaart">
     <h2><svg class="i" aria-hidden="true"><use href="#i-scroll"/></svg> Fair play &amp; veilig sportklimaat</h2>
