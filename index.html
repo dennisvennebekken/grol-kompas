@@ -440,13 +440,8 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <div class="kaart" id="overapp">
     <h2>Over deze app</h2>
     <p id="versieregel" class="sub"></p>
-    <p><a class="knopje" id="feedbackknop" href="#"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Feedback of correctie doorgeven</a>
-    <a class="knopje licht" href="#nieuws"><svg class="i" aria-hidden="true"><use href="#i-ster"/></svg> Wat is er nieuw?</a></p>
+    <p><a class="knopje" id="feedbackknop" href="#"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Feedback of correctie doorgeven</a></p>
     <p class="sub">Tip: open het Kompas op je telefoon en kies ‘Toevoegen aan beginscherm’. Dan werkt hij ook <b>zonder internet</b> op het sportpark.</p>
-  </div>
-  <div class="kaart" id="nieuws">
-    <h2><svg class="i" aria-hidden="true"><use href="#i-ster"/></svg> Wat is er nieuw?</h2>
-    <div id="changelog"></div>
   </div>
 </section>
 
@@ -1570,35 +1565,11 @@ const CHECKS=[
   teken();teller();
 })();
 
-/* ================= VERSIE, NIEUWS, FEEDBACK, OFFLINE ================= */
+/* ================= VERSIE, FEEDBACK, OFFLINE ================= */
 const VERSIE='12 september 2026 · ontwerp 2.0';
-const NIEUWS=[
- ['12 september 2026 — nieuwe uitstraling',[
-   'Volledig nieuw ontwerp: eigen clubletters, getekende iconen en teamfoto\u2019s',
-   'Nieuw: een echt veld met de 1-4-3-3 \u2014 tik op een positie voor het profiel',
-   'De app volgt nu automatisch de donkere modus van je telefoon',
-   'Startchecklist met voortgangsring; homepagina ingedeeld in drie hoofdstukken'
- ]],
- ['12 september 2026',[
-   'Informatiegids 2026-2027 verwerkt: nieuwe contactpersonen en het actuele Technisch Hart',
-   'Jaarkalender bijgewerkt met het definitieve vergaderschema voetbaltechnische zaken',
-   'Nieuw: Organisatie &amp; rollen met organogram, missie en visie, en prestatief versus breedtesport',
-   'Nieuw: startchecklist voor nieuwe trainers en draaiboek voor de ouderbijeenkomst',
-   'Praktisch uitgebreid met kleding, materialen, scheidsrechters, wedstrijdformulier en Parkdienst',
-   'Gecorrigeerd: het PMB-spreekuur is dinsdag- en donderdagavond (was maandagavond)',
-   'De app werkt nu ook zonder internet en is te installeren op je beginscherm'
- ]],
- ['juli 2026',[
-   'Jaarkalender omgezet naar seizoen 2026-2027 (concept)',
-   'Nieuw: Coachingteam en Wie traint welk team'
- ]],
- ['juni 2026',['Eerste versie van het Grol Kompas']]
-];
 (function(){
   const vr=document.getElementById('versieregel');
   if(vr)vr.innerHTML=`Laatst bijgewerkt: <b>${VERSIE}</b> · seizoen 2026-2027`;
-  const cl=document.getElementById('changelog');
-  if(cl)cl.innerHTML=NIEUWS.map(n=>`<h3>${n[0]}</h3><ul>${n[1].map(x=>`<li>${x}</li>`).join('')}</ul>`).join('');
   const fb=document.getElementById('feedbackknop');
   if(fb){
     const onderwerp=encodeURIComponent('Grol Kompas — feedback of correctie');
