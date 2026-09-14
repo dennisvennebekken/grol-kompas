@@ -313,11 +313,12 @@ mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 2px}
 .contact .wie{margin-top:3px;font-weight:600;font-size:.95rem}
 .contact .details{color:var(--grijs);font-size:.84rem;margin-top:3px;line-height:1.45}
 .contact .link{display:inline-block;margin-top:7px;font-size:.9rem;font-weight:600;
-  overflow-wrap:anywhere;word-break:break-word}
-/* ---------- tabellen: nooit meer afknellen op smalle schermen ---------- */
-td,th{overflow-wrap:anywhere}
+  overflow-wrap:break-word}
+/* ---------- tabellen: woorden blijven heel, de tabel schuift mee ---------- */
 .tabelwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:12px}
-.tabelwrap table{margin:0}
+.tabelwrap table{margin:0;width:auto;min-width:100%}
+.tabelwrap td,.tabelwrap th{white-space:normal;overflow-wrap:normal;word-break:keep-all;hyphens:none}
+.tabelwrap a{overflow-wrap:break-word}
 
 /* ---------- footer / tabbalk ---------- */
 footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-index:50;
