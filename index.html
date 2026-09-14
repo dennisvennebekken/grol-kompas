@@ -300,6 +300,25 @@ mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 2px}
 .knopje.licht:hover{background:var(--blauwlicht)}
 .terug{display:inline-block;margin-bottom:8px;color:var(--blauw2);font-weight:600;font-size:.9rem}
 
+
+/* ---------- contactblokken ---------- */
+.contact{background:var(--vlak);border:1px solid var(--rand);border-left:5px solid var(--accent);
+  border-radius:0 12px 12px 0;padding:12px 14px;margin:8px 0;box-shadow:var(--schaduw);
+  transition:transform .18s,box-shadow .18s}
+.contact:hover{transform:translateX(3px);box-shadow:var(--schaduw-op)}
+.contact.top{border-left-color:var(--rood);background:linear-gradient(90deg,var(--roodlicht),var(--vlak) 55%)}
+.contact .situatie{font-family:var(--display);text-transform:uppercase;font-weight:700;color:var(--blauw);
+  font-size:1.06rem;letter-spacing:.3px;line-height:1.18}
+.contact.top .situatie{color:var(--rood)}
+.contact .wie{margin-top:3px;font-weight:600;font-size:.95rem}
+.contact .details{color:var(--grijs);font-size:.84rem;margin-top:3px;line-height:1.45}
+.contact .link{display:inline-block;margin-top:7px;font-size:.9rem;font-weight:600;
+  overflow-wrap:anywhere;word-break:break-word}
+/* ---------- tabellen: nooit meer afknellen op smalle schermen ---------- */
+td,th{overflow-wrap:anywhere}
+.tabelwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:12px}
+.tabelwrap table{margin:0}
+
 /* ---------- footer / tabbalk ---------- */
 footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-index:50;
      box-shadow:0 -2px 20px rgba(13,36,97,.3);padding-bottom:env(safe-area-inset-bottom)}
@@ -564,7 +583,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     </ul>
   </div>
   <h2>Opbouw van een Grol-training</h2>
-  <table>
+  <div class="tabelwrap"><table>
     <tr><th>Duur</th><th>Onderdeel</th><th>Doel &amp; inhoud</th></tr>
     <tr><td>5 min</td><td><b>Voorbespreking</b></td><td>Contact maken, terugblik, doel van de training benoemen. Maar 75 minuten? Doe dit vooraf.</td></tr>
     <tr><td>10–20 min</td><td><b>Opstartvorm</b></td><td>Warm worden, blessurepreventie, motorisch ontwikkelen, technische vormen, pass/trap (SV Grol warming-up).</td></tr>
@@ -572,7 +591,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <tr><td>20–30 min</td><td><b>Leerfase</b></td><td>Complexere uitvoering op hoge intensiteit. Bedenk vooraf hoe je het makkelijker/moeilijker maakt.</td></tr>
     <tr><td>20–30 min</td><td><b>Partij</b></td><td>Toepassen op hoogste intensiteit, met aandacht voor het voetbalprobleem. Laat de teugels niet vieren!</td></tr>
     <tr><td>na afloop</td><td><b>Afsluiten</b></td><td>Terugkijken, beleving peilen, complimenten en verbeterpunten laten benoemen, samen opruimen en het veld af.</td></tr>
-  </table>
+  </table></div>
   <h2>Veelzijdig Leren Voetballen (onderbouw)</h2>
   <div class="kaart">
     <p><b>Wat:</b> spelers leren door veel te bewegen, herhalen, variëren en zelf oplossingen te vinden. Zo ontwikkelen zij zich tot wendbare, vaardige en zelfverzekerde voetballers met een brede motorische basis.</p>
@@ -609,7 +628,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     </ul>
   </div>
   <h2>Omgangsvormen (teamafspraken)</h2>
-  <table>
+  <div class="tabelwrap"><table>
     <tr><th>Afspraak</th><th>Uitleg</th></tr>
     <tr><td>Op tijd komen</td><td>5 minuten voor aanvang van de training staan we startklaar langs het veld.</td></tr>
     <tr><td>Wij begroeten elkaar</td><td>Box/high five/groet voor trainers en elkaar bij aankomst op het sportpark.</td></tr>
@@ -625,7 +644,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <tr><td>De grens is van ons samen</td><td>Het team bepaalt en bewaakt samen wat oké is. Spreek elkaar aan.</td></tr>
     <tr><td>Aanspreekvormen</td><td>De trainer spreek je aan met ‘trainer’; spelers met voornaam (of bijnaam als de speler dat goed vindt).</td></tr>
     <tr><td>Respect voor mens en materiaal</td><td>Na de wedstrijd lopen we samen langs tegenstander, scheidsrechter en publiek: ‘dankjewel’.</td></tr>
-  </table>
+  </table></div>
   <div class="kaart">
     <h2>Positief coachen</h2>
     <p>Een veilige omgeving waarin kinderen autonomie, binding en competentie ervaren, is dé voorwaarde om met plezier optimaal te ontwikkelen.</p>
@@ -799,17 +818,17 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <div class="kaart"><p>Per leeftijdsgroep is er een <b>leeftijdscoördinator</b> vanuit de <a href="#organisatie">Commissie Jeugdzaken</a>. Die is jouw aanspreekpunt voor alles rondom het team dat niet over voetbalinhoud gaat — je vindt de naam bij elke groep hieronder.</p><p style="margin-top:8px"><b>Vacature gezien en interesse?</b> Er zijn nog teams zonder trainer of begeleider — juist bij de breedtesport. Meld je bij het Voetbalbestuur of de Technisch Coördinator van de leeftijdsgroep. Begeleiding en ondersteuning zijn geregeld (zie <a href="#kalender">kaderbeleid</a>).</p></div>
   <h2>Bovenbouw</h2>
   <p class="sub" style="margin:-4px 0 8px"><b>Leeftijdscoördinator</b> (Commissie Jeugdzaken): Marcel ten Barge (O17 t/m O19) · via <a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a></p>
-  <table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
+  <div class="tabelwrap"><table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
   <tr><td><b>JO19-1</b></td><td>Sander van Beckhoven · Alex van Beckhoven · Jerle de Jong · Wesley Helmers</td><td></td></tr>
   <tr><td><b>JO19-2</b></td><td>Jasper Bos · Kevin Rooks · Stan Hulzink · Noah Jansen · Mika Hulzink · Jorrick van Melis (invalbasis)</td><td></td></tr>
   <tr><td><b>JO17-1</b></td><td>Dion Bosman · Ronald Wagendorp · Edwin Bosman · Frank Oosterholt</td><td></td></tr>
   <tr><td><b>JO17-2</b></td><td>Kevin Stoteler · Tom Klein Zeggelink · Peter van Dalen · Gerrit Pfeifer · Rob Porskamp</td><td></td></tr>
   <tr><td><b>JO17-3</b></td><td><span class="badge rood">VACATURE</span></td><td>breedtesporttraining</td></tr>
   <tr><td><b>JO17-4</b></td><td><span class="badge rood">VACATURE</span></td><td>breedtesporttraining</td></tr>
-  </table>
+  </table></div>
   <h2>Middenbouw</h2>
   <p class="sub" style="margin:-4px 0 8px"><b>Leeftijdscoördinator</b> (Commissie Jeugdzaken): Joris Reinders (O15) · Lucas van Katwijk (O13) · via <a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a></p>
-  <table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
+  <div class="tabelwrap"><table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
   <tr><td><b>JO15-1</b></td><td>Bennie de Leeuwe · Noud Huijskes · Sven Luttikholt (grensrechter)</td><td></td></tr>
   <tr><td><b>JO15-2</b></td><td><span class="badge rood">VACATURE</span></td><td>breedtesporttraining</td></tr>
   <tr><td><b>JO15-3</b></td><td><span class="badge rood">VACATURE</span></td><td>breedtesporttraining</td></tr>
@@ -818,10 +837,10 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <tr><td><b>JO13-2</b></td><td>Ivo Hofstede · Dave Klein Gunnewiek · Barry Jansen</td><td></td></tr>
   <tr><td><b>JO13-3</b></td><td>Tom Klein Goldewijk · Jaco Schutten · Martijn van Geemen</td><td>breedtesporttraining</td></tr>
   <tr><td><b>JO13-4</b></td><td>Jeroen Kuenenger · Wouter Schut · Marco Brethouwer</td><td>breedtesporttraining</td></tr>
-  </table>
+  </table></div>
   <h2>Onderbouw</h2>
   <p class="sub" style="margin:-4px 0 8px"><b>Leeftijdscoördinator</b> (Commissie Jeugdzaken): Ilona Wolters (O8 t/m O12) · Patrick Vennebekken (O7) · via <a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a></p>
-  <table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
+  <div class="tabelwrap"><table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
   <tr><td><b>JO12-1</b></td><td>Teun Geelink · Sem van Beckhoven · Bas Kemkens</td><td></td></tr>
   <tr><td><b>JO12-2</b></td><td>Benno Wallerbos · Diana de Leeuwe · Julia Spekschoor</td><td>breedtesporttraining</td></tr>
   <tr><td><b>JO11-1</b></td><td>Tom Kolenbrander · Freek Huurneman · Mathijs Paf · Peter Bongen</td><td></td></tr>
@@ -837,22 +856,22 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <tr><td><b>JO8-1</b></td><td>Thijs Nibbelink · Luc te Veluwe · Michel Kamphuis · Jessy Holterman</td><td></td></tr>
   <tr><td><b>JO8-2</b></td><td>Rick van Dongeren · Dave Keunekamp · Frank Penterman · Nicky Klein Gebbink · Wouter Meijnen · Ivar Gierveld · Koen Klein Gunnewiek</td><td></td></tr>
   <tr><td><b>JO8-3</b></td><td>Maarten Oldenkotte · Sander Haarlink · <span class="badge rood">vacature</span></td><td></td></tr>
-  </table>
+  </table></div>
   <h2>Meidenvoetbal</h2>
   <p class="sub" style="margin:-4px 0 8px"><b>Leeftijdscoördinator</b> (Commissie Jeugdzaken): Rick Spekschoor · via <a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a></p>
-  <table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
+  <div class="tabelwrap"><table><tr><th>Team</th><th>Trainers / begeleiding</th><th></th></tr>
   <tr><td><b>MO20-1</b></td><td><span class="badge rood">VACATURE</span></td><td></td></tr>
   <tr><td><b>MO17-1</b></td><td>Marc Houwer · Johan Houben · Liset Bouwman · Danielle ter Brake · Herbert Hork</td><td></td></tr>
-  </table>
+  </table></div>
   <h2>Hoofdtrainers breedtesport</h2>
-  <table><tr><th>Lichting</th><th>Hoofdtrainer</th></tr>
+  <div class="tabelwrap"><table><tr><th>Lichting</th><th>Hoofdtrainer</th></tr>
   <tr><td>JO19</td><td>Jeroen de Römp</td></tr>
   <tr><td>JO17</td><td>Barry Jansen</td></tr>
   <tr><td>JO15</td><td>Barry Jansen</td></tr>
   <tr><td>JO13</td><td><span class="badge rood">VACATURE</span></td></tr>
   <tr><td>JO11</td><td><span class="badge rood">VACATURE</span></td></tr>
   <tr><td>JO10 t/m JO8</td><td><span class="badge rood">VACATURE</span></td></tr>
-  </table>
+  </table></div>
   <div class="kaart" style="margin-top:14px">
   <a class="doc" href="documenten/Overzicht trainers-begeleiding seiz26-27 stand 20-07-26.pdf" target="_blank"><span class="ico"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg></span><span>Origineel overzicht trainers/begeleiding<small>PDF · tussenstand 20-07-2026</small></span><svg class="i pijl" aria-hidden="true"><use href="#i-pijlrechts"/></svg></a></div>
 </section>
@@ -906,13 +925,13 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <h3>Afgelastingen</h3>
     <p>Afgelastingen worden gecommuniceerd via de clubwebsite, Voetbal.nl, de socials en de WhatsApp-community's van Grol. Kan er niet op gras getraind worden, dan treedt het <b>noodtrainingsschema</b> in werking — ook dat wordt via die kanalen gemeld.</p>
     <h3>Wedstrijdvormen per leeftijd (KNVB)</h3>
-    <table>
+    <div class="tabelwrap"><table>
       <tr><th>Leeftijd</th><th>Vorm</th><th>Veld</th></tr>
       <tr><td>O6 / O7</td><td>2 tegen 2 / 4 tegen 4</td><td>kwart veld</td></tr>
       <tr><td>O8 t/m O10</td><td>6 tegen 6</td><td>kwart veld</td></tr>
       <tr><td>O11 / O12</td><td>8 tegen 8</td><td>half veld</td></tr>
       <tr><td>O13 en ouder</td><td>11 tegen 11</td><td>heel veld</td></tr>
-    </table>
+    </table></div>
     <p class="sub">Programma, veld- en kleedkamerindeling: <a href="https://svgrol.nl/wedstrijdinfo/deze-week" target="_blank">svgrol.nl</a> en Voetbal.nl · <a href="https://svgrol.nl/voetbalinfo/wedstrijdvormen" target="_blank">wedstrijdvormen</a> · <a href="https://svgrol.nl/voetbalinfo/spelregels-veld-1" target="_blank">spelregels veld</a> · <a href="https://svgrol.nl/documenten/afgelastingsbeleid" target="_blank">afgelastingsbeleid</a></p>
   </div>
   <div class="kaart">
@@ -965,21 +984,82 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   </div>
   <div class="kaart">
     <h2><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg> Wie bel ik waarvoor?</h2>
-    <table>
-      <tr><th>Situatie</th><th>Wie</th><th>Contact</th></tr>
-      <tr><td><b>Alles rondom je team dat niet voetbalinhoudelijk is</b></td><td><b><a href="#organisatie">Leeftijdscoördinator</a> — Commissie Jeugdzaken</b><br><span class="sub">O7 Patrick Vennebekken · O8 t/m O12 Ilona Wolters · O13 Lucas van Katwijk · O15 Joris Reinders · O17-O19 Marcel ten Barge · Meiden Rick Spekschoor</span></td><td><a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a></td></tr>
-      <tr><td><b>Voetbalinhoud, spelers lenen, begeleiding op het veld</b></td><td><b><a href="#organisatie">Technisch Coördinator</a></b><br><span class="sub">O8-O9 Michel Kamphuis · O10-O12 Jonathan Lammers · O13-O15 Alexander Esseling · O17-O19 Jos Heutinck</span></td><td><a href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a></td></tr>
-      <tr><td>Gedragsvraag in je team (pesten, lastig gedrag)</td><td><a href="#coaching">Coachingteam</a> — Natascha Dankbaar</td><td><a href="tel:0612962468">06-12962468</a></td></tr>
-      <tr><td>Blessure of belastbaarheid</td><td>PMB — Simone Raben</td><td><a href="tel:0623126764">06-23126764</a></td></tr>
-      <tr><td>Grensoverschrijdend gedrag of een melding</td><td>Vertrouwenspersonen</td><td>zie hierboven</td></tr>
-      <tr><td>Kleding, teamtas, kledingspreekuur</td><td>Beheergroep Kleding</td><td><a href="mailto:kledingcommissie@svgrol.nl">kledingcommissie@svgrol.nl</a></td></tr>
-      <tr><td>Wedstrijdprogramma, formulier, kleedkamers</td><td>Jesper Fransen, wedstrijdsecretaris jeugd</td><td><a href="mailto:wedstrijdsecretarisjeugd@svgrol.nl">wedstrijdsecretarisjeugd@svgrol.nl</a></td></tr>
-      <tr><td>Scheidsrechters en spelbegeleiders</td><td>Rob Westervoorde</td><td><a href="mailto:rob.westervoorde@svgrol.nl">rob.westervoorde@svgrol.nl</a></td></tr>
-      <tr><td>Trainingsschema en veldindeling</td><td>John ter Heerdt</td><td><a href="mailto:john.ter.heerdt@svgrol.nl">john.ter.heerdt@svgrol.nl</a></td></tr>
-      <tr><td>Ballen en trainingsmaterialen</td><td>Jordi Bleumink / Nick Reukers</td><td><a href="mailto:jordi.bleumink@svgrol.nl">jordi.bleumink@svgrol.nl</a></td></tr>
-      <tr><td>Wedstrijdverslag of teamfoto plaatsen</td><td>Marco Frank, communicatie</td><td><a href="mailto:marco.frank@svgrol.nl">marco.frank@svgrol.nl</a></td></tr>
-      <tr><td>VOG-aanvraag</td><td>VOG-team</td><td><a href="mailto:vog@svgrol.nl">vog@svgrol.nl</a></td></tr>
-    </table>
+    <div class="contactlijst">
+      <div class="contact top">
+        <div class="situatie">Alles rondom je team</div>
+        <div class="wie"><a href="#organisatie">Leeftijdscoördinator</a> — Commissie Jeugdzaken</div>
+        <div class="details">Teamzaken, ouders, stafleden en praktische vragen.<br>
+          O7 Patrick Vennebekken · O8 t/m O12 Ilona Wolters · O13 Lucas van Katwijk ·
+          O15 Joris Reinders · O17-O19 Marcel ten Barge · Meiden Rick Spekschoor</div>
+        <a class="link" href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a>
+      </div>
+      <div class="contact top">
+        <div class="situatie">Voetbalinhoud</div>
+        <div class="wie"><a href="#organisatie">Technisch Coördinator</a> — Technisch Hart</div>
+        <div class="details">Training, spelers lenen en begeleiding op het veld.<br>
+          O8-O9 Michel Kamphuis · O10-O12 Jonathan Lammers · O13-O15 Alexander Esseling · O17-O19 Jos Heutinck</div>
+        <a class="link" href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Gedragsvraag in je team</div>
+        <div class="wie"><a href="#coaching">Coachingteam</a> — Natascha Dankbaar</div>
+        <div class="details">Pesten, lastig gedrag, onsportiviteit.</div>
+        <a class="link" href="tel:0612962468">06-12962468</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Blessure of belastbaarheid</div>
+        <div class="wie">Paramedische begeleiding — Simone Raben</div>
+        <div class="details">Spreekuur jeugd op dinsdag- en donderdagavond.</div>
+        <a class="link" href="tel:0623126764">06-23126764</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Grensoverschrijdend gedrag</div>
+        <div class="wie">Vertrouwenspersonen</div>
+        <div class="details">Noëlle Neeleman en Hans Scheinck — contactgegevens hierboven.</div>
+      </div>
+      <div class="contact">
+        <div class="situatie">Kleding &amp; teamtas</div>
+        <div class="wie">Beheergroep Kleding</div>
+        <div class="details">Ruilen, schade melden, kledingspreekuur.</div>
+        <a class="link" href="mailto:kledingcommissie@svgrol.nl">kledingcommissie@svgrol.nl</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Wedstrijdzaken</div>
+        <div class="wie">Jesper Fransen — wedstrijdsecretaris jeugd</div>
+        <div class="details">Programma, wedstrijdformulier, kleedkamers.</div>
+        <a class="link" href="mailto:wedstrijdsecretarisjeugd@svgrol.nl">wedstrijdsecretarisjeugd@svgrol.nl</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Scheidsrechters</div>
+        <div class="wie">Rob Westervoorde</div>
+        <div class="details">Aanstellingen en spelbegeleiders.</div>
+        <a class="link" href="mailto:rob.westervoorde@svgrol.nl">rob.westervoorde@svgrol.nl</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Trainingsschema</div>
+        <div class="wie">John ter Heerdt</div>
+        <div class="details">Veldindeling en trainingstijden.</div>
+        <a class="link" href="mailto:john.ter.heerdt@svgrol.nl">john.ter.heerdt@svgrol.nl</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Ballen &amp; materialen</div>
+        <div class="wie">Jordi Bleumink en Nick Reukers</div>
+        <div class="details">Ballenkar, doeltjes, kapot materiaal.</div>
+        <a class="link" href="mailto:jordi.bleumink@svgrol.nl">jordi.bleumink@svgrol.nl</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">Verslag of teamfoto</div>
+        <div class="wie">Marco Frank — communicatie</div>
+        <div class="details">Website, socials en de Groenlose Gids.</div>
+        <a class="link" href="mailto:marco.frank@svgrol.nl">marco.frank@svgrol.nl</a>
+      </div>
+      <div class="contact">
+        <div class="situatie">VOG-aanvraag</div>
+        <div class="wie">VOG-team</div>
+        <div class="details">Kosteloos, met begeleiding.</div>
+        <a class="link" href="mailto:vog@svgrol.nl">vog@svgrol.nl</a>
+      </div>
+    </div>
     <p class="sub">Persoonlijke telefoonnummers staan hier bewust niet: contactgegevens van bestuur, Technisch Hart en Commissie Jeugdzaken zijn op te vragen via bovenstaande adressen. Het volledige overzicht staat in de <a href="#bibliotheek">Informatiegids</a>.</p>
   </div>
   <div class="kaart">
@@ -1035,27 +1115,27 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <p class="sub">Meidenvoetbal: Rick Spekschoor (Voetbalbestuur en leeftijdscoördinator). De positie van het meidenvoetbal wordt per seizoen bekeken naar behoefte. G-voetbal: Natascha Dankbaar. KNVB- en BVO-contactpersoon: Tom Kaak.</p>
   <div class="kaart">
     <h2>Wie doet wat?</h2>
-    <table>
+    <div class="tabelwrap"><table>
       <tr><th>Geleding</th><th>Waarvoor</th></tr>
       <tr><td><b>Voetbalbestuur</b></td><td>Eindverantwoordelijk voor alle voetbaltechnische zaken. Ontwikkelt en bewaakt het strategisch beleid, stelt het Technisch Hart samen en stelt <b>alle jeugdtrainers</b> aan (inclusief techniek-, ondersteunende en keeperstrainers). Ook de PMB valt hieronder.</td></tr>
       <tr><td><b>Technisch Hart</b></td><td>Vertaalt de visie naar de praktijk van alledag: bewaakt speelwijze, speelstijl en spelprincipes, creëert een ontwikkelgerichte trainingscultuur en <b>begeleidt trainers</b> — met observaties en gerichte feedback op trainingen en wedstrijden. Grotendeels op het veld.</td></tr>
       <tr><td><b>Commissie Jeugdzaken</b></td><td>De dagelijkse gang van zaken die <b>niet</b> voetbaltechnisch is. Per leeftijdsgroep is er een leeftijdscoördinator als aanspreekpunt voor trainers, ouders en spelers. Stelt de <b>overige stafleden</b> aan, ondersteunt trainers praktisch, coördineert het G-voetbal en onderhoudt contact met ouders.</td></tr>
       <tr><td><b>Coachingteam</b></td><td>Ondersteunt bij gedragsvraagstukken — zie <a href="#coaching">Coachingteam</a>.</td></tr>
-    </table>
+    </table></div>
     <p class="sub">Twijfel je? Vuistregel: gaat het over <b>voetbal</b> → Technisch Coördinator. Gaat het over <b>alles eromheen</b> → leeftijdscoördinator.</p>
   </div>
   <div class="kaart">
     <h2>Technisch Hart 2026-2027</h2>
-    <table>
+    <div class="tabelwrap"><table>
       <tr><th>Naam</th><th>Verantwoordelijkheid</th></tr>
       <tr><td>Jos Heutinck</td><td>Technisch Coördinator Senioren Prestatief &amp; Bovenbouw (O19-O17)</td></tr>
       <tr><td>Alexander Esseling</td><td>Technisch Coördinator Bovenbouw (O15-O13)</td></tr>
       <tr><td>Jonathan Lammers</td><td>Technisch Coördinator Onderbouw (O10-O11-O12)</td></tr>
       <tr><td>Michel Kamphuis</td><td>Technisch Coördinator Onderbouw (O8-O9)</td></tr>
-    </table>
+    </table></div>
     <p class="sub">Contactgegevens zijn op te vragen via <a href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a>.</p>
     <h2>Commissie Jeugdzaken</h2>
-    <table>
+    <div class="tabelwrap"><table>
       <tr><th>Naam</th><th>Verantwoordelijkheid</th></tr>
       <tr><td>Dennis Vennebekken</td><td>Voorzitter Commissie Jeugdzaken</td></tr>
       <tr><td>Marcel ten Barge</td><td>Leeftijdscoördinator O17-O19</td></tr>
@@ -1065,10 +1145,10 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
       <tr><td>Patrick Vennebekken</td><td>Leeftijdscoördinator O7</td></tr>
       <tr><td>Rick Spekschoor</td><td>Leeftijdscoördinator Meidenteams</td></tr>
       <tr><td>Natascha Dankbaar</td><td>Coördinator G-voetbal</td></tr>
-    </table>
+    </table></div>
     <p class="sub">Contactgegevens via <a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a>.</p>
     <h2>Voetbalbestuur</h2>
-    <table>
+    <div class="tabelwrap"><table>
       <tr><th>Naam</th><th>Verantwoordelijkheid</th></tr>
       <tr><td>Dennis Pasman</td><td>Voorzitter, ondersteuning bovenbouw jeugd</td></tr>
       <tr><td>Bob Lebbink</td><td>Prestatief senioren, PMB</td></tr>
@@ -1078,7 +1158,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
       <tr><td>Tom Kaak</td><td>Onderbouw jeugd (O7-O12), KNVB- &amp; BVO-contactpersoon</td></tr>
       <tr><td>Jasper Konnik</td><td>Onderbouw jeugd (O7-O12)</td></tr>
       <tr><td>Rick Spekschoor</td><td>Meidenteams</td></tr>
-    </table>
+    </table></div>
     <p class="sub">Contactgegevens via <a href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a>.</p>
   </div>
   <div class="kaart">
@@ -1100,13 +1180,13 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
       <li>Per seizoen wordt bepaald welke teams onder prestatief of breedtesport vallen.</li>
     </ul>
     <h3>De vier focuspunten</h3>
-    <table>
+    <div class="tabelwrap"><table>
       <tr><th>Focuspunt</th><th>Waar kijken we naar?</th></tr>
       <tr><td><b>Voetballen</b></td><td>Handelingen in aanval, verdediging en omschakeling; leervermogen en ontwikkeling</td></tr>
       <tr><td><b>Gedrag</b></td><td>Trainingsopkomst, inzet, openstaan voor feedback, omgaan met winst en verlies, respect richting arbitrage en tegenstander</td></tr>
       <tr><td><b>Leeftijdsfactoren</b></td><td>Kalenderleeftijd, biologische leeftijd, voetballeeftijd</td></tr>
       <tr><td><b>Sociaal</b></td><td>Verbondenheid met teamgenoten, vriendschappen, klas- of wijkgenoten</td></tr>
-    </table>
+    </table></div>
     <p class="sub">Het Voetbalbestuur is eindverantwoordelijk voor het indelingsproces; Technisch Hart en Commissie Jeugdzaken voeren uit en ondersteunen. Het volledige proces staat in <a href="https://svgrol.nl//UserFiles/2026/Voetbalbestuur/Teamindeling_Grol_proces_en_criteria_versie_1_april_2026.pdf" target="_blank">Teamindeling Grol — proces en criteria</a>.</p>
   </div>
   <div class="kaart">
@@ -1144,12 +1224,12 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
       <li>De speler</li><li>De trainers</li><li>De stafleden</li><li>De ouders</li>
     </ul>
     <h3>3. De afspraken</h3>
-    <table>
+    <div class="tabelwrap"><table>
       <tr><th>Soort</th><th>Bespreek in elk geval</th></tr>
       <tr><td><b>Praktisch</b></td><td>Rijden (maak een rijschema), wassen, op tijd komen, douchen (verplicht — wie wel en niet in de kleedkamer), trainingskleding</td></tr>
       <tr><td><b>Team</b></td><td>Gewenst en ongewenst gedrag met consequenties, afmelden, telefoongebruik, taalgebruik, houding en gedrag</td></tr>
       <tr><td><b>Voetbal</b></td><td>Coaching door trainer en staf, leerdoelen, posities, wisselbeleid</td></tr>
-    </table>
+    </table></div>
     <h3>4. Verwachtingen naar ouders</h3>
     <ul>
       <li>Kinderen stimuleren</li>
@@ -1343,7 +1423,7 @@ function toonTeam(id){
   const b=BEGELEIDING[t.id]||{};
   const begkaart=`<div class="kaart" style="--accent:var(--rood)">
       <h2><svg class="i" aria-hidden="true"><use href="#i-persoon"/></svg>Jouw aanspreekpunten</h2>
-      <table>
+      <div class="tabelwrap"><table>
         <tr><th>Waarvoor</th><th>Wie</th></tr>
         <tr><td><b>Voetbalinhoud</b><br><span class="sub">training, spelers lenen, begeleiding op het veld</span></td>
             <td><b>Technisch Coördinator</b><br>${b.tc||'via het Voetbalbestuur'}<br><a href="mailto:voetbalbestuur@svgrol.nl">voetbalbestuur@svgrol.nl</a></td></tr>
@@ -1351,7 +1431,7 @@ function toonTeam(id){
             <td><b>Leeftijdscoördinator</b> · Commissie Jeugdzaken<br>${b.lc||'via de voorzitter'}<br><a href="mailto:dennis.vennebekken@svgrol.nl">dennis.vennebekken@svgrol.nl</a></td></tr>
         <tr><td><b>Gedrag in je team</b><br><span class="sub">pesten, lastig gedrag, onsportiviteit</span></td>
             <td><b><a href="#coaching">Coachingteam</a></b><br>Natascha Dankbaar<br><a href="tel:0612962468">06-12962468</a></td></tr>
-      </table>
+      </table></div>
       <p class="sub" style="margin:6px 0 0">Meidenteams: leeftijdscoördinator Rick Spekschoor. Volledig overzicht bij <a href="#organisatie">Organisatie &amp; rollen</a>.</p>
     </div>`;
   document.getElementById('teaminhoud').innerHTML=
