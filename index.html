@@ -301,6 +301,21 @@ mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 2px}
 .terug{display:inline-block;margin-bottom:8px;color:var(--blauw2);font-weight:600;font-size:.9rem}
 
 
+.situaties{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:12px 0}
+.situatie-kaart{background:var(--vlak);border:1px solid var(--rand);border-left:4px solid var(--rood);
+  border-radius:0 12px 12px 0;padding:12px 14px;box-shadow:var(--schaduw);font-size:.92rem;line-height:1.5}
+.situatie-kaart b{display:block;color:var(--rood);font-family:var(--display);text-transform:uppercase;
+  font-size:1rem;letter-spacing:.3px;margin-bottom:3px}
+.grootknop{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--rood),#96_0e24);
+  background:linear-gradient(135deg,#d4183a,#9d0f26);color:#fff !important;border-radius:var(--radius);
+  padding:16px 18px;margin:14px 0;box-shadow:0 6px 20px rgba(196,18,47,.28);border:none;
+  transition:transform .18s,box-shadow .18s}
+.grootknop:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(196,18,47,.36)}
+.grootknop .rond{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);flex:none;
+  display:flex;align-items:center;justify-content:center}
+.grootknop .rond svg{width:23px;height:23px}
+.grootknop b{font-family:var(--display);text-transform:uppercase;font-size:1.25rem;letter-spacing:.4px;display:block;line-height:1.1}
+.grootknop span{font-size:.86rem;opacity:.92}
 /* ---------- contactblokken ---------- */
 .contact{background:var(--vlak);border:1px solid var(--rand);border-left:5px solid var(--accent);
   border-radius:0 12px 12px 0;padding:12px 14px;margin:8px 0;box-shadow:var(--schaduw);
@@ -794,14 +809,20 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <div class="kaart">
     <h2>Wat doet het Coachingteam?</h2>
     <p>Het Coachingteam ondersteunt trainers en leiders bij gedragsproblemen zoals pestgedrag, autisme, agressie of onsportief gedrag. De coaches helpen je om signalen tijdig te herkennen en de juiste stappen te zetten — zodat elk kind met plezier en veilig kan voetballen.</p>
-    <h3>Wanneer schakel je ons in?</h3>
-    <ul>
-      <li>Je ziet pestgedrag of buitensluiten in je team en krijgt het zelf niet doorbroken.</li>
-      <li>Een speler vraagt door zijn of haar gedrag (bijv. autisme, boosheid, teruggetrokkenheid) meer van je dan je kunt bieden.</li>
-      <li>Er is onsportief gedrag of spanning rondom het team — ook met of tussen ouders.</li>
-      <li>Je twijfelt gewoon: liever één keer te vroeg gebeld dan te laat.</li>
-    </ul>
+    <p><b>Je hoeft geen probleem te hebben om ons te bellen.</b> We denken net zo graag mee over een groep die stroef loopt als over een situatie die echt vastzit. Hoe eerder, hoe makkelijker.</p>
   </div>
+  <h2><svg class="i" aria-hidden="true"><use href="#i-hart"/></svg>Herken je dit?</h2>
+  <p class="sub">Dit zijn situaties waarvoor trainers ons bellen. Zit jouw situatie er niet bij maar twijfel je? Bel gerust.</p>
+  <div class="situaties">
+    <div class="situatie-kaart"><b>Eén speler bepaalt de sfeer</b>Er is er één die de training telkens onderuit haalt, en je merkt dat je daardoor anders tegen de hele groep gaat praten.</div>
+    <div class="situatie-kaart"><b>Er wordt gelachen om iemand</b>Niet hard, niet openlijk, maar je ziet dat één speler er steeds buiten valt bij het maken van partijtjes.</div>
+    <div class="situatie-kaart"><b>Een speler die je niet bereikt</b>Stil, teruggetrokken, of juist snel boos — en wat jij probeert, werkt niet.</div>
+    <div class="situatie-kaart"><b>Gedoe langs de lijn</b>Ouders die coachen, commentaar op de scheidsrechter, of spanning tussen ouders onderling.</div>
+    <div class="situatie-kaart"><b>Je twijfelt over je eigen aanpak</b>Je merkt dat je vaker corrigeert dan complimenteert, en je zou willen weten hoe het anders kan.</div>
+    <div class="situatie-kaart"><b>Er is iets thuis of op school</b>Je vangt iets op over een speler en weet niet goed wat je ermee moet — of hoe ver je gaat.</div>
+  </div>
+  <a class="grootknop" id="hulpvraagknop" href="#"><span class="rond"><svg class="i" aria-hidden="true"><use href="#i-telefoon"/></svg></span><span><b>Stel je vraag</b><span>Opent een berichtje aan Natascha — je hoeft het alleen aan te vullen</span></span></a>
+  <p class="sub" style="margin-top:-4px">Liever bellen? <a href="tel:0612962468">06-1296 2468</a>. Alles wat je deelt, blijft vertrouwelijk.</p>
   <div class="kaart">
     <h2>Wie zijn wij?</h2>
     <p>Liz Janssen, Anoek Beerten, Karin Bosman, Aloys te Brake, Leonie Giezen en Natascha Dankbaar. Allen met ruime ervaring en deskundigheid in het begeleiden van dit soort situaties.</p>
@@ -812,9 +833,37 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <h2>Dit seizoen (2026-2027)</h2>
     <ul>
       <li><b>Kennismaking</b> — het Coachingteam stelt zich voor bij de start van het seizoen en sluit desgewenst aan bij de <a href="#starten">ouderbijeenkomst</a> van je team. Wil je dat? Geef het door aan Natascha.</li>
+      <li><b>We komen langs, je hoeft niet te bellen</b> — een paar keer per seizoen lopen we mee op een trainingsavond. Niet om te controleren, wel om gezichten te leren kennen en mee te denken. Zie de <a href="#kalender">jaarkalender</a> voor de momenten.</li>
       <li><b>Gesprekkenronde nieuwe trainers</b> — het Coachingteam gaat in gesprek met nieuwe, jonge en onervaren trainers: wat kom je tegen, waar heb je hulp bij nodig?</li>
+      <li><b>Thema-avond positief coachen</b> — clubbreed, voor alle trainers en leiders.</li>
       <li><b>Gedragscode</b> — het Coachingteam denkt mee over de gedragsafspraken voor trainers, spelers en ouders, op basis van de <a href="#omgang">kernwaarden en omgangsvormen</a>.</li>
     </ul>
+  </div>
+  <div class="kaart" style="--accent:var(--blauw)">
+    <h2><svg class="i" aria-hidden="true"><use href="#i-persoon"/></svg>Voor leeftijdscoördinatoren</h2>
+    <p>Trainers bellen ons zelden uit zichzelf — niet omdat er niets speelt, maar omdat je jezelf niet snel ziet als iemand met een hulpvraag. Jij spreekt trainers toch al. Daarmee ben jij de belangrijkste vindplaats van signalen.</p>
+    <h3>Stel deze ene vraag</h3>
+    <p>Voeg aan elk contact met een trainer één vaste vraag toe:</p>
+    <div class="motto" style="font-size:1.15rem">‘En hoe gaat het in de groep?’</div>
+    <p class="sub">Niet als afvinkvraag, maar oprecht en met een stilte erna. Het antwoord komt vaak pas in de tweede zin.</p>
+    <h3>Waar let je op?</h3>
+    <ul>
+      <li>Een trainer die steeds dezelfde speler noemt.</li>
+      <li>Zinnen als ‘het is een lastige groep’ of ‘ik krijg er geen hoogte van’.</li>
+      <li>Spelers die stoppen of vaak afwezig zijn zonder duidelijke reden.</li>
+      <li>Gedoe met ouders dat maar niet overwaait.</li>
+      <li>Een trainer die zichtbaar moe of geïrriteerd raakt van zijn eigen team.</li>
+    </ul>
+    <h3>Wat doe je ermee?</h3>
+    <ul>
+      <li><b>Luister, oordeel niet.</b> Je hoeft niets op te lossen en je doet geen uitspraken over kinderen. Signaleren en verbinden is genoeg.</li>
+      <li><b>Bied aan in plaats van te verwijzen.</b> Niet ‘bel het Coachingteam maar’, wel: ‘zal ik vragen of iemand van het Coachingteam eens meekijkt?’ Dat scheelt de trainer de stap om zelf hulp te vragen.</li>
+      <li><b>Geef het door aan Natascha</b> als de trainer akkoord is — en laat de trainer weten dat je het doet.</li>
+      <li><b>Kom erop terug.</b> Vraag twee weken later hoe het is gegaan. Dat is vaak het verschil tussen een eenmalig gesprek en echt geholpen worden.</li>
+    </ul>
+    <h3>Wat deel je wel en niet?</h3>
+    <p>Deel wat nodig is om te kunnen helpen, en niet meer dan dat. Gaat het over een individueel kind, bespreek dan met de trainer wat er gedeeld wordt. Bij vermoedens van grensoverschrijdend gedrag ga je niet zelf aan de slag, maar schakel je de <a href="#praktisch">vertrouwenspersonen</a> in.</p>
+    <p class="sub">Dit is een voorstel voor de werkwijze en nog niet vastgesteld. Denk je mee? Laat het weten aan de voorzitter van de Commissie Jeugdzaken of aan Natascha.</p>
   </div>
   <div class="kaart">
     <h2>Handige instrumenten</h2>
@@ -1573,6 +1622,7 @@ const KAL=[
  {d:'2026-09-21',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2026-10-03',t:'b',ti:'Onderbouwbijeenkomst 1',tag:'Onderbouw'},
  {d:'2026-10-03',t:'o',ti:'Overleg Onderbouw &amp; Bovenbouw · terugblik en vooruitblik fase (richtdatum)',tag:'VB-TH-CJ'},
+ {d:'2026-10-05',t:'b',ti:'Coachingteam loopt mee op de training · onderbouw',tag:'Coaching'},
  {d:'2026-10-15',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2026-10-17',t:'v',ti:'Herfstvakantie (17 t/m 25 okt) · inhaalweekend',tag:'Vakantie'},
  {d:'2026-10-17',t:'b',ti:'2e trainersbijeenkomst — selectie',tag:'Trainers'},
@@ -1581,8 +1631,10 @@ const KAL=[
  {d:'2026-10-31',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
  {d:'2026-11-02',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2026-11-07',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
+ {d:'2026-11-09',t:'b',ti:'Coachingteam loopt mee op de training · midden- en bovenbouw',tag:'Coaching'},
  {d:'2026-11-19',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2026-11-28',t:'b',ti:'Bijeenkomst O11 t/m O12',tag:'Onderbouw'},
+ {d:'2026-11-30',t:'b',ti:'Thema-avond positief coachen · clubbreed',tag:'Coaching'},
  {d:'2026-12-05',t:'b',ti:'Bijeenkomst O8 t/m O10',tag:'Onderbouw'},
  {d:'2026-12-05',t:'o',ti:'Overleg Onderbouw &amp; Bovenbouw · terugblik en vooruitblik fase (richtdatum)',tag:'VB-TH-CJ'},
  {d:'2026-12-07',t:'o',ti:'Overleg Voetbal bij Grol · afstemming TH, VB, Jeugdzaken en Seniorenzaken',tag:'Breed'},
@@ -1591,6 +1643,7 @@ const KAL=[
  {d:'2026-12-19',t:'v',ti:'Kerstvakantie & winterstop (19 dec t/m 3 jan)',tag:'Vakantie'},
  {d:'2027-01-07',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2027-01-16',t:'b',ti:'Onderbouwbijeenkomst 2',tag:'Onderbouw'},
+ {d:'2027-01-18',t:'b',ti:'Tussentijdse ronde Coachingteam langs de teams',tag:'Coaching'},
  {d:'2027-01-25',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2027-01-30',t:'b',ti:'3e trainersbijeenkomst — selectie',tag:'Trainers'},
  {d:'2027-01-30',t:'b',ti:'Mini-bijeenkomst O8 + O9 (op het veld)',tag:'Onderbouw'},
@@ -1599,6 +1652,7 @@ const KAL=[
  {d:'2027-02-18',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2027-02-20',t:'v',ti:'Voorjaarsvakantie (20 t/m 28 feb) · inhaal/beker',tag:'Vakantie'},
  {d:'2027-03-08',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
+ {d:'2027-03-15',t:'b',ti:'Coachingteam loopt mee op de training · alle bouwen',tag:'Coaching'},
  {d:'2027-03-20',t:'o',ti:'Overleg Onderbouw &amp; Bovenbouw · terugblik en vooruitblik fase (richtdatum)',tag:'VB-TH-CJ'},
  {d:'2027-03-27',t:'v',ti:'Paasweekend · inhaal/beker',tag:'Vakantie'},
  {d:'2027-04-01',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
@@ -1608,6 +1662,7 @@ const KAL=[
  {d:'2027-04-17',t:'b',ti:'Mini-bijeenkomst O10 (ma) + O11 (di)',tag:'Onderbouw'},
  {d:'2027-04-19',t:'o',ti:'Overleg Technisch Hart · 20.00 uur',tag:'TH'},
  {d:'2027-04-24',t:'v',ti:'Meivakantie (t/m 2 mei, adviesweek t/m 9 mei) · inhaal/beker',tag:'Vakantie'},
+ {d:'2027-05-10',t:'e',ti:'Evaluatie Coachingteam · wat kwamen we tegen, wat leverde het op',tag:'Coaching'},
  {d:'2027-05-13',t:'o',ti:'Overleg Voetbalbestuur · 20.00 uur',tag:'VB'},
  {d:'2027-05-15',t:'v',ti:'Pinksterweekend (16 mei)',tag:'Vakantie'},
  {d:'2027-05-17',t:'o',ti:'Overleg Voetbal bij Grol · afstemming TH, VB, Jeugdzaken en Seniorenzaken',tag:'Breed'},
@@ -1714,6 +1769,18 @@ const VERSIE='12 september 2026 · ontwerp 2.0';
 (function(){
   const vr=document.getElementById('versieregel');
   if(vr)vr.innerHTML=`Laatst bijgewerkt: <b>${VERSIE}</b> · seizoen 2026-2027`;
+  const hv=document.getElementById('hulpvraagknop');
+  if(hv){
+    const tekst=encodeURIComponent(
+      'Hoi Natascha,\n\nIk ben trainer/leider van team: \n\nWat ik zie in mijn groep:\n\n\nWat ik zelf al geprobeerd heb:\n\n\nWaar ik hulp bij zou willen:\n\n\nGroet,\n');
+    hv.href='sms:0612962468?&body='+tekst;
+    hv.addEventListener('click',e=>{
+      if(!/Android|iPhone|iPad/i.test(navigator.userAgent)){
+        e.preventDefault();
+        location.href='mailto:nataschadankbaar@hotmail.com?subject='+encodeURIComponent('Vraag aan het Coachingteam')+'&body='+tekst;
+      }
+    });
+  }
   const fb=document.getElementById('feedbackknop');
   if(fb){
     const onderwerp=encodeURIComponent('Grol Kompas — feedback of correctie');
