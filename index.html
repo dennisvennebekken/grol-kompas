@@ -1624,7 +1624,15 @@ function bouwIndex(){
   });
   // teams apart indexeren (want dynamisch)
   TEAMS.forEach(t=>{
-    const alles=[t.tech,t.tac,t.men,t.fys].map(d=>d.m+' '+d.p.join(' ')).join(' ')+' '+Object.values(t.pr).flat().join(' ');
+    let alles='';
+    if(t.apart){
+      alles='Voetbal+ VO+ G-voetbal aangepast voetballen plezier Longa geen wedstrijden geen competitie '+
+            'Natascha Dankbaar Anne Marie Groot Zevert Bien Nienhuis Kim Baak Lynn Huijskes Marianne ten Have '+
+            'Pien Reinders Hugo Rouwenhorst donderdag Wilgenpark';
+    }else{
+      alles=[t.tech,t.tac,t.men,t.fys].filter(Boolean).map(d=>d.m+' '+d.p.join(' ')).join(' ')+
+            ' '+Object.values(t.pr||{}).flat().join(' ');
+    }
     INDEX.push({p:'team/'+t.id,titel:'Mijn team · '+t.naam,tekst:t.naam+' '+alles});
   });
   BIEB.forEach(g=>g.items.forEach(i=>INDEX.push({p:'bibliotheek',titel:i[1]+' · Bibliotheek',tekst:i[1]+' '+i[2]+' '+g.g})));
@@ -1890,10 +1898,12 @@ const VELDPOS=[
 addEventListener('scroll',()=>{document.body.classList.toggle('gescrold',scrollY>40)},{passive:true});
 
 /* init */
-toonTeam('o7');
-bouwIndex();
-KAL.forEach(e=>INDEX.push({p:'kalender',titel:e.ti+' · Jaarkalender',tekst:e.ti+' '+e.tag+' '+e.d}));
-CHECKS.forEach(c=>INDEX.push({p:'starten',titel:c[0]+' · Startchecklist',tekst:c[0]+' '+c[1]}));
+try{ toonTeam('o7'); }catch(e){ console.error('toonTeam:',e); }
+try{ bouwIndex(); }catch(e){ console.error('bouwIndex:',e); }
+try{
+  KAL.forEach(e=>INDEX.push({p:'kalender',titel:e.ti+' · Jaarkalender',tekst:e.ti+' '+e.tag+' '+e.d}));
+  CHECKS.forEach(c=>INDEX.push({p:'starten',titel:c[0]+' · Startchecklist',tekst:c[0]+' '+c[1]}));
+}catch(e){ console.error('index aanvullen:',e); }
 route();
 </script>
 </body>
