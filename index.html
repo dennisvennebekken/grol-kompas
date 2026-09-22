@@ -1444,7 +1444,8 @@ const TEAMS = [
   tech:{m:'De speler wordt specialist op zijn/haar positie',p:['Betere en snellere keuzes in kleine ruimtes; technische oefeningen in maximale kleine ruimte verhogen handelingssnelheid','Partij- en positiespelen in wedstrijdcontext, wedstrijdecht trainen','8-tegen-8 teamtactisch trainen met stopmomenten; nadruk op spelprincipes en de 4 hoofdmomenten','Comfortabel aan de bal: onder druk naar de vrije ruimte kunnen spelen']},
   tac:{m:'In dienst van het team',p:['Gericht trainen op positie- en linietaken; speler wordt specialist','Samenwerken tussen linies, horizontaal en verticaal; doelgericht communiceren','Teambelang boven individueel belang — individu excelleert als het team presteert','Meerdere spelsystemen leren binnen de spelprincipes (2 of 3 spitsen)','Spelen om te winnen (resultaat)']},
   men:{m:'Volwassen gesprekspartners',p:['Meer beheersing en zelfcontrole; geestelijk en lichamelijk evenwichtiger','Willen invloed op teamdoelen en meer verantwoordelijkheid (ook als trainer/begeleider)','Belangrijke keuzes: studie, werk, uitgaan, rust — begeleid dit goed; wie elders gaat studeren ‘straffen’ we niet','Zeer competitief ingesteld; kunnen steeds beter het grote plaatje zien']},
-  fys:{m:'Voorbereiden op senioren',p:['Kunnen nog in de groei zijn: fysieke belasting geleidelijk uitbreiden','Gerichte core-training werkt blessurepreventief','Screening en preventief programma om belastbaarheid te verhogen (mobiliteit, stabiliteit, lenigheid)','Werken naar hogere intensiteit in duur en belasting t.o.v. O17']}}
+  fys:{m:'Voorbereiden op senioren',p:['Kunnen nog in de groei zijn: fysieke belasting geleidelijk uitbreiden','Gerichte core-training werkt blessurepreventief','Screening en preventief programma om belastbaarheid te verhogen (mobiliteit, stabiliteit, lenigheid)','Werken naar hogere intensiteit in duur en belasting t.o.v. O17']}},
+ {id:'vo',naam:'VO+',apart:true}
 ];
 
 const BIEB = [
@@ -1507,7 +1508,8 @@ const BEGELEIDING={
  o13:{tc:'Alexander Esseling',lc:'Lucas van Katwijk'},
  o15:{tc:'Alexander Esseling',lc:'Joris Reinders'},
  o17:{tc:'Jos Heutinck',lc:'Marcel ten Barge'},
- o19:{tc:'Jos Heutinck',lc:'Marcel ten Barge'}
+ o19:{tc:'Jos Heutinck',lc:'Marcel ten Barge'},
+ vo:{tc:'via het Voetbalbestuur',lc:'Natascha Dankbaar'}
 };
 function toonTeam(id){
   const t=TEAMS.find(x=>x.id===id)||TEAMS[0];
@@ -1528,6 +1530,38 @@ function toonTeam(id){
       </table></div>
       <p class="sub" style="margin:6px 0 0">Meidenteams: Rick Spekschoor · Voetbal+: Natascha Dankbaar. Volledig overzicht bij <a href="#organisatie">Organisatie &amp; rollen</a>.</p>
     </div>`;
+  if(t.apart){
+    document.getElementById('teaminhoud').innerHTML=
+     `<div class="motto">Voetbal+ — voetballen met plezier voorop</div>
+      ${begkaart}
+      <div class="kaart">
+        <h2>Wat is Voetbal+?</h2>
+        <p><b>Voetbal+ (VO+)</b> is de nieuwe naam voor wat eerder G-voetbal heette. Het is voetbal voor spelers die in een gewoon team niet volledig tot hun recht komen. Plezier, meedoen en je eigen ontwikkeling staan voorop.</p>
+        <ul>
+          <li>Er wordt <b>getraind</b>, maar er worden <b>geen wedstrijden en geen competitie</b> gespeeld.</li>
+          <li>s.v. Grol doet dit <b>samen met Longa</b>.</li>
+          <li>VO+ 3 is het jeugdteam. VO+ 1 en VO+ 2 vallen onder de senioren.</li>
+        </ul>
+      </div>
+      <div class="kaart">
+        <h2>VO+ 3 — training en begeleiding</h2>
+        <table><tr><th>Wanneer</th><td>donderdag 18.00-19.00 uur</td></tr>
+        <tr><th>Waar</th><td>Wilgenpark kant A · kleedkamer 15</td></tr>
+        <tr><th>Leiders</th><td>Anne Marie Groot Zevert · Bien Nienhuis · Kim Baak · Lynn Huijskes · Marianne ten Have · Pien Reinders · Hugo Rouwenhorst</td></tr></table>
+        <p class="sub">Tijden volgens het <a href="https://svgrol.nl/voetbalinfo" target="_blank">trainingsschema</a> op de clubsite.</p>
+      </div>
+      <div class="kaart" style="--accent:var(--rood)">
+        <h2>Waar we op koersen</h2>
+        <p>Voor Voetbal+ is nog geen eigen uitwerking van de voetbalvisie gemaakt. Wat wél geldt, zijn de uitgangspunten die voor de hele club gelden — en die sluiten hier bijzonder goed aan:</p>
+        <ul>
+          <li><a href="#omgang">Positief coachen</a> — benoem wat goed gaat, fouten zijn leermomenten, en iedere speler wordt gezien.</li>
+          <li><a href="#omgang">Kernwaarden en omgangsvormen</a> — respect, samen, plezier.</li>
+          <li><a href="#training">Veelzijdig leren voetballen</a> — veel bewegen, veel herhalen, aansluiten bij wat de speler kan.</li>
+        </ul>
+        <p class="sub">Komt er een eigen uitwerking voor Voetbal+, dan verschijnt die hier. Vragen of aanvullingen? Neem contact op met Natascha.</p>
+      </div>`;
+    return;
+  }
   document.getElementById('teaminhoud').innerHTML=
    `<div class="motto">Visie op Grol jeugdopleiding — ${t.naam} · ‘Goede trainers maken betere spelers’</div>
     ${begkaart}
