@@ -1531,9 +1531,17 @@ function toonTeam(id){
       <p class="sub" style="margin:6px 0 0">Meidenteams: Rick Spekschoor · Voetbal+: Natascha Dankbaar. Volledig overzicht bij <a href="#organisatie">Organisatie &amp; rollen</a>.</p>
     </div>`;
   if(t.apart){
+    const begkaartVo=`<div class="kaart" style="--accent:var(--rood)">
+      <h2><svg class="i" aria-hidden="true"><use href="#i-persoon"/></svg>Jouw aanspreekpunt</h2>
+      <table>
+        <tr><th>Waarvoor</th><th>Wie</th></tr>
+        <tr><td><b>Alles rondom Voetbal+</b><br><span class="sub">teamzaken, ouders, begeleiding en praktische vragen</span></td>
+            <td><b>Leeftijdscoördinator</b> · Commissie Jeugdzaken<br>Natascha Dankbaar<br><a href="tel:0612962468">06-1296 2468</a></td></tr>
+      </table>
+    </div>`;
     document.getElementById('teaminhoud').innerHTML=
      `<div class="motto">Voetbal+ — voetballen met plezier voorop</div>
-      ${begkaart}
+      ${begkaartVo}
       <div class="kaart">
         <h2>Wat is Voetbal+?</h2>
         <p><b>Voetbal+ (VO+)</b> is de nieuwe naam voor wat eerder G-voetbal heette. Het is voetbal voor spelers die in een gewoon team niet volledig tot hun recht komen. Plezier, meedoen en je eigen ontwikkeling staan voorop.</p>
