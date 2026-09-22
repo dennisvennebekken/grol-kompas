@@ -56,10 +56,17 @@ header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;
 .hbar{display:flex;align-items:center;gap:12px;padding:10px 16px;max-width:1120px;margin:0 auto;
       transition:padding .25s ease}
 body.gescrold .hbar{padding:6px 16px}
-.hbar>img{width:42px;height:42px;border-radius:50%;background:#fff;flex:none;padding:2px;
-      box-shadow:0 2px 8px rgba(0,0,0,.25);transition:width .25s,height .25s}
-body.gescrold .hbar>img{width:34px;height:34px}
-.hbar .titel{flex:1;min-width:0}
+.hbar .thuis{display:flex;align-items:center;gap:12px;flex:1;min-width:0;
+      border-bottom:none !important;color:#fff;border-radius:12px;padding:2px 6px 2px 2px;margin-left:-2px;
+      transition:background .2s}
+.hbar .thuis:hover{background:rgba(255,255,255,.1)}
+.hbar .thuis:active{transform:scale(.98)}
+.hbar .thuis:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hbar .thuis img{width:42px;height:42px;border-radius:50%;background:#fff;flex:none;padding:2px;
+      box-shadow:0 2px 8px rgba(0,0,0,.25);transition:width .25s,height .25s,transform .2s}
+.hbar .thuis:hover img{transform:rotate(-6deg) scale(1.05)}
+body.gescrold .hbar .thuis img{width:34px;height:34px}
+.hbar .titel{flex:1;min-width:0;display:block}
 .hbar .titel b{font-family:var(--display);font-size:1.5rem;font-weight:700;display:block;
       letter-spacing:.5px;line-height:1.05;text-transform:uppercase}
 .hbar .titel span{font-size:.7rem;opacity:.8;letter-spacing:.2px;display:block;
@@ -419,8 +426,10 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
 
 <header>
   <div class="hbar">
-    <img src="img/logo.png" alt="s.v. Grol logo">
-    <div class="titel"><b>Grol Kompas</b><span>Wegwijzer voor de jeugdopleiding · Samen een levenlang Grol</span></div>
+    <a class="thuis" href="#home" aria-label="Naar de homepagina" title="Naar de homepagina">
+      <img src="img/logo.png" alt="s.v. Grol logo">
+      <span class="titel"><b>Grol Kompas</b><span>Wegwijzer voor de jeugdopleiding · Samen een levenlang Grol</span></span>
+    </a>
     <button id="zoekknop" title="Zoeken"><svg class="i" aria-hidden="true"><use href="#i-zoek"/></svg></button>
     <button id="menuknop" title="Menu"><svg class="i" aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
