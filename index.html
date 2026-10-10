@@ -300,6 +300,29 @@ mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 2px}
      padding:12px 14px;margin:12px 0;font-size:.92rem;box-shadow:var(--schaduw)}
 @media (prefers-color-scheme:dark){.melding{background:#2a2410;border-color:#5c4d1e}}
 
+/* ---------- toegangsscherm ---------- */
+#slot{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+     padding:24px;background:linear-gradient(150deg,var(--blauwdiep),var(--blauw) 55%,var(--blauw2))}
+#slot[hidden]{display:none}
+body.vergrendeld{overflow:hidden}
+.slotkaart{width:100%;max-width:360px;background:var(--vlak);border-radius:var(--radius);
+     padding:30px 26px 24px;text-align:center;box-shadow:var(--schaduw-op)}
+.slotkaart img{width:62px;height:62px;object-fit:contain;margin-bottom:12px}
+.slotkaart h1{font-family:var(--display);font-size:2rem;letter-spacing:.01em;margin:0;color:var(--blauw)}
+.slotkaart h1::after{display:none}
+.slotkaart .onder{color:var(--grijs);font-size:.88rem;margin:2px 0 22px}
+.slotkaart label{display:block;font-weight:700;font-size:.92rem;margin-bottom:9px}
+.slotkaart input{width:100%;padding:13px 10px;border:2px solid var(--rand);border-radius:12px;
+     font-family:var(--display);font-size:2rem;font-weight:700;letter-spacing:.42em;text-align:center;
+     text-indent:.42em;background:var(--licht);color:var(--inkt);outline:none;transition:border-color .15s}
+.slotkaart input:focus{border-color:var(--blauw2)}
+.slotkaart input.mis{border-color:var(--rood);animation:schud .35s}
+@keyframes schud{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}
+     50%{transform:translateX(7px)}80%{transform:translateX(-4px)}}
+.slotkaart .fout{color:var(--rood);font-size:.85rem;font-weight:600;margin-top:10px}
+.slotkaart .fout[hidden]{display:none}
+.slotkaart .hulp{color:var(--grijs);font-size:.82rem;margin-top:14px;line-height:1.45}
+
 /* ---------- teamindeling: stappen ---------- */
 .stappen{position:relative;margin:4px 0 22px;padding-left:4px}
 .stap{position:relative;display:flex;gap:16px;padding:0 0 20px}
@@ -456,7 +479,66 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
 
 </style>
 </head>
-<body>
+<body class="vergrendeld">
+<div id="slot">
+  <div class="slotkaart">
+    <img src="img/logo.png" alt="s.v. Grol logo">
+    <h1>Grol Kompas</h1>
+    <p class="onder">Wegwijzer voor de jeugdopleiding</p>
+    <label for="slotcode">Vul de toegangscode in</label>
+    <input id="slotcode" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4"
+           autocomplete="off" aria-describedby="slothulp" placeholder="••••">
+    <p id="slotfout" class="fout" hidden>Die code klopt niet. Probeer het opnieuw.</p>
+    <p id="slothulp" class="hulp">Code niet bij de hand? Vraag hem bij je leeftijdscoördinator of je Technisch Coördinator.</p>
+  </div>
+</div>
+<script>
+/* ================= TOEGANGSCODE =================
+   De code staat in toegang.json, zodat hij te wijzigen is zonder dit bestand aan te raken.
+   Dit is een drempel, geen beveiliging: de code is leesbaar in de broncode. */
+(function(){
+  var SLEUTEL='grolkompas-toegang';
+  var slot=document.getElementById('slot'),veld=document.getElementById('slotcode'),
+      fout=document.getElementById('slotfout'),hulp=document.getElementById('slothulp');
+  var geldig=null;
+
+  function bewaard(){ try{ return localStorage.getItem(SLEUTEL); }catch(e){ return null } }
+  function bewaar(c){ try{ localStorage.setItem(SLEUTEL,c); }catch(e){} }
+  function open(){ slot.hidden=true; document.body.classList.remove('vergrendeld'); }
+
+  function controleer(){
+    var ing=veld.value.trim();
+    if(ing.length<4) { fout.hidden=true; veld.classList.remove('mis'); return }
+    if(geldig===null) return;
+    if(ing===geldig){ bewaar(ing); open(); }
+    else{
+      fout.hidden=false; veld.classList.add('mis');
+      setTimeout(function(){ veld.value=''; veld.classList.remove('mis'); veld.focus(); },400);
+    }
+  }
+
+  fetch('toegang.json',{cache:'no-store'})
+    .then(function(r){ return r.json() })
+    .then(function(j){
+      geldig=String(j.code||'');
+      if(bewaard()===geldig){ open(); return }           // eerder ingevoerd, code ongewijzigd
+      try{ localStorage.removeItem(SLEUTEL); }catch(e){} // code is gewijzigd: opnieuw vragen
+      veld.focus(); controleer();
+    })
+    .catch(function(){
+      // Geen internet: wie eerder een geldige code invoerde, mag erin.
+      if(bewaard()){ open(); return }
+      hulp.textContent='Geen verbinding. Open het Kompas één keer met internet om de code te controleren.';
+      veld.disabled=true;
+    });
+
+  veld.addEventListener('input',function(){
+    veld.value=veld.value.replace(/\D/g,'').slice(0,4);
+    controleer();
+  });
+  veld.addEventListener('keydown',function(e){ if(e.key==='Enter') controleer() });
+})();
+</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="i-base"></g>
 <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h3.5v-6h5v6H18a1 1 0 0 0 1-1V9.5"/></symbol>

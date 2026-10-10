@@ -1,13 +1,14 @@
 /* Grol Kompas — service worker
    Zorgt dat de app ook zonder internet werkt (bijv. op het sportpark).
    Verhoog CACHE_VERSIE bij elke nieuwe versie van de app. */
-const CACHE_VERSIE = 'grol-kompas-v5';
+const CACHE_VERSIE = 'grol-kompas-v6';
 
 /* De kern van de app: altijd offline beschikbaar */
 const SCHIL = [
   './',
   './index.html',
   './manifest.json',
+  './toegang.json',
   './img/logo.png',
   './img/favicon.png',
   './img/icon-192.png',
@@ -44,6 +45,20 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
+
+  /* toegang.json: altijd eerst het netwerk, zodat een gewijzigde code meteen geldt */
+  if (url.pathname.endsWith('toegang.json')) {
+    e.respondWith(
+      fetch(req, { cache: 'no-store' })
+        .then(res => {
+          const kopie = res.clone();
+          caches.open(CACHE_VERSIE).then(c => c.put('./toegang.json', kopie));
+          return res;
+        })
+        .catch(() => caches.match('./toegang.json'))
+    );
+    return;
+  }
 
   /* index.html: eerst het netwerk (zo zie je updates meteen), anders uit de cache */
   const isPagina = req.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('index.html');
