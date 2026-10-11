@@ -68,11 +68,9 @@ in een teksteditor op je eigen computer.
 
 ### 3.1 Toegangscode wijzigen
 
-Open `toegang.json` en verander de vier cijfers:
-
-```json
-{ "code": "1919" }
-```
+Open `toegang.json` en vervang de vier cijfers tussen de aanhalingstekens door de nieuwe
+code. Laat de rest van de regel staan — de accolades, de aanhalingstekens en het woord
+`code` horen erbij.
 
 Opslaan via **Commit changes**. Binnen een paar minuten geldt de nieuwe code, en
 iedereen die de oude had krijgt het invoerscherm opnieuw te zien.
