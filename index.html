@@ -936,13 +936,12 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <p class="sub">Of je nu speler, ouder, trainer, leider of vrijwilliger bent: wat jij opvalt, kunnen wij gebruiken. Een probleem, een idee of een compliment — alles is welkom.</p>
 
   <div class="kaart" style="--accent:var(--rood)">
-    <h2><svg class="i" aria-hidden="true"><use href="#i-schild"/></svg> Eerst dit: gaat het over veiligheid?</h2>
-    <p>Gaat je melding over <b>grensoverschrijdend gedrag</b> — pesten, intimidatie, discriminatie, geweld, of ander gedrag waar iemand zich onveilig door voelt? Gebruik dan <b>niet</b> dit formulier, maar neem direct contact op met een vertrouwenspersoon. Die behandelen je melding vertrouwelijk en zijn daarvoor opgeleid.</p>
+    <h2><svg class="i" aria-hidden="true"><use href="#i-hart"/></svg> Gaat het over gedrag? Bel het Coachingteam</h2>
+    <p>Pesten, lastig gedrag, onsportiviteit, spanningen in een team of tussen ouders: daarvoor is het <a href="#coaching">Coachingteam</a>. Dat is geen formulier maar een gesprek, en dat werkt bij dit soort dingen beter. Ze komen langs, denken mee en helpen je het op te lossen — je hoeft het niet eerst zelf te proberen.</p>
     <ul>
-      <li><b>Noëlle Neeleman</b> — <a href="mailto:noelleneeleman@outlook.com">noelleneeleman@outlook.com</a> · <a href="tel:0624910136">06-2491 0136</a></li>
-      <li><b>Hans Scheinck</b> — <a href="mailto:j.scheinck@kpnmail.nl">j.scheinck@kpnmail.nl</a> · <a href="tel:0623879248">06-2387 9248</a></li>
+      <li><b>Natascha Dankbaar</b> — <a href="tel:0612962468">06-1296 2468</a> · <a href="mailto:nataschadankbaar@hotmail.com">nataschadankbaar@hotmail.com</a></li>
     </ul>
-    <p class="sub">Gaat het om gedrag binnen je eigen team — pesten, lastig gedrag, onsportiviteit — dan kun je ook terecht bij het <a href="#coaching">Coachingteam</a>. Twijfel je welke route de goede is? Bel er gewoon een; ze wijzen je verder.</p>
+    <p class="sub" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--rand)">Gaat het over <b>grensoverschrijdend gedrag</b> — intimidatie, discriminatie, geweld, of ander gedrag waardoor iemand zich onveilig voelt? Neem dan contact op met een <b>vertrouwenspersoon</b>: Noëlle Neeleman (<a href="tel:0624910136">06-2491 0136</a>) of Hans Scheinck (<a href="tel:0623879248">06-2387 9248</a>). Zie <a href="#praktisch">Praktisch &amp; contact</a> voor hun mailadressen.</p>
   </div>
 
   <div class="kaart">
@@ -963,7 +962,9 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
       <div class="luik">
         <h3>Niet</h3>
         <ul>
+          <li>Gedrag in een team of om het veld → <a href="#coaching">Coachingteam</a></li>
           <li>Onveilig of grensoverschrijdend gedrag → vertrouwenspersoon</li>
+          <li>Iets dat fout staat in dit Kompas → de knop <b>Feedback of correctie doorgeven</b> onderaan de <a href="#home">homepagina</a></li>
           <li>Een acuut probleem deze week → je <a href="#praktisch">leeftijdscoördinator</a></li>
           <li>Een klacht over één met naam genoemd persoon → <a href="#praktisch">bel wie erover gaat</a></li>
           <li>Afmeldingen, wedstrijdzaken, blessures → zie <a href="#praktisch">Praktisch &amp; contact</a></li>
@@ -984,6 +985,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
 
   <div class="kaart">
     <h2>Wat gebeurt er daarna?</h2>
+    <p>De <a href="#organisatie">Commissie Jeugdzaken</a> is eigenaar van dit kanaal. Zij verzamelt de punten, bepaalt wat ermee gebeurt en zet ze uit bij de geleding die erover gaat — tot en met het hoofdbestuur. Zo blijft niemand wachten op iemand anders.</p>
     <div class="stappen" id="fbstappen"></div>
   </div>
 
@@ -1756,7 +1758,7 @@ const PRINCIPES = [
    Zet hieronder de insluitlink van het Microsoft Form tussen de aanhalingstekens.
    In Forms: Verzamelen van reacties → Insluiten → kopieer de URL uit src="...".
    Zolang dit leeg is, toont de pagina een nette tussenoplossing per e-mail. */
-const FEEDBACKFORM = '';
+const FEEDBACKFORM = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=-qyUa47pT0qrdojrV25EAes6iMaMcMpNsYmbdHrWDyJUODM1TlpaVjdEQzBKSU9KSEY4UVpZRzZOUi4u&embed=true';
 
 /* ---- feedback: wat gebeurt er daarna ---- */
 const FBSTAPPEN = [
@@ -1766,15 +1768,15 @@ const FBSTAPPEN = [
  {n:2,w:'Binnen een week',t:'Eerste blik',
   d:'We kijken of er iets is dat niet kan wachten. Zo ja, dan pakken we dat meteen op en hoor je van ons — mits je je naam hebt achtergelaten.',
   r:'Commissie Jeugdzaken'},
- {n:3,w:'Elke zes weken',t:'Bespreken',
-  d:'De verzamelde punten staan op de agenda van het overleg. Per punt spreken we af: zelf oppakken, uitzetten bij het Technisch Hart of het Voetbalbestuur, of bewust laten liggen met uitleg waarom.',
-  r:'Commissie Jeugdzaken, met Technisch Hart en Voetbalbestuur'},
+ {n:3,w:'Elke zes weken',t:'Bespreken en uitzetten',
+  d:'De verzamelde punten staan op de agenda van de Commissie Jeugdzaken. De commissie bepaalt per punt wat ermee gebeurt: zelf oppakken, of doorzetten naar de geleding die erover gaat — het Technisch Hart, het Voetbalbestuur, een andere commissie, of het hoofdbestuur. Ook &lsquo;hier doen we voorlopig niets mee&rsquo; is een besluit, mits we erbij zeggen waarom.',
+  r:'Commissie Jeugdzaken — bepaalt en zet door'},
  {n:4,w:'Na de bespreking',t:'Terugkoppeling',
-  d:'Liet je je naam achter, dan laten we weten wat er met je punt is gebeurd. Ook als het antwoord &lsquo;hier doen we voorlopig niets mee&rsquo; is — dan weet je in elk geval dat het gelezen is.',
+  d:'Liet je je naam achter, dan laten we weten wat er met je punt is gebeurd en bij wie het ligt. De commissie blijft het volgen, ook als een andere geleding het oppakt.',
   r:'Commissie Jeugdzaken'},
  {n:5,w:'Twee keer per jaar',t:'Terug naar de vereniging',
-  d:'De hoofdlijn uit alle feedback gaat naar het Voetbalbestuur: waar lopen mensen tegenaan, wat valt op, wat vraagt een besluit. Op deze pagina komen voorbeelden van wat eruit voortkwam.',
-  r:'Commissie Jeugdzaken en Voetbalbestuur'}
+  d:'De hoofdlijn uit alle feedback gaat naar het Voetbalbestuur en waar nodig naar het hoofdbestuur: waar lopen mensen tegenaan, wat valt op, wat vraagt een besluit. Op deze pagina komen voorbeelden van wat eruit voortkwam.',
+  r:'Commissie Jeugdzaken, richting Voetbalbestuur en hoofdbestuur'}
 ];
 
 /* ---- teamindeling: zes stappen ---- */
