@@ -94,7 +94,17 @@ body.gescrold .hbar .thuis img{width:34px;height:34px}
       letter-spacing:.5px;line-height:1.05;text-transform:uppercase}
 .hbar .titel span{font-size:.7rem;opacity:.8;letter-spacing:.2px;display:block;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbar .titel span i{font-style:normal}
 body.gescrold .hbar .titel span{display:none}
+/* Op smalle schermen past de volledige ondertitel niet; dan alleen het eerste deel. */
+@media(max-width:600px){
+  .hbar .titel span i{display:none}
+  .hbar .titel b{font-size:1.35rem}
+  .hbar .titel span{font-size:.66rem}
+}
+@media(max-width:360px){
+  .hbar .titel span{display:none}
+}
 .hbar button{background:rgba(255,255,255,.1);border:none;color:#fff;cursor:pointer;padding:8px;
       border-radius:11px;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .hbar button:hover{background:rgba(255,255,255,.22)}
@@ -613,7 +623,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <div class="hbar">
     <a class="thuis" href="#home" aria-label="Naar de homepagina" title="Naar de homepagina">
       <img src="img/logo.png" alt="s.v. Grol logo">
-      <span class="titel"><b>Grol Kompas</b><span>Wegwijzer voor de jeugdopleiding · Samen een levenlang Grol</span></span>
+      <span class="titel"><b>Grol Kompas</b><span>Wegwijzer voor de jeugdopleiding<i> · Samen een levenlang Grol</i></span></span>
     </a>
     <button id="zoekknop" title="Zoeken"><svg class="i" aria-hidden="true"><use href="#i-zoek"/></svg></button>
     <button id="menuknop" title="Menu"><svg class="i" aria-hidden="true"><use href="#i-menu"/></svg></button>
