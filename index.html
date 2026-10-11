@@ -296,6 +296,12 @@ mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 2px}
 .check li.af .vak svg{opacity:1}
 .check .tekst{font-weight:600}
 .check .tekst small{display:block;color:var(--grijs);font-size:.83rem;margin-top:2px;font-weight:400}
+.check .checklink{display:inline-flex;align-items:center;gap:5px;margin-top:7px;font-size:.82rem;
+     font-weight:700;color:var(--blauw);border-bottom:none !important;
+     background:var(--blauwlicht);border-radius:8px;padding:5px 10px;transition:all .15s}
+.check .checklink:hover{background:var(--blauw);color:#fff}
+.check .checklink svg{width:13px;height:13px}
+.check li.af .checklink{text-decoration:none;opacity:.55}
 .ring-wrap{display:flex;align-items:center;gap:16px;margin:10px 0 4px}
 .ring-wrap svg{flex:none}
 .ring-wrap .cijfer{font-family:var(--display);font-size:2rem;font-weight:700;color:var(--blauw);line-height:1}
@@ -2277,21 +2283,23 @@ document.getElementById('fasebalk').innerHTML=FASEN.map(f=>`<div style="backgrou
 toonTijdlijn('alles');
 
 /* ================= STARTCHECKLIST ================= */
+/* Derde en vierde waarde zijn optioneel: [link, linktekst].
+   Een link die met # begint opent in het Kompas zelf, een webadres in een nieuw venster. */
 const CHECKS=[
- ['VOG aanvragen','Kosteloos en met begeleiding. Vragen? vog@svgrol.nl'],
- ['Aanmelden als vrijwilliger','Via het contactformulier op svgrol.nl, inclusief vrijwilligersverklaring'],
- ['Kennismaken met je Technisch Coördinator','Voor alles wat met voetbalinhoud te maken heeft — zie Organisatie &amp; rollen'],
- ['Kennismaken met je leeftijdscoördinator','Voor alles eromheen — Commissie Jeugdzaken'],
+ ['VOG aanvragen','Kosteloos en met begeleiding. Vragen? vog@svgrol.nl','https://svgrol.nl/informatie-vog','Informatie en aanvraag'],
+ ['Aanmelden als vrijwilliger','Via het contactformulier op svgrol.nl, inclusief vrijwilligersverklaring','https://svgrol.nl/contact/contactformulier','Contactformulier'],
+ ['Kennismaken met je Technisch Coördinator','Voor alles wat met voetbalinhoud te maken heeft','#organisatie','Wie is dat?'],
+ ['Kennismaken met je leeftijdscoördinator','Voor alles eromheen — Commissie Jeugdzaken','#praktisch','Wie bel ik waarvoor'],
  ['Teamtas met wedstrijdkleding ophalen','Controleer de inhoud en spreek af wie wast'],
- ['Ballenkar en materialen regelen','Via de SEAG; check waar het ballenhok en de opstelplaatsen zijn'],
- ['Trainingsschema checken','Welk veld, welke tijd — svgrol.nl/trainingsschema'],
- ['Ouderbijeenkomst plannen','Vóór de competitiestart; gebruik het draaiboek hieronder'],
- ['Teamafspraken maken met je spelers','Kernwaarden en omgangsvormen als basis'],
- ['Spelbegeleider regelen (t/m O12)','Vanaf O13 stelt Wedstrijdsupport een scheidsrechter aan'],
- ['Wedstrijdformulier leren invullen','Wedstrijdsupport maakt je wegwijs'],
- ['Teamfoto maken en insturen','Voor op de clubwebsite'],
- ['Spelprincipes van jouw leeftijdsgroep bekijken','Zie Mijn team — weet wat je traint'],
- ['Zelfscan invullen','Waar sta je als trainer? Bespreek hem met je TC']
+ ['Ballenkar en materialen regelen','Via de SEAG; check waar het ballenhok en de opstelplaatsen zijn','#praktisch','Materiaal en SEAG'],
+ ['Trainingsschema checken','Welk veld, welke tijd','https://svgrol.nl/trainingsschema','Naar het trainingsschema'],
+ ['Ouderbijeenkomst plannen','Vóór de competitiestart; gebruik het draaiboek onderaan deze pagina'],
+ ['Teamafspraken maken met je spelers','Kernwaarden en omgangsvormen als basis','#omgang','Omgang &amp; cultuur'],
+ ['Spelbegeleider regelen (t/m O12)','Vanaf O13 stelt Wedstrijdsupport een scheidsrechter aan','#praktisch','Wedstrijdsupport'],
+ ['Wedstrijdformulier leren invullen','Wedstrijdsupport maakt je wegwijs','#praktisch','Wedstrijddag'],
+ ['Teamfoto maken en insturen','Voor op de clubwebsite','#praktisch','Wie stuur ik hem naar'],
+ ['Spelprincipes van jouw leeftijdsgroep bekijken','Weet wat je traint','#team','Naar Mijn team'],
+ ['Zelfscan invullen','Waar sta je als trainer? Bespreek hem met je TC','#beoordelen','Naar de zelfscans']
 ];
 (function(){
   const lijst=document.getElementById('checklist');if(!lijst)return;
@@ -2308,8 +2316,12 @@ const CHECKS=[
   function teken(){
     lijst.innerHTML='';
     CHECKS.forEach((c,i)=>{
-      const li=el(`<li class="${staat[i]?'af':''}" data-i="${i}"><span class="vak"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="tekst">${c[0]}<small>${c[1]}</small></span></li>`);
+      const extern=c[2]&&!c[2].startsWith('#');
+      const link=c[2]?`<a class="checklink" href="${c[2]}"${extern?' target="_blank" rel="noopener"':''}>${c[3]||'Bekijken'}<svg class="i" aria-hidden="true"><use href="#${extern?'i-web':'i-pijlrechts'}"/></svg></a>`:'';
+      const li=el(`<li class="${staat[i]?'af':''}" data-i="${i}"><span class="vak"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="tekst">${c[0]}<small>${c[1]}</small>${link}</span></li>`);
       li.onclick=()=>{staat[i]=!staat[i];bewaar();teken();teller()};
+      const a=li.querySelector('.checklink');
+      if(a)a.onclick=e=>{e.stopPropagation()};   // link volgen mag het vinkje niet omzetten
       lijst.appendChild(li);
     });
   }
