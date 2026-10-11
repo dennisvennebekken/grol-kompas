@@ -529,6 +529,9 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
       fout=document.getElementById('slotfout'),hulp=document.getElementById('slothulp');
   var geldig=null;
 
+  // Lokaal geopend bestand (file://): geen slot, anders kun je niet testen.
+  if(location.protocol==='file:'){ slot.hidden=true; document.body.classList.remove('vergrendeld'); return }
+
   function bewaard(){ try{ return localStorage.getItem(SLEUTEL); }catch(e){ return null } }
   function bewaar(c){ try{ localStorage.setItem(SLEUTEL,c); }catch(e){} }
   function open(){ slot.hidden=true; document.body.classList.remove('vergrendeld'); }
