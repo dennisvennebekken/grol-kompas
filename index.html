@@ -333,6 +333,12 @@ mark{background:#ffe9a8;color:inherit;border-radius:3px;padding:0 2px}
      padding:12px 14px;margin:12px 0;font-size:.92rem;box-shadow:var(--schaduw)}
 @media (prefers-color-scheme:dark){.melding{background:#2a2410;border-color:#5c4d1e}}
 
+/* ---------- ingesloten formulier ---------- */
+.formwrap{background:var(--vlak);border:1px solid var(--rand);border-radius:var(--radius);
+     overflow:hidden;box-shadow:var(--schaduw);margin-bottom:10px}
+.formwrap iframe{display:block;width:100%;height:760px;border:0}
+@media(max-width:620px){.formwrap iframe{height:900px}}
+
 /* ---------- makersvermelding ---------- */
 .kenmerk{margin-top:18px;padding-top:12px;border-top:1px solid var(--rand);
      color:var(--grijs);font-size:.74rem;line-height:1.5;opacity:.85}
@@ -639,6 +645,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <a href="#omgang"><svg class="i" aria-hidden="true"><use href="#i-handen"/></svg> Omgang &amp; cultuur</a>
     <a href="#coaching"><svg class="i" aria-hidden="true"><use href="#i-hart"/></svg> Coachingteam</a>
     <a href="#teamindeling"><svg class="i" aria-hidden="true"><use href="#i-indeling"/></svg> Teamindeling</a>
+    <a href="#feedback"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Feedback &amp; ideeën</a>
     <a href="#beoordelen"><svg class="i" aria-hidden="true"><use href="#i-grafiek"/></svg> Ontwikkeling spelers &amp; trainers</a>
     <a href="#praktisch"><svg class="i" aria-hidden="true"><use href="#i-gereedschap"/></svg> Praktisch &amp; contact</a>
     <a href="#organisatie"><svg class="i" aria-hidden="true"><use href="#i-organisatie"/></svg> Organisatie &amp; rollen</a>
@@ -683,6 +690,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <a class="tegel" href="#kalender"><span class="ring"><svg class="i" aria-hidden="true"><use href="#i-kalender"/></svg></span>Jaarkalender<span class="conceptdot" title="concept"></span></a>
     <a class="tegel" href="#bibliotheek"><span class="ring"><svg class="i" aria-hidden="true"><use href="#i-boeken"/></svg></span>Bibliotheek</a>
     <a class="tegel rood" href="#ouders"><span class="ring"><svg class="i" aria-hidden="true"><use href="#i-gezin"/></svg></span>Spelers &amp; ouders</a>
+    <a class="tegel rood" href="#feedback"><span class="ring"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg></span>Feedback &amp; ideeën<br><small>wat kan er beter?</small></a>
   </div>
   <div class="kaart">
     <h2>Snel op weg als trainer of leider</h2>
@@ -697,7 +705,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <h2>Over deze app</h2>
     <p id="versieregel" class="sub"></p>
     <p><a class="knopje" id="feedbackknop" href="#"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Feedback of correctie doorgeven</a></p>
-    <p class="sub" style="margin-top:-4px">Je bericht komt bij <b>Dennis Vennebekken</b>, <a href="#organisatie">Commissie Jeugdzaken</a>.</p>
+    <p class="sub" style="margin-top:-4px">Dit is voor fouten en ontbrekende informatie <b>in deze app</b>. Je bericht komt bij <b>Dennis Vennebekken</b>, <a href="#organisatie">Commissie Jeugdzaken</a>.<br>Feedback over de jeugdafdeling zelf? Gebruik <a href="#feedback">Feedback &amp; ideeën</a>.</p>
     <p class="sub">Tip: open het Kompas op je telefoon en kies ‘Toevoegen aan beginscherm’. Dan werkt hij ook <b>zonder internet</b> op het sportpark.</p>
     <p class="kenmerk">De inhoud van het Grol Kompas is eigendom van s.v. Grol.</p>
   </div>
@@ -922,6 +930,69 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <p class="sub" style="margin:10px 0 0">Praktische clubinformatie staat niet hier maar bij <a href="#praktisch">Praktisch &amp; contact</a>, in de Informatiegids 2026-2027.</p></div>
 </section>
 
+<!-- ================= FEEDBACK ================= -->
+<section class="pagina" id="p-feedback" style="--accent:var(--rood)">
+  <div class="hero klein"><img src="img/hero/avond.jpg" alt="" loading="lazy"><div class="tekst"><div class="streep"></div><h1>Feedback &amp; ideeën</h1><p class="onder">Wat kan er beter in de jeugdafdeling?</p></div></div>
+  <p class="sub">Of je nu speler, ouder, trainer, leider of vrijwilliger bent: wat jij opvalt, kunnen wij gebruiken. Een probleem, een idee of een compliment — alles is welkom.</p>
+
+  <div class="kaart" style="--accent:var(--rood)">
+    <h2><svg class="i" aria-hidden="true"><use href="#i-schild"/></svg> Eerst dit: gaat het over veiligheid?</h2>
+    <p>Gaat je melding over <b>grensoverschrijdend gedrag</b> — pesten, intimidatie, discriminatie, geweld, of ander gedrag waar iemand zich onveilig door voelt? Gebruik dan <b>niet</b> dit formulier, maar neem direct contact op met een vertrouwenspersoon. Die behandelen je melding vertrouwelijk en zijn daarvoor opgeleid.</p>
+    <ul>
+      <li><b>Noëlle Neeleman</b> — <a href="mailto:noelleneeleman@outlook.com">noelleneeleman@outlook.com</a> · <a href="tel:0624910136">06-2491 0136</a></li>
+      <li><b>Hans Scheinck</b> — <a href="mailto:j.scheinck@kpnmail.nl">j.scheinck@kpnmail.nl</a> · <a href="tel:0623879248">06-2387 9248</a></li>
+    </ul>
+    <p class="sub">Gaat het om gedrag binnen je eigen team — pesten, lastig gedrag, onsportiviteit — dan kun je ook terecht bij het <a href="#coaching">Coachingteam</a>. Twijfel je welke route de goede is? Bel er gewoon een; ze wijzen je verder.</p>
+  </div>
+
+  <div class="kaart">
+    <h2>Waar is dit formulier voor?</h2>
+    <div class="tweeluik">
+      <div class="luik">
+        <h3>Wél</h3>
+        <ul>
+          <li>Voetbalinhoud, trainingen en de manier van spelen</li>
+          <li>Teamindeling: het proces, niet een individuele speler</li>
+          <li>Begeleiding, omgang en sfeer in de jeugdafdeling</li>
+          <li>Communicatie en informatie vanuit de club</li>
+          <li>Accommodatie, materiaal en kleedkamers</li>
+          <li>Vrijwilligers, bezetting en vacatures</li>
+          <li>Ideeën en complimenten — die horen hier net zo goed</li>
+        </ul>
+      </div>
+      <div class="luik">
+        <h3>Niet</h3>
+        <ul>
+          <li>Onveilig of grensoverschrijdend gedrag → vertrouwenspersoon</li>
+          <li>Een acuut probleem deze week → je <a href="#praktisch">leeftijdscoördinator</a></li>
+          <li>Een klacht over één met naam genoemd persoon → <a href="#praktisch">bel wie erover gaat</a></li>
+          <li>Afmeldingen, wedstrijdzaken, blessures → zie <a href="#praktisch">Praktisch &amp; contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="sub">Kort gezegd: dit formulier is voor wat structureel beter kan, niet voor wat vandaag geregeld moet worden.</p>
+  </div>
+
+  <h2>Het formulier</h2>
+  <div id="feedbackformulier"></div>
+
+  <div class="kaart">
+    <h2>Met of zonder naam?</h2>
+    <p>Je mag het <b>anoniem</b> invullen. Liever niet, en dat is geen formaliteit: zonder naam kunnen we niets navragen, niets terugkoppelen en vaak ook niets oplossen. Een opmerking als &ldquo;de communicatie rond wedstrijden klopt niet&rdquo; is bruikbaar als we mogen vragen wat er precies misging.</p>
+    <p>Wat we met je gegevens doen: je naam en mailadres zien alleen de leden van de <a href="#organisatie">Commissie Jeugdzaken</a> die de meldingen behandelen. We gebruiken ze om contact met je op te nemen en voor niets anders. In de rapportage die we binnen de vereniging bespreken staan geen namen van inzenders.</p>
+  </div>
+
+  <div class="kaart">
+    <h2>Wat gebeurt er daarna?</h2>
+    <div class="stappen" id="fbstappen"></div>
+  </div>
+
+  <div class="kaart">
+    <h2>Wat we met jullie feedback deden</h2>
+    <p class="sub">Hier komen voorbeelden van wat er met ingezonden punten is gebeurd. Zodra de eerste ronde besproken is, vul ik dit blok.</p>
+  </div>
+</section>
+
 <!-- ================= TEAMINDELING ================= -->
 <section class="pagina" id="p-teamindeling" style="--accent:var(--blauw2)">
   <div class="hero klein"><img src="img/hero/veld.jpg" alt="" loading="lazy"><div class="tekst"><div class="streep"></div><h1>Teamindeling</h1><p class="onder">Hoe de teams tot stand komen — proces en criteria</p></div></div>
@@ -1091,6 +1162,11 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
   <div class="kaart">
     <h2>Meespelen met een ander team?</h2>
     <p>Bij een spelerstekort kan jouw kind gevraagd worden om mee te spelen met een ander (ouder of hoger) team. Dat is een kans: extra uitdaging stimuleert de ontwikkeling. De trainers stemmen dit onderling en met de Technisch Coördinator af, en spreken vooraf de speeltijd af.</p>
+  </div>
+  <div class="kaart" style="--accent:var(--blauw2)">
+    <h2><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Iets dat beter kan?</h2>
+    <p>Valt je iets op in de jeugdafdeling — een probleem, een idee of juist een compliment? Laat het weten via <a href="#feedback">Feedback &amp; ideeën</a>. Alle reacties worden verzameld en een paar keer per jaar met de vereniging besproken.</p>
+    <p class="sub">Gaat het over onveilig of grensoverschrijdend gedrag? Neem dan direct contact op met een <a href="#praktisch">vertrouwenspersoon</a>.</p>
   </div>
   <p class="sub">Meer weten? Bekijk de <a href="#omgang">volledige omgangsafspraken</a> of de <a href="#principes">14 spelprincipes</a>.</p>
 </section>
@@ -1676,6 +1752,31 @@ const PRINCIPES = [
  {n:14,f:'va',t:'Verplaats het spel',w:'We willen na balwinst het spel verplaatsen naar de andere kant van het veld.',h:['Open naar de contrakant']}
 ];
 
+/* ================= FEEDBACKFORMULIER =================
+   Zet hieronder de insluitlink van het Microsoft Form tussen de aanhalingstekens.
+   In Forms: Verzamelen van reacties → Insluiten → kopieer de URL uit src="...".
+   Zolang dit leeg is, toont de pagina een nette tussenoplossing per e-mail. */
+const FEEDBACKFORM = '';
+
+/* ---- feedback: wat gebeurt er daarna ---- */
+const FBSTAPPEN = [
+ {n:1,w:'Direct',t:'Je inzending komt binnen',
+  d:'Elke inzending komt automatisch in één overzicht terecht, met het onderwerp, de leeftijdsgroep en je rol erbij. Niemand hoeft iets over te typen.',
+  r:'Commissie Jeugdzaken'},
+ {n:2,w:'Binnen een week',t:'Eerste blik',
+  d:'We kijken of er iets is dat niet kan wachten. Zo ja, dan pakken we dat meteen op en hoor je van ons — mits je je naam hebt achtergelaten.',
+  r:'Commissie Jeugdzaken'},
+ {n:3,w:'Elke zes weken',t:'Bespreken',
+  d:'De verzamelde punten staan op de agenda van het overleg. Per punt spreken we af: zelf oppakken, uitzetten bij het Technisch Hart of het Voetbalbestuur, of bewust laten liggen met uitleg waarom.',
+  r:'Commissie Jeugdzaken, met Technisch Hart en Voetbalbestuur'},
+ {n:4,w:'Na de bespreking',t:'Terugkoppeling',
+  d:'Liet je je naam achter, dan laten we weten wat er met je punt is gebeurd. Ook als het antwoord &lsquo;hier doen we voorlopig niets mee&rsquo; is — dan weet je in elk geval dat het gelezen is.',
+  r:'Commissie Jeugdzaken'},
+ {n:5,w:'Twee keer per jaar',t:'Terug naar de vereniging',
+  d:'De hoofdlijn uit alle feedback gaat naar het Voetbalbestuur: waar lopen mensen tegenaan, wat valt op, wat vraagt een besluit. Op deze pagina komen voorbeelden van wat eruit voortkwam.',
+  r:'Commissie Jeugdzaken en Voetbalbestuur'}
+];
+
 /* ---- teamindeling: zes stappen ---- */
 const STAPPEN = [
  {n:1,w:'Na fase 2 · januari',t:'De aantallen per leeftijdscategorie als basis',
@@ -1816,6 +1917,39 @@ PRINCIPES.forEach(p=>{
     <p class="wat">${p.w}</p><ul>${p.h.map(x=>`<li>${x}</li>`).join('')}</ul></div>`));
 });
 
+// feedback: formulier en stappen
+(function(){
+  const h=document.getElementById('fbstappen');
+  if(h){ FBSTAPPEN.forEach(s=>{
+    h.appendChild(el(`<div class="stap"><div class="bol">${s.n}</div><div class="inh">
+      <span class="wanneer">${s.w}</span><h3>${s.t}</h3><p>${s.d}</p>
+      <p class="rol"><svg class="i" aria-hidden="true"><use href="#i-persoon"/></svg> ${s.r}</p></div></div>`));
+  }); }
+
+  const f=document.getElementById('feedbackformulier');
+  if(!f)return;
+  if(FEEDBACKFORM){
+    f.innerHTML=`<div class="formwrap"><iframe src="${FEEDBACKFORM}" title="Feedbackformulier jeugdafdeling"
+        frameborder="0" marginwidth="0" marginheight="0" allowfullscreen loading="lazy"></iframe></div>
+      <p class="sub">Lukt het invullen hier niet? <a href="${FEEDBACKFORM}" target="_blank">Open het formulier in een nieuw venster</a>.</p>`;
+  }else{
+    const onderwerp=encodeURIComponent('Feedback jeugdafdeling s.v. Grol');
+    const body=encodeURIComponent(
+      'Waar gaat het over? (voetbalinhoud / teamindeling / begeleiding en omgang / communicatie / accommodatie / vrijwilligers / anders)\n\n'+
+      'Is het een probleem, een idee of een compliment?\n\n'+
+      'Welke leeftijdsgroep of team?\n\n'+
+      'Jouw rol (speler / ouder / trainer / leider / vrijwilliger / anders)\n\n'+
+      'Wat wil je ons laten weten?\n\n\n'+
+      'Wat zou volgens jou helpen?\n\n\n'+
+      'Je naam (mag je weglaten, maar dan kunnen we niets terugkoppelen)\n\n');
+    f.innerHTML=`<div class="kaart">
+      <p><b>Het online formulier wordt op dit moment ingericht.</b> Tot die tijd kun je je feedback mailen — we hebben de vragen alvast voor je klaargezet in het bericht.</p>
+      <p><a class="knopje" href="mailto:dennis.vennebekken@svgrol.nl?subject=${onderwerp}&body=${body}"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Feedback mailen</a></p>
+      <p class="sub">Je bericht komt bij de <a href="#organisatie">Commissie Jeugdzaken</a>.</p>
+    </div>`;
+  }
+})();
+
 // teamindeling: stappen
 (function(){
   const h=document.getElementById('stappen');if(!h)return;
@@ -1953,7 +2087,7 @@ document.getElementById('vlvvorige').onclick=()=>{vlvN=vlvN>1?vlvN-1:vlvMax;vlvT
 document.getElementById('vlvvolgende').onclick=()=>{vlvN=vlvN<vlvMax?vlvN+1:1;vlvToon()};
 
 /* ================= NAVIGATIE ================= */
-const paginas=['home','starten','team','principes','speelwijze','training','omgang','coaching','teamindeling','organisatie','staf','praktisch','beoordelen','kalender','ouders','bibliotheek','zoeken'];
+const paginas=['home','starten','team','principes','speelwijze','training','omgang','coaching','teamindeling','organisatie','staf','praktisch','beoordelen','kalender','ouders','feedback','bibliotheek','zoeken'];
 function route(){
   let h=location.hash.replace('#','')||'home';
   let [p,sub]=h.split('/');
