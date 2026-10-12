@@ -29,6 +29,27 @@
 <meta name="theme-color" content="#16337e">
 <meta name="description" content="Het Grol Kompas: wegwijzer voor trainers, leiders, spelers en ouders binnen de jeugdopleiding van s.v. Grol.">
 <title>Grol Kompas — s.v. Grol Jeugdopleiding</title>
+
+<!-- Deelvoorbeeld in WhatsApp, Facebook, LinkedIn en dergelijke -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grol Kompas">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:url" content="https://grol-kompas.nl/">
+<meta property="og:title" content="Grol Kompas — wegwijzer voor de jeugdopleiding">
+<meta property="og:description" content="Alles voor trainers, leiders, spelers en ouders van s.v. Grol: voetbalbeleid, omgang, teamindeling en ontwikkeling. Op je telefoon, ook zonder internet.">
+<meta property="og:image" content="https://grol-kompas.nl/img/deelkaart.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Grol Kompas — wegwijzer voor de jeugdopleiding van s.v. Grol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Grol Kompas — wegwijzer voor de jeugdopleiding">
+<meta name="twitter:description" content="Alles voor trainers, leiders, spelers en ouders van s.v. Grol: voetbalbeleid, omgang, teamindeling en ontwikkeling.">
+<meta name="twitter:image" content="https://grol-kompas.nl/img/deelkaart.jpg">
+<link rel="canonical" href="https://grol-kompas.nl/">
+
+<!-- Niet opnemen in zoekmachines: het Kompas is voor de club, niet voor de buitenwereld.
+     De deelvoorbeelden hierboven blijven wel werken; die lezen de pagina rechtstreeks. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -713,6 +734,7 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <p><a class="knopje" id="feedbackknop" href="#"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Feedback of correctie doorgeven</a></p>
     <p class="sub" style="margin-top:-4px">Dit is voor fouten en ontbrekende informatie <b>in deze app</b>. Je bericht komt bij <b>Dennis Vennebekken</b>, <a href="#organisatie">Commissie Jeugdzaken</a>.<br>Feedback over de jeugdafdeling zelf? Gebruik <a href="#feedback">Feedback &amp; ideeën</a>.</p>
     <p class="sub">Tip: open het Kompas op je telefoon en kies ‘Toevoegen aan beginscherm’. Dan werkt hij ook <b>zonder internet</b> op het sportpark.</p>
+    <p class="sub" style="margin-top:14px">Het Kompas bewaart alleen op jouw eigen toestel welke stappen je hebt afgevinkt en dat je de code hebt ingevuld. Er worden geen bezoekers gevolgd. Vul je het <a href="#feedback">feedbackformulier</a> in, dan gelden de <a href="https://svgrol.nl/documenten/privacy-verklaring-grol-1" target="_blank" rel="noopener">privacyverklaring van s.v. Grol</a> en de voorwaarden van Microsoft Forms.</p>
     <p class="kenmerk">De inhoud van het Grol Kompas is eigendom van s.v. Grol.</p>
   </div>
 </section>
@@ -995,10 +1017,15 @@ footer{position:fixed;bottom:0;left:0;right:0;background:var(--blauwdiep);z-inde
     <div class="stappen" id="fbstappen"></div>
   </div>
 
+  <!-- Zodra de eerste ronde besproken is, kan dit blok gevuld en zichtbaar gemaakt worden:
+       haal het commentaar eromheen weg en zet er drie voorbeelden in.
   <div class="kaart">
     <h2>Wat we met jullie feedback deden</h2>
-    <p class="sub">Hier komen voorbeelden van wat er met ingezonden punten is gebeurd. Zodra de eerste ronde besproken is, vul ik dit blok.</p>
+    <ul>
+      <li><b>Opmerking:</b> … → <b>Wat we deden:</b> …</li>
+    </ul>
   </div>
+  -->
 </section>
 
 <!-- ================= TEAMINDELING ================= -->
@@ -1937,9 +1964,20 @@ PRINCIPES.forEach(p=>{
   const f=document.getElementById('feedbackformulier');
   if(!f)return;
   if(FEEDBACKFORM){
-    f.innerHTML=`<div class="formwrap"><iframe src="${FEEDBACKFORM}" title="Feedbackformulier jeugdafdeling"
-        frameborder="0" marginwidth="0" marginheight="0" allowfullscreen loading="lazy"></iframe></div>
-      <p class="sub">Lukt het invullen hier niet? <a href="${FEEDBACKFORM}" target="_blank">Open het formulier in een nieuw venster</a>.</p>`;
+    // Op een smal scherm is een ingesloten venster met eigen schuifbalk onhandig:
+    // daar tonen we een knop die het formulier schermvullend opent.
+    const smal=window.matchMedia('(max-width:620px)').matches;
+    if(smal){
+      f.innerHTML=`<div class="kaart">
+        <p>Het formulier kost ongeveer twee minuten. Je mag het anoniem invullen.</p>
+        <p><a class="knopje" href="${FEEDBACKFORM}" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Open het feedbackformulier</a></p>
+        <p class="sub">Het opent in een nieuw venster. Daarna kom je met de terugknop weer hier.</p>
+      </div>`;
+    }else{
+      f.innerHTML=`<div class="formwrap"><iframe src="${FEEDBACKFORM}" title="Feedbackformulier jeugdafdeling"
+          frameborder="0" marginwidth="0" marginheight="0" allowfullscreen loading="lazy"></iframe></div>
+        <p class="sub">Lukt het invullen hier niet? <a href="${FEEDBACKFORM}" target="_blank" rel="noopener">Open het formulier in een nieuw venster</a>.</p>`;
+    }
   }else{
     const onderwerp=encodeURIComponent('Feedback jeugdafdeling s.v. Grol');
     const body=encodeURIComponent(
@@ -2303,11 +2341,22 @@ const CHECKS=[
 ];
 (function(){
   const lijst=document.getElementById('checklist');if(!lijst)return;
+  // De afvinkstaat wordt bewaard onder de tekst van de stap, niet onder het volgnummer.
+  // Zo blijven vinkjes staan als er later een stap tussen wordt gezet of verplaatst.
+  const sleutel=c=>c[0];
   let staat={};
-  try{staat=JSON.parse(localStorage.getItem('grolkompas-check')||'{}')}catch(e){staat={}}
+  try{
+    const ruw=JSON.parse(localStorage.getItem('grolkompas-check')||'{}');
+    // oude opslag op volgnummer één keer omzetten naar opslag op tekst
+    Object.keys(ruw).forEach(k=>{
+      if(/^\d+$/.test(k)){ if(CHECKS[+k]&&ruw[k]) staat[sleutel(CHECKS[+k])]=true; }
+      else if(ruw[k]) staat[k]=true;
+    });
+  }catch(e){staat={}}
   function bewaar(){try{localStorage.setItem('grolkompas-check',JSON.stringify(staat))}catch(e){}}
+  bewaar();   // omgezette opslag meteen opschonen
   function teller(){
-    const af=CHECKS.filter((c,i)=>staat[i]).length;
+    const af=CHECKS.filter(c=>staat[sleutel(c)]).length;
     const pct=af/CHECKS.length;
     document.getElementById('cring').style.strokeDashoffset=String(201*(1-pct));
     document.getElementById('ccijfer').textContent=Math.round(pct*100)+'%';
@@ -2316,10 +2365,11 @@ const CHECKS=[
   function teken(){
     lijst.innerHTML='';
     CHECKS.forEach((c,i)=>{
+      const k=sleutel(c);
       const extern=c[2]&&!c[2].startsWith('#');
       const link=c[2]?`<a class="checklink" href="${c[2]}"${extern?' target="_blank" rel="noopener"':''}>${c[3]||'Bekijken'}<svg class="i" aria-hidden="true"><use href="#${extern?'i-web':'i-pijlrechts'}"/></svg></a>`:'';
-      const li=el(`<li class="${staat[i]?'af':''}" data-i="${i}"><span class="vak"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="tekst">${c[0]}<small>${c[1]}</small>${link}</span></li>`);
-      li.onclick=()=>{staat[i]=!staat[i];bewaar();teken();teller()};
+      const li=el(`<li class="${staat[k]?'af':''}" data-i="${i}"><span class="vak"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="tekst">${c[0]}<small>${c[1]}</small>${link}</span></li>`);
+      li.onclick=()=>{staat[k]=!staat[k];bewaar();teken();teller()};
       const a=li.querySelector('.checklink');
       if(a)a.onclick=e=>{e.stopPropagation()};   // link volgen mag het vinkje niet omzetten
       lijst.appendChild(li);

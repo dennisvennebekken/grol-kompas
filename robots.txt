@@ -1,0 +1,10 @@
+# Grol Kompas — wegwijzer voor de jeugdopleiding van s.v. Grol
+# Dit is een interne tool voor trainers, leiders, spelers en ouders.
+# Niet bedoeld om via zoekmachines gevonden te worden.
+
+User-agent: *
+Disallow: /
+
+# Uitzondering: de deelafbeelding mag opgehaald worden, zodat een gedeelde
+# link in WhatsApp of op social media een nette voorbeeldkaart toont.
+Allow: /img/deelkaart.jpg

@@ -1,7 +1,7 @@
 /* Grol Kompas — service worker
    Zorgt dat de app ook zonder internet werkt (bijv. op het sportpark).
    Verhoog CACHE_VERSIE bij elke nieuwe versie van de app. */
-const CACHE_VERSIE = 'grol-kompas-v6';
+const CACHE_VERSIE = 'grol-kompas-v7';
 
 /* De kern van de app: altijd offline beschikbaar */
 const SCHIL = [
